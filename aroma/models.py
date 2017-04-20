@@ -6,32 +6,44 @@ from core.settings import GENDER_CHOICES
 
 class Note(models.Model):
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, unique=True)
     pic = models.URLField(blank=True)
+
+    def __unicode__(self):
+        return self.title
 
 
 class Group(models.Model):
     id = models.AutoField(primary_key=True)
-    parent_id = models.IntegerField()
-    title = models.CharField(max_length=200, blank=True)
+    parent_id = models.IntegerField(blank=True, null=True)
+    title = models.CharField(max_length=200, blank=True, unique=True)
+
+    def __unicode__(self):
+        return self.title
 
 
 class Nose(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     biography = models.TextField(blank=True)
+
+    def __unicode__(self):
+        return self.name
 
 
 class Brand(models.Model):
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, unique=True)
     website = models.URLField(blank=True)
     logo = models.URLField(blank=True)
+
+    def __unicode__(self):
+        return self.title
 
 
 class Aroma(models.Model):
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, unique=True)
     pic = models.URLField(blank=True)
     year = models.IntegerField(blank=True, null=True)
     gender = models.CharField(choices=GENDER_CHOICES, default='u', max_length=1)
@@ -39,4 +51,7 @@ class Aroma(models.Model):
     group = models.ForeignKey(Group)
     brand = models.ForeignKey(Brand)
     notes = models.ManyToManyField(Note)
-    noses = models.ManyToManyField(Nose)
+    noses = models.ManyToManyField(Nose, blank=True, null=True)
+
+    def __unicode__(self):
+        return self.title
