@@ -1,3 +1,5 @@
 .idea
 core/settings.py
 *.pyc
+/static
+*/static
