@@ -50,8 +50,11 @@ class Aroma(models.Model):
     description = models.TextField(blank=True)
     group = models.ForeignKey(Group)
     brand = models.ForeignKey(Brand)
-    notes = models.ManyToManyField(Note)
-    noses = models.ManyToManyField(Nose, blank=True, null=True)
+    noses = models.ManyToManyField(Nose, blank=True)
+    notes = models.ManyToManyField(Note, related_name='notes', blank=True)
+    top_notes = models.ManyToManyField(Note, related_name='top_notes', blank=True)
+    middle_notes = models.ManyToManyField(Note, related_name='middle_notes', blank=True)
+    base_notes = models.ManyToManyField(Note, related_name='base_notes', blank=True)
 
     def __unicode__(self):
         return self.title

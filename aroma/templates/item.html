@@ -10,8 +10,10 @@
                 <div class="col-md-6 col-sm-6 center">
                     <img src={{ item.pic }} alt="{{ item.title }}" class="img-responsive" />
                     <div class="row-fluid favorite">
-                        <i class="glyphicon glyphicon-heart" title="Добавить в избранное"></i>
-                        <i class="glyphicon glyphicon-list" id="plus" title="Добавить в мои ароматы"></i>
+                        <i class="glyphicon glyphicon-heart img-circle" title="Добавить в избранное"
+                            data-toggle="tooltip" data-placement="top"></i>
+                        <i class="glyphicon glyphicon-list img-circle" id="plus" title="Добавить в мои ароматы"
+                            data-toggle="tooltip" data-placement="top"></i>
                     </div>
                     <p class="aroma_description">{{ item.description }}</p>
                 </div>

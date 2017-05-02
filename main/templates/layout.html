@@ -75,6 +75,12 @@
         <script src="{% static 'js/wow.min.js' %}"></script>
         {% bootstrap_javascript %}
 	{% endblock %}
+	<script>
+		$(document).ready(function(){
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+	</script>
+
 </body>
 
 </html>
