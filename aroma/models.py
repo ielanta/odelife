@@ -15,7 +15,7 @@ class Note(models.Model):
 
 class Group(models.Model):
     id = models.AutoField(primary_key=True)
-    parent_id = models.IntegerField(blank=True, null=True)
+    parent = models.ForeignKey('self', blank=True, null=True)
     title = models.CharField(max_length=200, blank=True, unique=True)
 
     def __unicode__(self):
@@ -58,3 +58,11 @@ class Aroma(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class AromaCounter(models.Model):
+    aroma = models.ForeignKey(Aroma)
+    num_comments = models.IntegerField(blank=True, null=True)
+    num_views = models.IntegerField(blank=True, null=True)
+
+
