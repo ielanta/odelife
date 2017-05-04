@@ -43,7 +43,7 @@ class Brand(models.Model):
 
 class Aroma(models.Model):
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
     pic = models.URLField(blank=True)
     year = models.IntegerField(blank=True, null=True)
     gender = models.CharField(choices=GENDER_CHOICES, default='u', max_length=1)
@@ -55,6 +55,9 @@ class Aroma(models.Model):
     top_notes = models.ManyToManyField(Note, related_name='top_notes', blank=True)
     middle_notes = models.ManyToManyField(Note, related_name='middle_notes', blank=True)
     base_notes = models.ManyToManyField(Note, related_name='base_notes', blank=True)
+
+    class Meta:
+        unique_together = ('title', 'brand', 'gender')
 
     def __unicode__(self):
         return self.title
