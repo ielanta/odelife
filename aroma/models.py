@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+import os
+from django.conf import settings
 from django.db import models
 from core.settings import GENDER_CHOICES
 
@@ -7,7 +9,7 @@ from core.settings import GENDER_CHOICES
 class Note(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200, unique=True)
-    pic = models.URLField(blank=True)
+    pic = models.ImageField(upload_to='notes/', blank=True, null=True)
 
     def __unicode__(self):
         return self.title
@@ -35,7 +37,7 @@ class Brand(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200, unique=True)
     website = models.URLField(blank=True)
-    logo = models.URLField(blank=True)
+    logo = models.ImageField(upload_to='brands/', blank=True, null=True)
 
     def __unicode__(self):
         return self.title
@@ -44,7 +46,7 @@ class Brand(models.Model):
 class Aroma(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
-    pic = models.URLField(blank=True)
+    pic = models.ImageField(upload_to='aromas/', blank=True, null=True)
     year = models.IntegerField(blank=True, null=True)
     gender = models.CharField(choices=GENDER_CHOICES, default='u', max_length=1)
     description = models.TextField(blank=True)
@@ -55,6 +57,7 @@ class Aroma(models.Model):
     top_notes = models.ManyToManyField(Note, related_name='top_notes', blank=True)
     middle_notes = models.ManyToManyField(Note, related_name='middle_notes', blank=True)
     base_notes = models.ManyToManyField(Note, related_name='base_notes', blank=True)
+    is_public = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ('title', 'brand', 'gender')

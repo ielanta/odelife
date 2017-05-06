@@ -8,7 +8,7 @@
                 <h3 class="title">{{item.title}}</h3>
                 <div class="col-md-1 col-s-1"></div>
                 <div class="col-md-6 col-sm-6 center">
-                    <img src={{ item.pic }} alt="{{ item.title }}" class="img-responsive" />
+                    <img src={{ item.pic.url }} alt="{{ item.title }}" class="img-responsive" />
                     <div class="row-fluid favorite">
                         <i class="glyphicon glyphicon-list img-circle" id="plus" title="Добавить в мои ароматы"
                             data-toggle="tooltip" data-placement="top"></i>
@@ -41,19 +41,41 @@
                     </div>
                     {% endif %}
                     <div class="row-fluid center">
-                        <img src="{% static 'img/ysl.jpg' %}" alt="{{ item.brand }}" class="img-responsive logo"/>
+                        <img src="{{  item.brand.logo.url }}" alt="{{ item.brand }}" class="img-responsive logo"/>
                     </div>
                     <div class="row-fluid">
-                        <h5 class="feature_data center note-title">Ноты</h5>
-                        <div class="center">
-                            {% for note in item.notes.all %}
-                            <div class="note-block">
-                                <img src="{% static 'img/mint.jpg' %}" alt="{{ note }}"
-                                     class="img-circle note"/>
-                                <div class="note-text">{{ note }}</div>
-                                </div>
-                            {% endfor %}
-                        </div>
+                        {% if item.notes.exists %}
+                            <h5 class="feature_data center note-title">Ноты</h5>
+                            <div class="center">
+                                {% for note in item.notes.all %}
+                                    {% include "note.html" with note=note %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% if item.top_notes.exists %}
+                            <h5 class="feature_data center note-title">Верхние Ноты</h5>
+                            <div class="center">
+                                {% for note in item.top_notes.all %}
+                                    {% include "note.html" with note=note %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% if item.middle_notes.exists %}
+                            <h5 class="feature_data center note-title">Средние Ноты</h5>
+                            <div class="center">
+                                {% for note in item.middle_notes.all %}
+                                    {% include "note.html" with note=note %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% if item.base_notes.exists %}
+                            <h5 class="feature_data center note-title">Нижние Ноты</h5>
+                            <div class="center">
+                                {% for note in item.base_notes.all %}
+                                    {% include "note.html" with note=note %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
