@@ -3,3 +3,6 @@ core/settings.py
 *.pyc
 /static
 */static
+aromas
+notes
+brands
