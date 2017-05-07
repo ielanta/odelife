@@ -1,5 +1,7 @@
 Django==1.9.1
+django-angular==0.8.4
 Django-bootstrap3==8.2.2
 Djangorestframework==3.6.2
 psycopg2==2.7.1
 Pillow==4.1.1
+six==1.10.0

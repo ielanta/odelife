@@ -1,7 +1,5 @@
 from __future__ import unicode_literals
 
-import os
-from django.conf import settings
 from django.db import models
 from core.settings import GENDER_CHOICES
 
