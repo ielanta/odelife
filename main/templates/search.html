@@ -1,16 +1,17 @@
 {% extends 'layout.html' %}
 {% load staticfiles %}
 {% load rest_framework %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <div class="contacts_space">
-        <div class="container" ng-app="AromaSearchApp">
+        <div class="container">
             <div class="row aroma_container">
                 <div class="col-md-2 col-sm-2">
-                    <form ng-controller="SearchFormCtrl" name="contact_form">
+                    <form name="search_form" action="{% url 'aroma-list' %}" method="get">
                         {% csrf_token %}
-                        {{ search_form }}
-                        <button ng-click="submitSearch()">Submit</button>
+                        {% render_form serializer template_pack='rest_framework/vertical' %}
+                        <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                 </div>
                 <div class="col-md-10 col-sm-10">
