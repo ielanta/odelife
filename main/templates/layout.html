@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:ng="http://angularjs.org">
 
 <head>
 	{% block meta %}
@@ -74,13 +74,14 @@
         <script src="{% static 'js/jquery.min.js' %}"></script>
         <script src="{% static 'js/wow.min.js' %}"></script>
         {% bootstrap_javascript %}
-	{% endblock %}
-	<script>
-		$(document).ready(function(){
-			$('[data-toggle="tooltip"]').tooltip();
-		});
-	</script>
-
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
+        {% block extra_javascript %}
+        {% endblock %}
+    {% endblock %}
 </body>
 
 </html>
