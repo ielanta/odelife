@@ -15,6 +15,7 @@
 		{% bootstrap_css %}
 		{% load staticfiles %}
     	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <script src="{% static 'js/jquery.min.js' %}"></script>
     {% endblock %}
 </head>
 
@@ -61,7 +62,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-6 col-md-6 col-lg-6">
-					<div>Оставить отзыв</div>
+					<div>Мы рядом <a href="mailto:support@odelife.ru">support@odelife.ru</a></div>
 				</div>
 				<div class="col-xs-6 col-md-6 col-lg-6">
 					<div class="copyright">&copy; OdeLife, 2017</div>
@@ -71,7 +72,6 @@
 	</footer>
 
 	{% block scripts %}
-        <script src="{% static 'js/jquery.min.js' %}"></script>
         <script src="{% static 'js/wow.min.js' %}"></script>
         {% bootstrap_javascript %}
         <script>

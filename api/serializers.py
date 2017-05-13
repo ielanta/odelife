@@ -1,7 +1,8 @@
 from django import forms
+from dal import autocomplete
 from django_filters.rest_framework import NumberFilter, FilterSet, MultipleChoiceFilter, CharFilter
 from rest_framework import serializers
-from aroma.models import Aroma
+from aroma.models import Aroma, Brand
 from core.settings import GENDER_CHOICES
 
 
@@ -14,18 +15,23 @@ class SearchFilter(FilterSet):
 
     class Meta:
         model = Aroma
-        fields = ['gender', 'min_year', 'max_year', 'title']
+        fields = ['gender', 'min_year', 'max_year', 'title', 'brand']
 
 
 class AromaSearchForm(forms.Form):
     class Meta:
         model = Aroma
         fields = ('id', 'title', 'gender', 'min_year', 'max_year', 'brand')
+
     title = forms.CharField(label="Название", required=False)
-    gender = forms.MultipleChoiceField(choices=GENDER_CHOICES, label="Пол", required=False,
+    gender = forms.MultipleChoiceField(choices=GENDER_CHOICES, initial=('u'), label="Пол", required=False,
                                        widget=forms.CheckboxSelectMultiple)
     min_year = forms.IntegerField(label="Год(c)", required=False)
     max_year = forms.IntegerField(label="Год(по)", required=False)
+    brand = forms.ModelChoiceField(
+        queryset=Brand.objects.all(), required=False,
+        widget=autocomplete.ModelSelect2(url='brand-autocomplete')
+    )
 
 
 class AromaListSerializer(serializers.ModelSerializer):

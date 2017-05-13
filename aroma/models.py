@@ -9,7 +9,7 @@ class Note(models.Model):
     title = models.CharField(max_length=200, unique=True)
     pic = models.ImageField(upload_to='notes/', blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
@@ -18,7 +18,7 @@ class Group(models.Model):
     parent = models.ForeignKey('self', blank=True, null=True)
     title = models.CharField(max_length=200, blank=True, unique=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
@@ -27,7 +27,7 @@ class Nose(models.Model):
     name = models.CharField(max_length=200, unique=True)
     biography = models.TextField(blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -37,7 +37,7 @@ class Brand(models.Model):
     website = models.URLField(blank=True)
     logo = models.ImageField(upload_to='brands/', blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
@@ -60,7 +60,7 @@ class Aroma(models.Model):
     class Meta:
         unique_together = ('title', 'brand', 'gender')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
