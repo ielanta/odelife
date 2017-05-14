@@ -23,12 +23,14 @@ class AromaSearchForm(forms.Form):
         model = Aroma
         fields = ('id', 'title', 'gender', 'min_year', 'max_year', 'brand')
 
-    title = forms.CharField(label="Название", required=False)
-    gender = forms.MultipleChoiceField(choices=GENDER_CHOICES, initial=('u'), label="Пол", required=False,
+    title = forms.CharField(label="Название", required=False, max_length=200)
+    gender = forms.MultipleChoiceField(choices=GENDER_CHOICES, label="Пол", required=False,
                                        widget=forms.CheckboxSelectMultiple)
-    min_year = forms.IntegerField(label="Год(c)", required=False)
-    max_year = forms.IntegerField(label="Год(по)", required=False)
-    brand = forms.ModelChoiceField(
+    min_year = forms.IntegerField(label="Год выпука", required=False, min_value=1700, max_value=2100,
+                                  widget=forms.NumberInput(attrs={'placeholder': 'с'}))
+    max_year = forms.IntegerField(label=" ", required=False, min_value=1700, max_value=2100,
+                                  widget=forms.NumberInput(attrs={'placeholder': 'по'}))
+    brand = forms.ModelChoiceField(label='Дизайнер',
         queryset=Brand.objects.all(), required=False,
         widget=autocomplete.ModelSelect2(url='brand-autocomplete')
     )
