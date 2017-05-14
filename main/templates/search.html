@@ -12,7 +12,6 @@
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <form name="search_form" id="search_form" method="GET">
-                        {% csrf_token %}
                         {% crispy form %}
                         <button type="submit" class="btn btn-search">Выбрать</button>
                     </form>
