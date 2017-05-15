@@ -51,10 +51,7 @@ class Aroma(models.Model):
     group = models.ForeignKey(Group)
     brand = models.ForeignKey(Brand)
     noses = models.ManyToManyField(Nose, blank=True)
-    notes = models.ManyToManyField(Note, related_name='notes', blank=True)
-    top_notes = models.ManyToManyField(Note, related_name='top_notes', blank=True)
-    middle_notes = models.ManyToManyField(Note, related_name='middle_notes', blank=True)
-    base_notes = models.ManyToManyField(Note, related_name='base_notes', blank=True)
+    notes = models.ManyToManyField(Note, through='CategoryNotes', related_name='notes', blank=True)
     is_public = models.BooleanField(default=False)
 
     class Meta:
@@ -65,8 +62,25 @@ class Aroma(models.Model):
 
 
 class AromaCounter(models.Model):
-    aroma = models.ForeignKey(Aroma)
+    aroma = models.ForeignKey(Aroma, on_delete=models.CASCADE)
     num_comments = models.IntegerField(blank=True, null=True)
     num_views = models.IntegerField(blank=True, null=True)
+
+
+class CategoryNotes(models.Model):
+    TOP_NOTES = 0
+    MIDDLE_NOTES = 1
+    BASE_NOTES = 2
+    GENERAL_NOTES = 3
+    CATEGORY_CHOICES = (
+        (TOP_NOTES, 'top_notes'),
+        (MIDDLE_NOTES, 'middle_notes'),
+        (BASE_NOTES, 'base_notes'),
+        (GENERAL_NOTES, 'general_notes'),
+    )
+    aroma = models.ForeignKey(Aroma, on_delete=models.CASCADE)
+    note = models.ForeignKey(Note, on_delete=models.CASCADE)
+    category = models.SmallIntegerField(choices=CATEGORY_CHOICES)
+
 
 
