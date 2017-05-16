@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from dal import autocomplete
-from .models import Aroma, Brand, Note
+from .models import Aroma, Brand, Note, Group, Nose
 
 
 def get_aroma(request, id):
@@ -20,5 +20,21 @@ class NotesAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Note.objects.all().order_by('title')
         if self.q:
-            qs = qs.filter(title__istartswith=self.q)
+            qs = qs.filter(title__istartswith=self.q.capitalize())
+        return qs
+
+
+class GroupAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Group.objects.all().order_by('title')
+        if self.q:
+            qs = qs.filter(title__istartswith=self.q.lower())
+        return qs
+
+
+class NosesAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Nose.objects.filter(aroma__is_public=True).all().order_by('name')
+        if self.q:
+            qs = qs.filter(name__istartswith=self.q.capitalize())
         return qs
