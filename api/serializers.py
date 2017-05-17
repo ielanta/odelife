@@ -42,9 +42,8 @@ class AromaSearchForm(forms.Form):
     max_year = forms.IntegerField(label=" ", required=False, min_value=1700, max_value=2100,
                                   widget=forms.NumberInput(attrs={'placeholder': 'по'}))
     group = forms.ModelChoiceField(label='Группа', queryset=Group.objects.all(), required=False,
-                                    widget=autocomplete.ModelSelect2(url='group-autocomplete'))
-    brand = forms.ModelChoiceField(label='Бренд',
-                                   queryset=Brand.objects.all(), required=False,
+                                   widget=autocomplete.ModelSelect2(url='group-autocomplete'))
+    brand = forms.ModelChoiceField(label='Бренд', queryset=Brand.objects.all(), required=False,
                                    widget=autocomplete.ModelSelect2(url='brand-autocomplete'))
     notes = forms.ModelMultipleChoiceField(label='Ноты', queryset=Note.objects.all(), required=False,
                                            widget=autocomplete.ModelSelect2Multiple(url='notes-autocomplete'))

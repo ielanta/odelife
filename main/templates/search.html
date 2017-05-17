@@ -1,11 +1,20 @@
 {% extends 'layout.html' %}
 {% load crispy_forms_tags %}
+{% load aroma_extras %}
 
 {% block content %}
     <div class="contacts_space">
         <div class="container" >
             <div class="row aroma_container">
                 <div class="col-md-9 col-sm-9" >
+                    <div class="sort">
+                        Сортировать:
+                        <a href="?{% url_replace request 'ordering' '-year' %}" {% if request.GET.ordering == '-year' or not request.GET.ordering %}
+                           class='selected'{% endif %}>по новизне</a>
+                        <a href="?{% url_replace request 'ordering' '-aromacounter__num_comments' %}"
+                                {% if request.GET.ordering == '-aromacounter__num_comments' %}
+                           class='selected'{% endif %}>по популярности</a>
+                    </div>
                     {% for item in items %}
                         {{ item.title }}{{ item.year }}<br/>
                     {% endfor %}
