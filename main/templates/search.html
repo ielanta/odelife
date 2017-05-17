@@ -15,14 +15,18 @@
                                 {% if request.GET.ordering == '-aromacounter__num_comments' %}
                            class='selected'{% endif %}>по популярности</a>
                     </div>
-                    {% for item in items %}
+                
+                    {% for item in data.results %}
                         {{ item.title }}{{ item.year }}<br/>
                     {% endfor %}
+                    <div class="center">
+                        {% include 'rest_framework/pagination/numbers.html' with previous_url=data.previous_url next_url=data.next_url page_links=data.page_links %}
+                    </div>
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <form name="search_form" id="search_form" method="GET">
                         {% crispy form %}
-                        <button type="submit" class="btn btn-search">Выбрать</button>
+                        <button type="submit" class="btn btn-search">Применить</button>
                     </form>
                 </div>
             </div>
