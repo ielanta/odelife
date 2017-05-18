@@ -15,7 +15,7 @@
                                 {% if request.GET.ordering == '-aromacounter__num_comments' %}
                            class='selected'{% endif %}>по популярности</a>
                     </div>
-                
+
                     {% for item in data.results %}
                         {{ item.title }}{{ item.year }}<br/>
                     {% endfor %}
