@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:ng="http://angularjs.org">
+<html lang="en">
 
 <head>
 	{% block meta %}
@@ -12,10 +12,16 @@
 
 	{% block styles %}
 		{% load bootstrap3 %}
-		{% bootstrap_css %}
-		{% load staticfiles %}
-    	<link href="{% static 'css/style.css' %}" rel="stylesheet">
-        <script src="{% static 'js/jquery.min.js' %}"></script>
+        {% load compress %}
+        {% compress css %}
+		    {% bootstrap_css %}
+		    {% load staticfiles %}
+    	    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        {% endcompress %}
+        {% compress js %}
+            <script src="{% bootstrap_jquery_url %}"></script>
+            {% bootstrap_javascript %}
+        {% endcompress %}
     {% endblock %}
 </head>
 
@@ -72,15 +78,16 @@
 	</footer>
 
 	{% block scripts %}
+        {% compress js %}
 {#        <script src="{% static 'js/wow.min.js' %}"></script>#}
-        {% bootstrap_javascript %}
-        <script>
-            $(document).ready(function(){
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-        </script>
-        {% block extra_javascript %}
-        {% endblock %}
+            <script>
+                $(document).ready(function(){
+                    $('[data-toggle="tooltip"]').tooltip();
+                });
+            </script>
+            {% block extra_javascript %}
+            {% endblock %}
+        {% endcompress %}
     {% endblock %}
 </body>
 
