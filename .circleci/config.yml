@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/odelife
     docker:
-      - image: python:3.4.2
+      - image: python:3.6.0
       - image: postgres:9.6
         environment:
           POSTGRES_USER: postgres
