@@ -33,8 +33,6 @@ class AromaSearchForm(forms.Form):
         model = Aroma
         fields = ('id', 'title', 'gender', 'min_year', 'max_year', 'brand', 'notes', 'group', 'noses')
 
-    limit_choices = 1
-
     title = forms.CharField(label="Название", required=False, max_length=200)
     gender = forms.MultipleChoiceField(choices=GENDER_CHOICES, label="Пол", required=False,
                                        widget=forms.CheckboxSelectMultiple)
@@ -59,6 +57,9 @@ class AromaSearchForm(forms.Form):
 
 
 class AromaListSerializer(serializers.ModelSerializer):
+    group = serializers.SlugRelatedField(read_only=True, slug_field='title')
+    brand = serializers.SlugRelatedField(read_only=True, slug_field='title')
+
     class Meta:
         model = Aroma
-        fields = ('id', 'title', 'gender', 'year', 'brand')
+        fields = ('id', 'title', 'gender', 'year', 'brand', 'pic', 'group')

@@ -9,19 +9,19 @@
                 <div class="col-md-9 col-sm-9" >
                     <div class="sort">
                         Сортировать:
-                        <a href="?{% url_replace request 'ordering' '-year' %}" {% if request.GET.ordering == '-year' or not request.GET.ordering %}
-                           class='selected'{% endif %}>по новизне</a>
+                        <a href="?{% url_replace request 'ordering' '-year' %}"
+                                {% if request.GET.ordering == '-year' or not request.GET.ordering %} class='selected'{% endif %}>
+                            по новизне</a>
                         <a href="?{% url_replace request 'ordering' '-aromacounter__num_comments' %}"
-                                {% if request.GET.ordering == '-aromacounter__num_comments' %}
-                           class='selected'{% endif %}>по популярности</a>
+                                {% if request.GET.ordering == '-aromacounter__num_comments' %} class='selected'{% endif %}>
+                            по популярности</a>
                     </div>
-
-                    {% for item in data.results %}
-                        {{ item.title }}{{ item.year }}<br/>
-                    {% endfor %}
-                    <div class="center">
-                        {% include 'rest_framework/pagination/numbers.html' with previous_url=data.previous_url next_url=data.next_url page_links=data.page_links %}
-                    </div>
+                    {% include "item_list.html" with items=data %}
+                    {% if data.page_links|length > 0 %}
+                        <div class="row center">
+                            {% include 'rest_framework/pagination/numbers.html' with previous_url=data.previous_url next_url=data.next_url page_links=data.page_links %}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <form name="search_form" id="search_form" method="GET">
