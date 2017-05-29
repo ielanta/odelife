@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row aroma_container">
                 <h3 class="title">{{ item.title }}</h3>
-                <div class="col-md-1 col-s-1"></div>
+                <div class="col-md-1 col-sm-1"></div>
                 <div class="col-md-6 col-sm-6 center">
                     <img src={{ item.pic.url }} alt="{{ item.title }}" class="img-responsive" />
                     <div class="row-fluid favorite">
@@ -49,35 +49,19 @@
                     <div class="row-fluid">
                         {% if item.notes.all|notes_in_category_exists:3 %}
                             <h5 class="feature_data center note-title">Ноты</h5>
-                            <div class="center">
-                                {% for note in item.notes.all|notes_in_category:3 %}
-                                    {% include "note.html" with note=note %}
-                                {% endfor %}
-                            </div>
+                            {% include "notes.html" with category=3 %}
                         {% endif %}
                         {% if item.notes.all|notes_in_category_exists:0 %}
                             <h5 class="feature_data center note-title">Верхние Ноты</h5>
-                            <div class="center">
-                                {% for note in item.notes.all|notes_in_category:0 %}
-                                    {% include "note.html" with note=note %}
-                                {% endfor %}
-                            </div>
+                            {% include "notes.html" with category=0 %}
                         {% endif %}
                         {% if item.notes.all|notes_in_category_exists:1 %}
                             <h5 class="feature_data center note-title">Средние Ноты</h5>
-                            <div class="center">
-                                {% for note in item.notes.all|notes_in_category:1 %}
-                                    {% include "note.html" with note=note %}
-                                {% endfor %}
-                            </div>
+                            {% include "notes.html" with category=1 %}
                         {% endif %}
                         {% if item.notes.all|notes_in_category_exists:2 %}
                             <h5 class="feature_data center note-title">Нижние Ноты</h5>
-                            <div class="center">
-                                {% for note in item.notes.all|notes_in_category:2 %}
-                                    {% include "note.html" with note=note %}
-                                {% endfor %}
-                            </div>
+                            {% include "notes.html" with category=2 %}
                         {% endif %}
                     </div>
                 </div>

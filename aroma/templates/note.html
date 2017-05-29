@@ -1,6 +1,0 @@
-{% block aroma_note %}
-    <div class="note-block">
-        <img {% if note.pic %}src="{{  note.pic.url  }}"{% endif %} alt="{{ note.title }}" class="img-circle note"/>
-        <div class="note-text">{{ note.title }}</div>
-    </div>
-{% endblock %}
