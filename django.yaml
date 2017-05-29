@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: django
+  labels:
+    app: django
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django
+  template:
+    metadata:
+      labels:
+        app: django
+    spec:
+      containers:
+        - image: django
+          name: django
+          env:
+          - name: DJANGO_DB_HOST
+            value: postgresql:5432
+          - name: DJANGO_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgresql
+                key: password
+          ports:
+            - containerPort: 80
+              name: django
+          volumeMounts:
+            - name: django-persistent-storage
+              mountPath: /var/www/html
+      volumes:
+        - name: django-persistent-storage
+          gcePersistentDisk:
+            pdName: django-disk
+            fsType: ext4
