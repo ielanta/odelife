@@ -1,14 +1,15 @@
 {% load aroma_extras %}
 
 {#<div>найдено {% 4|ru_pluralize:"аромат,аромата,ароматов" %}</div>#}
+<div class="row row-centered">
 {% for item in items.results %}
-    <div class="col-md-4 center aroma_card">
-        <a href="{% url 'aroma-detail' id=item.id %}">
-            <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma_list" />
-            <div>{{ item.title }}</div>
+    <div class="col-md-4 col-sm-4 col-xs-6 col-centered">
+        <a href="{% url 'aroma-detail' id=item.id %}" class="aroma_card pointed">
+            <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma_list_pic pointed" />
+            <div class="card_title">{{ item.title }}</div>
             <div class="melted_text">{{ item.brand }}</div>
-            <div>{{ item.group }}</div>
-            {{ item.year }}<br/>
+            <div class="card_text">{{ item.group }}, {{ item.year }}г</div>
         </a>
     </div>
 {% endfor %}
+</div>
