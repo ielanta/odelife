@@ -19,7 +19,7 @@
                     {% include "item_list.html" with items=data %}
                     {% if data.page_links|length > 0 %}
                         <div class="row center">
-                            {% include 'rest_framework/pagination/numbers.html' with previous_url=data.previous_url next_url=data.next_url page_links=data.page_links %}
+                            {% include 'pagination.html' with previous_url=data.previous_url next_url=data.next_url page_links=data.page_links %}
                         </div>
                     {% endif %}
                 </div>

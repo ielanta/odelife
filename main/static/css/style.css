@@ -652,25 +652,29 @@ Pagination
 
 .pagination li a {
     border: none;
-    color: #333 !important;
+    color: #555 !important;
     margin: 0 4px;
-    font-size: 16px;
     background-color: #FFFAFA !important;
+    border-radius: 20px !important;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
 }
 
-.pagination .active a, .pagination .active a:hover{
+.pagination .active a{
     background-color: #FFBE9F !important;
-    border-radius: 20px;
     cursor: default;
 }
 
-.pagination li a:hover{
-    border-radius: 21px;
+.pagination li a:not(.no_hover):hover {
     background-color: linen !important;
 }
-.pagination{
+
+.pagination {
     padding-top: 10px;
     padding-bottom: 10px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 15px;
 }
 
 /* ==========================
