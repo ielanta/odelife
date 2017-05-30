@@ -1,7 +1,7 @@
 {% load aroma_extras %}
 <div class="row row-centered">
 {% if items.results %}
-    <div class="num_results">{{ items.count | ru_pluralize:"Найден,Найдено,Найдено" }} {{ items.count }} {{ items.count | ru_pluralize:"аромат,аромата,ароматов" }}</div>
+    <div class="num-results">{{ items.count | ru_pluralize:"Найден,Найдено,Найдено" }} {{ items.count }} {{ items.count | ru_pluralize:"аромат,аромата,ароматов" }}</div>
     {% for item in items.results %}
         <div class="col-md-4 col-sm-4 col-xs-6 col-centered">
             <a href="{% url 'aroma-detail' id=item.id %}" class="aroma_card pointed">
