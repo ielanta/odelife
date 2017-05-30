@@ -1,15 +1,18 @@
 {% load aroma_extras %}
-
-{#<div>найдено {% 4|ru_pluralize:"аромат,аромата,ароматов" %}</div>#}
 <div class="row row-centered">
-{% for item in items.results %}
-    <div class="col-md-4 col-sm-4 col-xs-6 col-centered">
-        <a href="{% url 'aroma-detail' id=item.id %}" class="aroma_card pointed">
-            <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma_list_pic pointed" />
-            <div class="card_title">{{ item.title }}</div>
-            <div class="melted_text">{{ item.brand }}</div>
-            <div class="card_text">{{ item.group }}, {{ item.year }}г</div>
-        </a>
-    </div>
-{% endfor %}
+{% if items.results %}
+    <div class="num_results">{{ items.count | ru_pluralize:"Найден,Найдено,Найдено" }} {{ items.count }} {{ items.count | ru_pluralize:"аромат,аромата,ароматов" }}</div>
+    {% for item in items.results %}
+        <div class="col-md-4 col-sm-4 col-xs-6 col-centered">
+            <a href="{% url 'aroma-detail' id=item.id %}" class="aroma_card pointed">
+                <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma_list_pic pointed" />
+                <div class="card_title">{{ item.title }}</div>
+                <div class="melted_text">{{ item.brand }}</div>
+                <div class="card_text">{{ item.group }}, {{ item.year }}г</div>
+            </a>
+        </div>
+    {% endfor %}
+{% else %}
+    <div>По вашему запросу ничего не найдено</div>
+{% endif %}
 </div>
