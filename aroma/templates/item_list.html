@@ -4,11 +4,11 @@
     <div class="num-results">{{ items.count | ru_pluralize:"Найден,Найдено,Найдено" }} {{ items.count }} {{ items.count | ru_pluralize:"аромат,аромата,ароматов" }}</div>
     {% for item in items.results %}
         <div class="col-md-4 col-sm-4 col-xs-6 col-centered">
-            <a href="{% url 'aroma-detail' id=item.id %}" class="aroma_card pointed">
+            <a href="{% url 'aroma-detail' id=item.id %}" class="aroma-card pointed">
                 <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma_list_pic pointed" />
-                <div class="card_title">{{ item.title }}</div>
-                <div class="melted_text">{{ item.brand }}</div>
-                <div class="card_text">{{ item.group }}, {{ item.year }}г</div>
+                <div class="card-title">{{ item.title }}</div>
+                <div class="melted-text">{{ item.brand }}</div>
+                <div class="card-text">{{ item.group }}, {{ item.year }}г</div>
             </a>
         </div>
     {% endfor %}
