@@ -2,7 +2,8 @@
 {% load staticfiles %}
 {% load aroma_extras %}
 
-{% block title %} {{ item.title }} {% endblock %}
+{% block title %}{{ item.brand }} {{ item.title }}: описание, цены, отзывы{% endblock %}
+{% block description %}{{ item.description }}{% endblock %}
 
 {% block content %}
     <div class="container-space">
