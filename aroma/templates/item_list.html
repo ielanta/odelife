@@ -1,14 +1,25 @@
 {% load aroma_extras %}
 <div class="row row-centered">
 {% if items.results %}
-    <div class="num-results">{{ items.count | ru_pluralize:"Найден,Найдено,Найдено" }} {{ items.count }} {{ items.count | ru_pluralize:"аромат,аромата,ароматов" }}</div>
+    {% if request.GET %}
+        <div class="num-results">{{ items.count | ru_pluralize:"Найден,Найдено,Найдено" }} {{ items.count }} {{ items.count | ru_pluralize:"аромат,аромата,ароматов" }}</div>
+    {% endif %}
     {% for item in items.results %}
         <div class="col-md-4 col-sm-4 col-xs-6 col-centered">
             <a href="{% url 'aroma-detail' id=item.id %}" class="aroma-card pointed">
-                <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma_list_pic pointed" />
+                <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma-list-pic pointed" />
                 <div class="card-title">{{ item.title }}</div>
                 <div class="melted-text">{{ item.brand }}</div>
                 <div class="card-text">{{ item.group }}, {{ item.year }}г</div>
+                <div class="row summary-box">
+                    <div class="col-md-6">1 отзыв</div>
+                    <div class="col-md-6 action-box" >
+                    <span class="star-icon"><i class="glyphicon glyphicon-star-empty" title="Добавить в мои ароматы"
+                                aria-label="tooltip"></i></span>
+                    <span class="heart-icon"><i class="glyphicon glyphicon-heart-empty" title="Добавить в избранное"
+                                aria-label="tooltip"></i></span>
+                    </div>
+                </div>
             </a>
         </div>
     {% endfor %}

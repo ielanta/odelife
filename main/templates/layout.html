@@ -5,6 +5,7 @@
 	{% block meta %}
     	<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="application-name" content="OdeLife">
     	<meta name="description" content={% block description %}{% endblock %}>
         <title>{% block title %}{% endblock %}</title>
 	{% endblock %}
@@ -76,13 +77,8 @@
 	</footer>
 
 	{% block scripts %}
+        <script src="{% static 'js/app.js' %}"></script>
         {% compress js %}
-            <script src="{% static 'js/app.js' %}"></script>
-            <script>
-                $(document).ready(function(){
-                    $('[data-toggle="tooltip"]').tooltip();
-                });
-            </script>
             {% block extra_javascript %}
             {% endblock %}
         {% endcompress %}

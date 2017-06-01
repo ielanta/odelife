@@ -3,7 +3,7 @@ body {
     height: 100%;
 	font-weight: 300;
     color: #666;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     /*background-color: #FFBE9F;*/
     /*background:fixed linear-gradient(40deg, #FFC27B, #FFABC2) no-repeat, fixed linear-gradient(-40deg, transparent 40%, blue) no-repeat;*/
     /*background:fixed  linear-gradient(40deg, #FFABC2 20%, #FFC27B) no-repeat, fixed linear-gradient(-20deg, white 10%, #FFABC2  90%) no-repeat;*/
@@ -76,6 +76,7 @@ blockquote:before {
     color: #fff;
     font-size: 26px;
     line-height: 40px;
+    font-family: "Gill Sans", Arial, Helvetica, sans-serif;
 }
 
 .navbar-brand:focus {
@@ -172,7 +173,7 @@ hr {
 
 }
 
-.contacts_container{
+.contacts-container {
     background-color: #f9f9f9;
     padding: 15px 0 0 0;
     font-weight: 500;
@@ -181,12 +182,11 @@ hr {
 /* ===========================
 --- Aroma
 ============================ */
-.aroma_container{
+.aroma-container {
     background-color: #fff;
     padding: 15px 0 0 0;
     font-weight: 500;
     text-align: left;
-    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
 }
 
 .title{
@@ -306,18 +306,14 @@ hr {
 --- Footer
 ============================ */
 
-footer {
-	text-align: left;
-	padding: 10px 0;
-
-}
-
 #footer {
 	background-color: #453536;
     color: #FFF;
     font-size: 13px;
     letter-spacing: 1px;
     height: auto;
+    text-align: left;
+	padding: 10px 0;
 }
 
 #footer a{
@@ -459,19 +455,19 @@ Search form
     font-size: 12px;
 }
 
-.aroma_container .sort{
+.aroma-container .sort{
     color: #555;
     padding: 20px;
     letter-spacing: 1px;
 }
 
-.aroma_container .sort a{
+.aroma-container .sort a{
     padding-left: 3%;
     /*color: #5576D1;*/
     color: royalblue;
 }
 
-.aroma_container .sort .selected{
+.aroma-container .sort .selected{
     color: #555;
     cursor: default;
 }
@@ -483,9 +479,10 @@ Aroma List
 ============================= */
 .aroma-panel {
     background: #FFFAFA;
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
 }
 
-.aroma_list_pic{
+.aroma-list-pic {
     width: auto;
     vertical-align: bottom;
     height: 150px;
@@ -530,9 +527,28 @@ Aroma List
     color: #FFB862;
 }
 
+.summary-box{
+    font-size: 13px;
+    color: #aaa;
+    padding: 8px 0;
+    line-height: 1.4em;
+}
+
+.action-box{
+    font-size: 18px;
+}
+
+.star-icon:hover{
+    color: #FFB862;
+}
+
+.heart-icon:hover{
+    color: #FFABC2;
+}
+
 .num-results {
     padding-bottom: 28px;
-    font-size: 13px;
+    font-size: 15px;
     color: #999;
     font-weight: 500;
     letter-spacing: 1px;
