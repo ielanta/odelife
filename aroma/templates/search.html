@@ -11,15 +11,15 @@
         <div class="container-fluid" >
             <div class="row aroma-container aroma-panel">
                 <div class="col-md-9 col-sm-9" >
-                    <div class="sort">
+                    <ul class="list-inline sort">
                         Сортировать:
-                        <a href="?{% url_replace request 'ordering' '-year' %}"
+                        <li><a href="?{% url_replace request 'ordering' '-year' %}"
                                 {% if request.GET.ordering == '-year' or not request.GET.ordering %} class='selected'{% endif %}>
-                            по новизне</a>
-                        <a href="?{% url_replace request 'ordering' '-aromacounter__num_comments' %}"
+                            по новизне</a></li>
+                        <li><a href="?{% url_replace request 'ordering' '-aromacounter__num_comments' %}"
                                 {% if request.GET.ordering == '-aromacounter__num_comments' %} class='selected'{% endif %}>
-                            по популярности</a>
-                    </div>
+                            по популярности</a></li>
+                    </ul>
                     {% include "item_list.html" with items=data %}
                     {% if data.page_links|length > 1 %}
                         <div class="row center-text">

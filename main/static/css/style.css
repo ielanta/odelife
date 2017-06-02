@@ -165,12 +165,9 @@ hr {
 }
 
 .container-space {
-    #width: 100%;
     height: auto;
-    margin-top: 60px;
+    margin-top: 40px;
     font-weight: 500;
-    /*margin-bottom: 37px;*/
-
 }
 
 .contacts-container {
@@ -203,11 +200,12 @@ hr {
 }
 
 .aroma-container h3{
-    padding: 15px 0 15px 0;
+    padding: 13px 0;
+    font-size: 20px;
 }
 
 .aroma-pic {
-    max-height: 350px;
+    max-height: 330px;
 }
 
 .center-text {
@@ -215,7 +213,7 @@ hr {
 }
 
 .feature{
-    color: #ccc;
+    opacity: 0.4;
     text-align: right;
     line-height: 1.4em;
 }
@@ -228,31 +226,26 @@ hr {
     color: #555;
 }
 
+.feature_data h5 {
+    padding: 15px 0;
+    font-size: 120%;
+}
+
 .logo{
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: auto;
     padding: 10px 0;
 }
 
-.note-title{
-    padding: 15px 0 0 0;
-}
-
-.note{
-    /*border: 2px solid #FFB862; */
-    /*padding: 2px; */
-    /*background: linear-gradient(to top, #FFB862, #FFABC2 );*/
-    width: 70px;
-    height: 70px;
+.note-pic {
+    width: 60px;
+    height: 60px;
     opacity: 1;
     float: left;
 }
 
-.note-block:hover .note{
+.note-block:hover .note-pic {
     opacity: 0;
-    /*padding: 3px;*/
-    /*background: linear-gradient(to top, #FFB862, #FFABC2 );*/
-    /*border: 2px solid #FFF;*/
 }
 
 .note-block:hover .note-text{
@@ -262,8 +255,6 @@ hr {
 .note-text {
     opacity: 0;
     color: #453536;
-    #font-weight: 700;
-    /*font-family: Arial, sans-serif;*/
     word-wrap: break-word;
     font-size: 14px;
     position: absolute;
@@ -290,32 +281,10 @@ hr {
     color: #444;
 }
 
-.favorite i {
-    color: #FF8B9A;
-    cursor: pointer;
-    margin-left: 10px;
-    font-size: 2.4rem;
-
+#aroma-detail .action-box{
+    font-size: 22px;
+    color: #ccc;
 }
-
-.favorite #plus {
-    color: #FFB862;
-}
-
-
-.favorite i:hover {
-    /*background-color: rgba(240,0,0,.05);*/
-    opacity: 0.4;
-}
-
-.favorite{
-    padding: 10px 0;
-}
-
-.tooltip{
-    color: #444 !important;
-}
-
 
 /* ===========================
 --- Footer
@@ -471,12 +440,10 @@ Search form
 
 .aroma-container .sort{
     color: #555;
-    padding: 20px;
-    letter-spacing: 1px;
+    padding: 15px;
 }
 
 .aroma-container .sort a{
-    padding-left: 3%;
     /*color: #5576D1;*/
     color: royalblue;
 }
@@ -770,6 +737,34 @@ Parallax
 
     .aroma-pic {
         height: 250px;
+    }
+
+    .note-text{
+        opacity: 1;
+        margin-right: 15px;
+    }
+
+    .note-pic{
+        opacity: 0;
+        height: 30px;
+        width: 65px;
+    }
+
+    .feature_data h5{
+        font-weight: 700;
+        padding: 10px 0;
+    }
+
+    #aroma-detail h3{
+        font-size: 18px;
+    }
+
+    #aroma-detail .right-group{
+        padding-top: 15px;
+    }
+
+    .feature_data, .feature, .note-text{
+        font-size: 13px;
     }
 	
 }

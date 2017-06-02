@@ -6,7 +6,7 @@
 {% block description %}{{ description }}{% endblock %}
 
 {% block content %}
-    <div class="container-space">
+    <div class="container-space" id="aroma-detail">
         <div class="container-fluid">
             <div class="row aroma-container">
                 <ul class="list-inline breadcrumbs">
@@ -17,15 +17,28 @@
                 <h3 class="center-text">{{ title }}</h3>
                 <div class="col-md-offset-1 col-md-6 col-sm-7 center-text">
                     <img src={{ pic }} alt="{{ title }}" class="aroma-pic img-responsive center-block" />
-                    <div class="row-fluid favorite">
-                        <i class="glyphicon glyphicon-list img-circle" id="plus" title="Добавить в мои ароматы"
-                            data-toggle="tooltip" data-placement="top"></i>
-                        <i class="glyphicon glyphicon-heart img-circle" title="Добавить в избранное"
-                            data-toggle="tooltip" data-placement="top"></i>
-                    </div>
+                    {% include "action_box.html" %}
                     <p class="aroma_description">{{ description }}</p>
+                    <div class="row-fluid feature_data">
+                        {% if general_notes %}
+                            <h5 class="feature_data center-text">Ноты</h5>
+                            {% include "notes.html" with notes=general_notes %}
+                        {% endif %}
+                        {% if top_notes %}
+                            <h5 class="feature_data center-text">Верхние Ноты</h5>
+                            {% include "notes.html" with notes=top_notes %}
+                        {% endif %}
+                        {% if middle_notes %}
+                            <h5 class="feature_data center-text">Средние Ноты</h5>
+                            {% include "notes.html" with notes=middle_notes %}
+                        {% endif %}
+                        {% if base_notes %}
+                            <h5 class="feature_data center-text">Нижние Ноты</h5>
+                            {% include "notes.html" with notes=base_notes %}
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="col-md-4 col-sm-5">
+                <div class="col-md-4 col-sm-5 right-group">
                     <div class="row-fluid">
                         <h5 class="col-md-4 col-xs-5 feature">Группа</h5>
                         <h5 class="col-md-8 col-xs-7 feature_data">
@@ -55,27 +68,9 @@
                         </div>
                     {% endif %}
                     <div class="row-fluid center-text">
-                        <a href="{% url 'aroma-list' %}?brand={{ brand.id }}">
+                        <a href="{% url 'aroma-list' %}?brand={{ brand.id }}" title="{{ brand.title }}" aria-label="tooltip">
                             <img src="{{ brand.logo }}" alt="{{ brand.title }}" class="logo center-block"/>
                         </a>
-                    </div>
-                    <div class="row-fluid">
-                        {% if general_notes %}
-                            <h5 class="feature_data center-text note-title">Ноты</h5>
-                            {% include "notes.html" with notes=general_notes %}
-                        {% endif %}
-                        {% if top_notes %}
-                            <h5 class="feature_data center-text note-title">Верхние Ноты</h5>
-                            {% include "notes.html" with notes=top_notes %}
-                        {% endif %}
-                        {% if middle_notes %}
-                            <h5 class="feature_data center-text note-title">Средние Ноты</h5>
-                            {% include "notes.html" with notes=middle_notes %}
-                        {% endif %}
-                        {% if base_notes %}
-                            <h5 class="feature_data center-text note-title">Нижние Ноты</h5>
-                            {% include "notes.html" with notes=base_notes %}
-                        {% endif %}
                     </div>
                 </div>
             </div>

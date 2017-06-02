@@ -4,7 +4,7 @@
     {% for note in notes %}
         <div class="note-block">
             <a href="{% url 'aroma-list' %}?notes={{ note.id }}">
-                <img {% if note.pic %}src="{{ note.pic }}"{% endif %} alt="{{ note.title }}" class="img-circle note"/>
+                <img {% if note.pic %}src="{{ note.pic }}"{% endif %} alt="{{ note.title }}" class="img-circle note-pic"/>
                 <div class="note-text">{{ note.title }}</div>
             </a>
         </div>
