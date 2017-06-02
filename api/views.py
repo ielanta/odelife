@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.filters import OrderingFilter
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
-from .serializers import AromaListSerializer, SearchFilter, AromaSearchForm
+from .serializers import AromaListSerializer, SearchFilter, AromaSearchForm, AromaDetailSerializer
 from aroma.models import Aroma
 from main.pagination import CustomPagination
 from main.permissions import PublicEndpoint
@@ -26,3 +26,12 @@ class AromaList(generics.ListCreateAPIView):
         response = super(AromaList, self).list(request, format='json', *args, **kwargs)
         form = AromaSearchForm(data=request.query_params)
         return Response({'data': response.data, 'form': form})
+
+
+class AromaDetail(generics.RetrieveAPIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'item.html'
+    serializer_class = AromaDetailSerializer
+    allowed_methods = ['GET']
+    queryset = Aroma.objects.filter(is_public=True).all()
+    permission_classes = (PublicEndpoint,)

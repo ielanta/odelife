@@ -5,7 +5,7 @@ from django_filters.rest_framework import NumberFilter, FilterSet, MultipleChoic
 
 from django.db.models import Q
 from rest_framework import serializers
-from aroma.models import Aroma, Brand, Note, Group, Nose
+from aroma.models import Aroma, Brand, Note, Group, Nose, CategoryNotes
 from core.settings import GENDER_CHOICES
 from django.core.exceptions import ValidationError
 
@@ -62,4 +62,68 @@ class AromaListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Aroma
-        fields = ('id', 'title', 'gender', 'year', 'brand', 'pic', 'group')
+        fields = ('id', 'title', 'year', 'brand', 'pic', 'group')
+
+
+class NoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Note
+        fields = '__all__'
+
+
+class BrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Brand
+        fields = ('id', 'title', 'logo')
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = '__all__'
+
+
+class NoseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Nose
+        fields = ('id', 'name')
+
+
+class AromaDetailSerializer(serializers.ModelSerializer):
+    top_notes = serializers.SerializerMethodField()
+    middle_notes = serializers.SerializerMethodField()
+    base_notes = serializers.SerializerMethodField()
+    general_notes = serializers.SerializerMethodField()
+    noses = NoseSerializer(read_only=True, many=True)
+    gender_label = serializers.SerializerMethodField()
+    brand = BrandSerializer(read_only=True)
+    group = GroupSerializer(read_only=True)
+
+    @staticmethod
+    def get_gender_label(obj):
+        return obj.get_gender_display()
+
+    @staticmethod
+    def get_top_notes(obj):
+        notes = obj.notes.filter(categorynotes__category=CategoryNotes.TOP_NOTES).all()
+        return NoteSerializer(notes, many=True, read_only=True).data
+
+    @staticmethod
+    def get_middle_notes(obj):
+        notes = obj.notes.filter(categorynotes__category=CategoryNotes.MIDDLE_NOTES).all()
+        return NoteSerializer(notes, many=True, read_only=True).data
+
+    @staticmethod
+    def get_base_notes(obj):
+        notes = obj.notes.filter(categorynotes__category=CategoryNotes.BASE_NOTES).all()
+        return NoteSerializer(notes, many=True, read_only=True).data
+
+    @staticmethod
+    def get_general_notes(obj):
+        notes = obj.notes.filter(categorynotes__category=CategoryNotes.GENERAL_NOTES).all()
+        return NoteSerializer(notes, many=True, read_only=True).data
+
+    class Meta:
+        model = Aroma
+        fields = ('id', 'title', 'year', 'brand', 'pic', 'group', 'gender_label', 'noses', 'description', 'top_notes',
+                  'middle_notes', 'base_notes', 'general_notes')

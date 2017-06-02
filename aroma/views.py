@@ -1,11 +1,5 @@
-from django.shortcuts import render
 from dal import autocomplete
-from .models import Aroma, Brand, Note, Group, Nose
-
-
-def get_aroma(request, id):
-    fr = Aroma.objects.get(id=id)
-    return render(request, 'item.html', {'item': fr})
+from .models import Brand, Note, Group, Nose
 
 
 class BrandAutocomplete(autocomplete.Select2QuerySetView):

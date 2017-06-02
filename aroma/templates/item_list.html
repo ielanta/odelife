@@ -6,7 +6,7 @@
     {% endif %}
     {% for item in items.results %}
         <div class="col-md-4 col-sm-4 col-xs-6 col-centered">
-            <a href="{% url 'aroma-detail' id=item.id %}" class="aroma-card pointed">
+            <a href="{% url 'aroma-detail' pk=item.id %}" class="aroma-card pointed">
                 <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma-list-pic pointed" />
                 <div class="card-title">{{ item.title }}</div>
                 <div class="melted-text">{{ item.brand }}</div>
