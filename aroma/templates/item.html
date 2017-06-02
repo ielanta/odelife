@@ -7,12 +7,11 @@
 
 {% block content %}
     <div class="container-space">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row aroma-container">
-                <h3 class="title">{{ title }}</h3>
-                <div class="col-md-1"></div>
-                <div class="col-md-6 col-sm-6 center">
-                    <img src={{ pic }} alt="{{ title }}" class="img-responsive" />
+                <h3 class="center-text">{{ title }}</h3>
+                <div class="col-md-6 col-sm-6 center-text">
+                    <img src={{ pic }} alt="{{ title }}" class="aroma-pic img-responsive center-block" />
                     <div class="row-fluid favorite">
                         <i class="glyphicon glyphicon-list img-circle" id="plus" title="Добавить в мои ароматы"
                             data-toggle="tooltip" data-placement="top"></i>
@@ -44,24 +43,24 @@
                             </h5>
                         </div>
                     {% endif %}
-                    <div class="row-fluid center">
-                        <img src="{{ brand.logo }}" alt="{{ brand.title }}" class="img-responsive logo"/>
+                    <div class="row-fluid center-text">
+                        <img src="{{ brand.logo }}" alt="{{ brand.title }}" class="logo center-block"/>
                     </div>
                     <div class="row-fluid">
                         {% if general_notes %}
-                            <h5 class="feature_data center note-title">Ноты</h5>
+                            <h5 class="feature_data center-text note-title">Ноты</h5>
                             {% include "notes.html" with notes=general_notes %}
                         {% endif %}
                         {% if top_notes %}
-                            <h5 class="feature_data center note-title">Верхние Ноты</h5>
+                            <h5 class="feature_data center-text note-title">Верхние Ноты</h5>
                             {% include "notes.html" with notes=top_notes %}
                         {% endif %}
                         {% if middle_notes %}
-                            <h5 class="feature_data center note-title">Средние Ноты</h5>
+                            <h5 class="feature_data center-text note-title">Средние Ноты</h5>
                             {% include "notes.html" with notes=middle_notes %}
                         {% endif %}
                         {% if base_notes %}
-                            <h5 class="feature_data center note-title">Нижние Ноты</h5>
+                            <h5 class="feature_data center-text note-title">Нижние Ноты</h5>
                             {% include "notes.html" with notes=base_notes %}
                         {% endif %}
                     </div>

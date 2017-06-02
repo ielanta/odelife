@@ -184,40 +184,37 @@ hr {
 ============================ */
 .aroma-container {
     background-color: #fff;
-    padding: 15px 0 0 0;
-    font-weight: 500;
-    text-align: left;
+    padding: 15px 0;
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
 }
 
-.title{
-	text-align: center;
+.aroma-container h3{
     padding: 15px 0 15px 0;
 }
 
-.center img{
-    display: block;
-    margin: 0 auto;
+.aroma-pic {
+    max-height: 400px;
 }
 
-.center {
+.center-text {
     text-align: center;
 }
 
 .feature{
-    color: #BCBCBE;
+    color: #ccc;
     text-align: right;
-    line-height: 1.4;
+    line-height: 1.4em;
 }
 
 .feature_data{
     color: #444;
-    line-height: 1.4;
+    line-height: 1.4em;
 }
 
 .logo{
     width: 120px;
-    height: 130px;
-    padding: 10px 0 0 0;
+    height: 120px;
+    padding: 10px 0;
 }
 
 .note-title{
@@ -439,7 +436,6 @@ Search form
     background-color: linen;
     color: #555;
     width: 100%;
-    margin-bottom: 15px;
     height: 37px;
     letter-spacing: 1px;
     border-radius: 0;
@@ -479,7 +475,6 @@ Aroma List
 ============================= */
 .aroma-panel {
     background: #FFFAFA;
-    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
 }
 
 .aroma-list-pic {

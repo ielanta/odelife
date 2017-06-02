@@ -1,6 +1,6 @@
 {% load aroma_extras %}
 
-<div class="center">
+<div class="center-text">
     {% for note in notes %}
         <div class="note-block">
             <img {% if note.pic %}src="{{ note.pic }}"{% endif %} alt="{{ note.title }}" class="img-circle note"/>
