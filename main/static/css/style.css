@@ -188,12 +188,26 @@ hr {
     font-family: "Helvetica Neue Light", "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
 }
 
+.breadcrumbs {
+    padding-left: 20px;
+}
+
+.breadcrumbs > li + li:before {
+    color: #ddd;
+    content: "|";
+    padding-right: 10px;
+}
+
+.breadcrumbs a {
+    color: #666;
+}
+
 .aroma-container h3{
     padding: 15px 0 15px 0;
 }
 
 .aroma-pic {
-    max-height: 400px;
+    max-height: 350px;
 }
 
 .center-text {
@@ -206,9 +220,12 @@ hr {
     line-height: 1.4em;
 }
 
-.feature_data{
-    color: #444;
+.feature_data {
     line-height: 1.4em;
+}
+
+.feature_data a{
+    color: #555;
 }
 
 .logo{
@@ -232,7 +249,7 @@ hr {
 }
 
 .note-block:hover .note{
-    opacity: 0.1;
+    opacity: 0;
     /*padding: 3px;*/
     /*background: linear-gradient(to top, #FFB862, #FFABC2 );*/
     /*border: 2px solid #FFF;*/
@@ -244,8 +261,9 @@ hr {
 
 .note-text {
     opacity: 0;
-    color: black;
-    font-weight: 700;
+    color: #453536;
+    #font-weight: 700;
+    /*font-family: Arial, sans-serif;*/
     word-wrap: break-word;
     font-size: 14px;
     position: absolute;
@@ -530,7 +548,7 @@ Aroma List
 }
 
 .action-box{
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .star-icon:hover{
@@ -746,9 +764,12 @@ Parallax
     }
 
     .intro {
-        /*margin-top: 0;*/
         background: none;
         height: auto;
+    }
+
+    .aroma-pic {
+        height: 250px;
     }
 	
 }
