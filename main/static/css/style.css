@@ -144,17 +144,35 @@ hr {
     height: auto;
 }
 
-.intro_space {
-	padding: 24% 0 0 0;
+.intro-space {
+	padding: 23% 0 0 0;
 }
 
-.intro_space h4 {
-    text-align: center;
+.intro-space h4 {
+    text-align: right;
     margin: 15px;
     color: #453536;
     font-family: "Gill Sans", Arial, Helvetica, sans-serif;
 }
 
+#compact-search-form input, .btn-default{
+    height: 46px;
+}
+
+#compact-search-form input{
+    opacity: 0.9;
+    border-color: #f2dede;
+}
+
+
+#compact-search-form .btn-default{
+    opacity: 0.8;
+    color: #453536;
+}
+
+#compact-search-form .input-group-btn{
+    vertical-align: bottom;
+}
 
 /* ===========================
 --- Contacts
@@ -182,7 +200,7 @@ hr {
 .aroma-container {
     background-color: #fff;
     padding: 15px 0;
-    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "HelveticaNeueLight", Helvetica, Arial, sans-serif;
 }
 
 .breadcrumbs {
@@ -191,7 +209,7 @@ hr {
 
 .breadcrumbs > li + li:before {
     color: #ddd;
-    content: "|";
+    content: "\2022";
     padding-right: 10px;
 }
 
@@ -313,17 +331,16 @@ Search form
 ============================= */
 
 /* dal bootstrap css fix */
-.select2-container {
-    width: 100% !important;
-    min-width: 10em !important;
-}
-.select2-container--default .select2-selection--single, .select2-container--default .select2-selection--multiple{
-    border-color: #f2dede !important;
+#search_form .select2-container {
+    width: 100%;
+    min-width: 10em;
 }
 
-.select2-container .select2-selection--single, .select2-container--default .select2-selection--multiple{
-    min-height: 34px !important;
+#search_form .select2-container--default .select2-selection--single,
+#search_form .select2-container--default .select2-selection--multiple {
+    min-height: 34px;
 }
+
 /* django-addanother bootstrap css fix */
 .related-widget-wrapper{
     padding-right: 16px;
@@ -335,18 +352,18 @@ Search form
     right: 0;
 }
 
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color: #FFBE9F !important;
+#search_form .select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #FFBE9F;
 }
 
-.select2-selection__choice{
-    background-color: linen !important;
+#search_form .select2-selection__choice{
+    background-color: linen;
     color: #444;
-    border: none !important;
+    border: none;
 }
 
-.select2-selection__choice__remove{
-    color: darksalmon !important;
+#search_form .select2-selection__choice__remove{
+    color: darksalmon;
 }
 
 /*input[type=checkbox]{*/
@@ -375,17 +392,16 @@ Search form
     /*content: "\2713";*/
 /*}*/
 
-.has-error .help-block, .has-error .control-label{
-    color: crimson !important;
+#search_form .has-error .help-block, #search_form .has-error .control-label{
+    color: crimson;
 }
 
-.has-error .form-control{
+#search_form .has-error .form-control, #search_form .has-error .help-block, #search_form .has-error .control-label{
     border-color: crimson;
 }
 
 .form-group{
     margin-bottom: 5px;
-    outline:0 !important;
 }
 
 .form-group label{
@@ -405,10 +421,12 @@ Search form
     margin-top: 2px;
 }
 
-.form-control, .checkbox input[type=checkbox], .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--multiple{
+#search_form .form-control, #search_form .checkbox input[type=checkbox],
+#search_form .select2-container--default .select2-selection--single, #compact-search-form .btn-default,
+#search_form .select2-container--default .select2-selection--multiple{
     box-shadow: none;
-    border-radius: 0 !important;
-    border-color: #f2dede !important;
+    border-radius: 0;
+    border-color: #f2dede;
 }
 
 #div_id_min_year, #div_id_max_year{
@@ -553,23 +571,23 @@ Aroma List
 Pagination
 ============================= */
 
-.pagination li a {
+#pagination li a {
     border: none;
-    color: #555 !important;
+    color: #555;
     margin: 0 4px;
-    background-color: #FFFAFA !important;
-    border-radius: 20px !important;
+    background-color: #FFFAFA ;
+    border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
 }
 
-.pagination .active a{
-    background-color: #FFBE9F !important;
+#pagination .active a{
+    background-color: #FFBE9F;
     cursor: default;
 }
 
-.pagination li a:not(.no_hover):hover {
-    background-color: linen !important;
+#pagination li a:not(.no_hover):hover {
+    background-color: linen;
 }
 
 .pagination {
@@ -579,7 +597,6 @@ Pagination
     font-weight: 500;
     font-size: 15px;
 }
-
 
 /* ==========================
 Parallax
@@ -688,15 +705,6 @@ Parallax
         padding: 0;
     }
 
-    .brand-heading{
-        font-size: 100px;
-    }
-	
-
-    .intro-text{
-        font-size: 25px;
-    }
-
 }
 
 
@@ -730,7 +738,11 @@ Parallax
 
     .intro {
         background: none;
-        height: auto;
+        height: 100%;
+    }
+
+    #compact-search-form{
+        padding-top: 40%;
     }
 
     .aroma-pic {

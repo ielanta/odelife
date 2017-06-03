@@ -1,10 +1,14 @@
+from django.shortcuts import redirect, render
+from django.core.urlresolvers import reverse
 from dal import autocomplete
+from django.views.generic.edit import FormView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.filters import OrderingFilter
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
-from aroma.serializers import AromaListSerializer, SearchFilter, AromaSearchForm, AromaDetailSerializer
+from aroma.serializers import AromaListSerializer, SearchFilter, AromaDetailSerializer
+from aroma.forms import AromaSearchForm, AromaCompactSearchForm
 from aroma.models import Aroma, Brand, Note, Group, Nose
 from main.pagination import CustomPagination
 from main.permissions import PublicEndpoint
@@ -26,6 +30,8 @@ class AromaList(generics.ListCreateAPIView):
     def list(self, request, *args, **kwargs):
         response = super(AromaList, self).list(request, format='json', *args, **kwargs)
         form = AromaSearchForm(data=request.query_params)
+        if not form.is_valid():
+            form = AromaSearchForm()
         return Response({'data': response.data, 'form': form})
 
 
@@ -68,3 +74,14 @@ class NosesAutocomplete(autocomplete.Select2QuerySetView):
         if self.q:
             qs = qs.filter(name__istartswith=self.q.capitalize())
         return qs
+
+
+class AromaCompactSearch(FormView):
+    form_class = AromaCompactSearchForm
+    template_name = 'home.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(request.GET)
+        if form.data and form.is_valid():
+            return redirect(reverse('aroma-list')+'?title=%s' % form.data.get('title'))
+        return render(request, self.template_name, {'form': form})
