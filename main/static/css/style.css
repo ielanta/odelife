@@ -392,7 +392,6 @@ Search form
     color: #555;
     font-weight: 500;
     margin: 0;
-    #font-size: 14px;
     letter-spacing: 1px;
 }
 
@@ -705,7 +704,6 @@ Parallax
     .navbar{
         padding-top: 10px;
         background-color: seashell;
-        #height: 25px;
     }
     .navbar-custom ul.nav li a{
         color: #555;

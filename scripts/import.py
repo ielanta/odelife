@@ -2,7 +2,7 @@
 
 import ast
 import csv
-from aroma.models import Aroma, Brand, Note, Nose, AromaCounter, CategoryNotes
+from aroma.models import Aroma, Brand, Note, Nose, AromaCounter, CategoryNotes, Group
 
 
 def group_import_csv(name='/Users/marinapolyakova/PycharmProjects/fragrantica_parser/фужерные водяные.csv'):
@@ -15,38 +15,40 @@ def group_import_csv(name='/Users/marinapolyakova/PycharmProjects/fragrantica_pa
         for row in reader:
             if row['comments'][0] != '0' or row['year'] and row['year'][0:4] == '2017':
                 gender = 'u' if row['gender'] == 'мужчин и женщин' else 'f' if row['gender'] == 'женщин' else 'm'
-                brand, created = Brand.objects.get_or_create(title=row['designer'])
-                aroma, created = Aroma.objects.get_or_create(title=row['title'], gender=gender, brand=brand, group_id=8)
+                brand, _ = Brand.objects.get_or_create(title=row['designer'])
+                aroma, _ = Aroma.objects.get_or_create(title=row['title'], gender=gender, brand=brand)
+                group, _ = Group.objects.get_or_create(id=6)
+                aroma.groups.add(group)
                 aroma.pic = row['pic']
                 if row['year'] != '':
                     aroma.year = int(row['year'][0:4])
                 if row['noses'] != '[]':
                     for nose in ast.literal_eval(row['noses']):
-                        nose, created = Nose.objects.get_or_create(name=nose)
+                        nose, _ = Nose.objects.get_or_create(name=nose)
                         aroma.noses.add(nose)
                 if row['Ноты Аромата']:
                     for note in ast.literal_eval(row['Ноты Аромата']):
-                        note, created = Note.objects.get_or_create(title=note)
+                        note, _ = Note.objects.get_or_create(title=note)
                         note.save()
-                        cnote, created = CategoryNotes.objects.get_or_create(aroma=aroma, note=note, category=CategoryNotes.GENERAL_NOTES)
+                        cnote, _ = CategoryNotes.objects.get_or_create(aroma=aroma, note=note, category=CategoryNotes.GENERAL_NOTES)
                         cnote.save()
                 if row['верхние Ноты']:
                     for note in ast.literal_eval(row['верхние Ноты']):
-                        note, created = Note.objects.get_or_create(title=note)
+                        note, _ = Note.objects.get_or_create(title=note)
                         note.save()
-                        cnote, created = CategoryNotes.objects.get_or_create(aroma=aroma, note=note, category=CategoryNotes.TOP_NOTES)
+                        cnote, _ = CategoryNotes.objects.get_or_create(aroma=aroma, note=note, category=CategoryNotes.TOP_NOTES)
                         cnote.save()
                 if row['средние Ноты']:
                     for note in ast.literal_eval(row['средние Ноты']):
-                        note, created = Note.objects.get_or_create(title=note)
+                        note, _ = Note.objects.get_or_create(title=note)
                         note.save()
-                        cnote, created = CategoryNotes.objects.get_or_create(aroma=aroma, note=note, category=CategoryNotes.MIDDLE_NOTES)
+                        cnote, _ = CategoryNotes.objects.get_or_create(aroma=aroma, note=note, category=CategoryNotes.MIDDLE_NOTES)
                         cnote.save()
                 if row['база Ноты']:
                     for note in ast.literal_eval(row['база Ноты']):
-                        note, created = Note.objects.get_or_create(title=note)
+                        note, _ = Note.objects.get_or_create(title=note)
                         note.save()
-                        cnote, created = CategoryNotes.objects.get_or_create(aroma=aroma, note=note, category=CategoryNotes.BASE_NOTES)
+                        cnote, _ = CategoryNotes.objects.get_or_create(aroma=aroma, note=note, category=CategoryNotes.BASE_NOTES)
                         cnote.save()
                 aroma.save()
                 AromaCounter.objects.get_or_create(aroma=aroma, num_comments=float(row['comments']))
