@@ -54,7 +54,7 @@ class NotesAutocomplete(autocomplete.Select2QuerySetView):
         return qs
 
 
-class GroupAutocomplete(autocomplete.Select2QuerySetView):
+class GroupsAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Group.objects.all().order_by('title')
         if self.q:

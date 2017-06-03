@@ -3,7 +3,7 @@
 {% load aroma_extras %}
 
 {% block title %}{{ brand.title }} {{ title }}: описание, цены, отзывы{% endblock %}
-{% block description %}{{ description }}{% endblock %}
+{% block description %}{{ description|truncatechars:250 }}{% endblock %}
 
 {% block content %}
     <div class="container-space" id="aroma-detail">
@@ -20,29 +20,19 @@
                     {% include "action_box.html" %}
                     <p class="aroma_description">{{ description }}</p>
                     <div class="row-fluid feature_data">
-                        {% if general_notes %}
-                            <h5 class="feature_data center-text">Ноты</h5>
-                            {% include "notes.html" with notes=general_notes %}
-                        {% endif %}
-                        {% if top_notes %}
-                            <h5 class="feature_data center-text">Верхние Ноты</h5>
-                            {% include "notes.html" with notes=top_notes %}
-                        {% endif %}
-                        {% if middle_notes %}
-                            <h5 class="feature_data center-text">Средние Ноты</h5>
-                            {% include "notes.html" with notes=middle_notes %}
-                        {% endif %}
-                        {% if base_notes %}
-                            <h5 class="feature_data center-text">Нижние Ноты</h5>
-                            {% include "notes.html" with notes=base_notes %}
-                        {% endif %}
+                        {% include "notes.html" with notes=general_notes note_title='Ноты' %}
+                        {% include "notes.html" with notes=top_notes note_title='Верхние Ноты' %}
+                        {% include "notes.html" with notes=middle_notes note_title='Средние Ноты' %}
+                        {% include "notes.html" with notes=base_notes note_title='Базовые Ноты' %}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-5 right-group">
                     <div class="row-fluid">
                         <h5 class="col-md-4 col-xs-5 feature">Группа</h5>
                         <h5 class="col-md-8 col-xs-7 feature_data">
-                            <a href="{% url 'aroma-list' %}?group={{ group.id }}">{{ group.title }}</a>
+                            {% for group in groups %}
+                                <a href="{% url 'aroma-list' %}?groups={{ group.id }}">{{ group.title }}</a><br/>
+                            {% endfor %}
                         </h5>
                     </div>
                     <div class="row-fluid">

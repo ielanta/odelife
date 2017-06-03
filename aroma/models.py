@@ -15,7 +15,6 @@ class Note(models.Model):
 
 class Group(models.Model):
     id = models.AutoField(primary_key=True)
-    parent = models.ForeignKey('self', blank=True, null=True)
     title = models.CharField(max_length=200, blank=True, unique=True)
 
     def __str__(self):
@@ -45,10 +44,11 @@ class Aroma(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     pic = models.ImageField(upload_to='aromas/', blank=True, null=True)
+    guise = models.ImageField(upload_to='guises/', blank=True, null=True)
     year = models.IntegerField(blank=True, null=True)
     gender = models.CharField(choices=GENDER_CHOICES, default='u', max_length=1)
     description = models.TextField(blank=True)
-    group = models.ForeignKey(Group)
+    groups = models.ManyToManyField(Group, blank=True)
     brand = models.ForeignKey(Brand)
     noses = models.ManyToManyField(Nose, blank=True)
     notes = models.ManyToManyField(Note, through='CategoryNotes', related_name='notes', blank=True)

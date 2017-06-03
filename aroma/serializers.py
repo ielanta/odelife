@@ -21,19 +21,18 @@ class SearchFilter(FilterSet):
     gender = MultipleChoiceFilter(choices=GENDER_CHOICES,
                                   method=lambda queryset, name, value: queryset.filter(gender__in=value))
     notes = ModelMultipleChoiceFilter(queryset=Note.objects.all(), conjoined=True)
-    group = ModelChoiceFilter(queryset=Group.objects.all(), method=lambda queryset, name, value: queryset.filter(
-        Q(group=value) | Q(group__parent=value)))
+    groups = ModelMultipleChoiceFilter(name="groups", queryset=Group.objects.all(), conjoined=True)
     noses = ModelMultipleChoiceFilter(name="noses", queryset=Nose.objects.all(), conjoined=True)
 
     class Meta:
         model = Aroma
-        fields = ('gender', 'min_year', 'max_year', 'title', 'brand', 'notes', 'notes', 'group', 'noses')
+        fields = ('gender', 'min_year', 'max_year', 'title', 'brand', 'notes', 'notes', 'groups', 'noses')
 
 
 class AromaSearchForm(forms.Form):
     class Meta:
         model = Aroma
-        fields = ('id', 'title', 'gender', 'min_year', 'max_year', 'brand', 'notes', 'group', 'noses')
+        fields = ('id', 'title', 'gender', 'min_year', 'max_year', 'brand', 'notes', 'groups', 'noses')
 
     title = forms.CharField(label="Название", required=False, max_length=200)
     gender = forms.MultipleChoiceField(choices=GENDER_CHOICES, label="Пол", required=False,
@@ -42,8 +41,8 @@ class AromaSearchForm(forms.Form):
                                   widget=forms.NumberInput(attrs={'placeholder': 'с'}))
     max_year = forms.IntegerField(label=" ", required=False, min_value=1700, max_value=2100,
                                   widget=forms.NumberInput(attrs={'placeholder': 'по'}))
-    group = forms.ModelChoiceField(label='Группа', queryset=Group.objects.all(), required=False,
-                                   widget=autocomplete.ModelSelect2(url='group-autocomplete'))
+    groups = forms.ModelMultipleChoiceField(label='Группа', queryset=Group.objects.all(), required=False,
+                                   widget=autocomplete.ModelSelect2Multiple(url='groups-autocomplete'))
     brand = forms.ModelChoiceField(label='Бренд', queryset=Brand.objects.all(), required=False,
                                    widget=autocomplete.ModelSelect2(url='brand-autocomplete'))
     notes = forms.ModelMultipleChoiceField(label='Ноты', queryset=Note.objects.all(), required=False,
@@ -59,12 +58,12 @@ class AromaSearchForm(forms.Form):
 
 
 class AromaListSerializer(serializers.ModelSerializer):
-    group = serializers.SlugRelatedField(read_only=True, slug_field='title')
+    groups = serializers.SlugRelatedField(read_only=True, many=True, slug_field='title')
     brand = serializers.SlugRelatedField(read_only=True, slug_field='title')
 
     class Meta:
         model = Aroma
-        fields = ('id', 'title', 'year', 'brand', 'pic', 'group')
+        fields = ('id', 'title', 'year', 'brand', 'pic', 'groups')
 
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -82,7 +81,7 @@ class BrandSerializer(serializers.ModelSerializer):
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = '__all__'
+        fields = ('id', 'title')
 
 
 class NoseSerializer(serializers.ModelSerializer):
@@ -99,7 +98,7 @@ class AromaDetailSerializer(serializers.ModelSerializer):
     noses = NoseSerializer(read_only=True, many=True)
     gender_label = serializers.SerializerMethodField()
     brand = BrandSerializer(read_only=True)
-    group = GroupSerializer(read_only=True)
+    groups = GroupSerializer(read_only=True, many=True)
 
     @staticmethod
     def get_gender_label(obj):
@@ -127,5 +126,5 @@ class AromaDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Aroma
-        fields = ('id', 'title', 'year', 'brand', 'pic', 'group', 'gender', 'gender_label', 'noses', 'description',
+        fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'gender', 'gender_label', 'noses', 'description',
                   'top_notes', 'middle_notes', 'base_notes', 'general_notes')
