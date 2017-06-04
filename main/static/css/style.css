@@ -152,7 +152,8 @@ hr {
     text-align: right;
     margin: 15px;
     color: #453536;
-    font-family: "Gill Sans", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    /*font-family: "Gill Sans", Arial, Helvetica, sans-serif;*/
 }
 
 #compact-search-form input, .btn-default{
@@ -166,8 +167,9 @@ hr {
 
 
 #compact-search-form .btn-default{
-    opacity: 0.8;
+    opacity: 0.6;
     color: #453536;
+    background-color: white;
 }
 
 #compact-search-form .input-group-btn{
@@ -422,7 +424,7 @@ Search form
 }
 
 #search_form .form-control, #search_form .checkbox input[type=checkbox],
-#search_form .select2-container--default .select2-selection--single, #compact-search-form .btn-default,
+#search_form .select2-container--default .select2-selection--single, #compact-search-form .btn,
 #search_form .select2-container--default .select2-selection--multiple{
     box-shadow: none;
     border-radius: 0;
@@ -586,7 +588,7 @@ Pagination
     cursor: default;
 }
 
-#pagination li a:not(.no_hover):hover {
+#pagination li a:not(.no-hover):hover {
     background-color: linen;
 }
 
@@ -674,6 +676,9 @@ Parallax
 @media (min-width: 992px) {
     .container-fluid {
         width: 90%;
+    }
+    .intro-space h4{
+        font-size: 18px;
     }
 }
 

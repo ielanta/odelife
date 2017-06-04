@@ -17,6 +17,13 @@
 		    {% bootstrap_css %}
 		    {% load staticfiles %}
     	    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+            <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicons/apple-touch-icon.png' %}">
+            <link rel="icon" sizes="48x48" href="{% static 'img/favicons/favicon.ico' %}">
+            <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicons/favicon-16x16.png' %}">
+            <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicons/favicon-32x32.png' %}">
+            <link rel="manifest" href="{% static 'img/favicons/manifest.json' %}">
+            <link rel="mask-icon" href="{% static 'img/favicons/safari-pinned-tab.svg' %}" color="#ffabc2">
+            <meta name="theme-color" content="#ffffff">
         {% endcompress %}
         {% compress js %}
             <script src="{% bootstrap_jquery_url %}"></script>
@@ -44,7 +51,7 @@
 					<li><a href="javascript:void(0);">Носы</a></li>
 					<li {% if 'contacts' in request.path %}class="active"{% endif %}><a href="{% url 'contacts' %}">Контакты</a></li>
         			<li class="dropdown">
-          				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
+          				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Войти<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Example menu</a></li>
             				<li><a href="#">Example menu</a></li>
