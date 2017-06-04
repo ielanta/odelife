@@ -1,16 +1,17 @@
 {% load aroma_extras %}
-<div class="row row-centered">
+
+<div class="row row-centered" itemscope itemtype="http://schema.org/ItemList">
 {% if items.results %}
     {% if request.GET %}
-        <div class="num-results">{{ items.count | ru_pluralize:"Найден,Найдено,Найдено" }} {{ items.count }}
-            {{ items.count | ru_pluralize:"аромат,аромата,ароматов" }}</div>
+        <div class="num-results" itemprop="numberOfItems">{{ items.count | ru_pluralize:"Найден,Найдено,Найдено" }}
+            {{ items.count }} {{ items.count | ru_pluralize:"аромат,аромата,ароматов" }}</div>
     {% endif %}
     {% for item in items.results %}
-        <div class="col-sm-4 col-xs-6 col-centered">
-            <a href="{% url 'aroma-detail' pk=item.id %}" class="aroma-card pointed">
+        <div class="col-sm-4 col-xs-6 col-centered" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
+            <a href="{% url 'aroma-detail' pk=item.id %}" class="aroma-card pointed" itemprop="url">
                 <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma-list-pic pointed" />
-                <div class="card-title">{{ item.title }}</div>
-                <div class="melted-text">{{ item.brand }}</div>
+                <div class="card-title" itemprop="name">{{ item.title }}</div>
+                <div class="melted-text" itemprop="brand">{{ item.brand }}</div>
                 <div class="card-text">{% for group in item.groups %}{{ group }}, {% endfor %}{{ item.year }}г</div>
                 <div class="row summary-box">
                     <div class="col-sm-6">1 отзыв</div>

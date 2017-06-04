@@ -8,17 +8,17 @@
 {% block content %}
     <div class="container-space" id="aroma-detail">
         <div class="container-fluid">
-            <div class="row aroma-container">
+            <div class="row aroma-container" itemscope itemtype="http://schema.org/Product">
                 <ul class="list-inline breadcrumbs">
                     <li><a href="{% url 'aroma-list' %}">Ароматы</a></li>
                     <li><a href="{% url 'aroma-list' %}?brand={{ brand.id }}">{{ brand.title }}</a></li>
                     <li>{{ title }}</li>
                 </ul>
-                <h3 class="center-text">{{ title }}</h3>
+                <h3 class="center-text" itemprop="name">{{ title }}</h3>
                 <div class="col-md-offset-1 col-md-6 col-sm-7 center-text">
                     <img src={{ pic }} alt="{{ title }}" class="aroma-pic img-responsive center-block" />
                     {% include "action_box.html" %}
-                    <p class="aroma_description">{{ description }}</p>
+                    <p class="aroma_description" itemprop="description">{{ description }}</p>
                     <div class="row-fluid feature_data">
                         {% include "notes.html" with notes=general_notes note_title='Ноты' %}
                         {% include "notes.html" with notes=top_notes note_title='Верхние Ноты' %}

@@ -5,14 +5,16 @@
 {% block description %}Женские и мужские духи на любой нос{% endblock %}
 
 {% block content %}
-<div class="intro">
+<div class="intro"  itemtype="http://schema.org/WebSite">
     <div class="intro-space">
         <!--<h2>Добро пожаловать на <span class="text_color">Ode life</span> </h2>-->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-5 col-xs-1"></div>
                 <div class="col-sm-6 col-xs-10">
-                    <form name="compact-search-form" id="compact-search-form" method="GET">
+                    <form name="compact-search-form" id="compact-search-form" method="GET"
+                          itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction">
+                        <meta itemprop="target" content="{{ request.scheme }}://{{ request.get_host }}{% url 'aroma-list' %}?title={title}" />
                         <div class="input-group">
                             {% csrf_token %}
                             {{ form|crispy }}
