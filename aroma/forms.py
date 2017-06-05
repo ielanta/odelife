@@ -29,6 +29,13 @@ class AromaSearchForm(forms.Form):
                                            widget=autocomplete.ModelSelect2Multiple(url='notes-autocomplete'))
     noses = forms.ModelMultipleChoiceField(label='Парфюмеры', queryset=Nose.objects.all(), required=False,
                                            widget=autocomplete.ModelSelect2Multiple(url='noses-autocomplete'))
+    def __init__(self, *args, **kwargs):
+        from crispy_forms.helper import FormHelper
+        from crispy_forms.layout import Layout, Field
+
+        super(AromaSearchForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout('title', Field('gender', template='checkbox_helper.html'))
 
     def clean_notes(self):
         data = self.cleaned_data['notes']

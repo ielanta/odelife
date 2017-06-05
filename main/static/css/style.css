@@ -152,24 +152,31 @@ hr {
     text-align: right;
     margin: 15px;
     color: #453536;
-    font-size: 16px;
-    /*font-family: "Gill Sans", Arial, Helvetica, sans-serif;*/
+    font-size: 1.3em;
+    font-family: "Gill Sans", Arial, Helvetica, sans-serif;
 }
 
-#compact-search-form input, .btn-default{
+#compact-search-form input, #compact-search-form .btn-default{
     height: 46px;
+    box-shadow: none;
+}
+
+#compact-search-form .btn-default:hover{
+    background-color: rgba(255, 190, 159, 0.8);
 }
 
 #compact-search-form input{
-    opacity: 0.9;
-    border-color: #f2dede;
+    background-color: rgba(255,255,255, 0.9);
+    border-color: rgba(255, 190, 159, 0.5);
+    border-right-color: transparent;
 }
 
 
 #compact-search-form .btn-default{
-    opacity: 0.6;
     color: #453536;
-    background-color: white;
+    background-color: rgba(255, 190, 159, 0.7);
+    border-radius: 0;
+    border-color: transparent;
 }
 
 #compact-search-form .input-group-btn{
@@ -368,31 +375,34 @@ Search form
     color: darksalmon;
 }
 
-/*input[type=checkbox]{*/
-    /*position: relative !important;*/
-    /*visibility: hidden;*/
-    /*display: none;*/
-/*}*/
+.styled-checkbox{
+  display:none;
+}
+.styled-checkbox + label{
+  cursor:pointer;
+}
+.styled-checkbox + label:before{
+    content: " ";
+	background: #fff;
+	height: 18px;
+    width: 18px;
+	border: 1px solid #f2dede;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 10px;
+    position:relative;
+    top:-1px;
+}
+.styled-checkbox:checked + label:before{
+	content: "\2713";
+	color: #FFBE9F;
+	font-size: 18px;
+	text-align: center;
+	line-height: 18px;
 
-/*input[type=checkbox]:after {*/
-    /*border-radius: 8px;*/
-    /*content: "";*/
-    /*display: inline !important;*/
-    /*width: 16px;*/
-    /*height: 16px;*/
-    /*visibility: visible !important;*/
-    /*border: 1px solid #ccc;*/
-    /*position:relative;*/
-/*}*/
+  }
 
 
-/*input[type=checkbox]:checked:after {*/
-    /*color: #FFBE9F;*/
-    /*font-size: 20px;*/
-    /*text-align: center;*/
-    /*line-height: 12px;*/
-    /*content: "\2713";*/
-/*}*/
 
 #search_form .has-error .help-block, #search_form .has-error .control-label{
     color: crimson;
@@ -424,7 +434,7 @@ Search form
 }
 
 #search_form .form-control, #search_form .checkbox input[type=checkbox],
-#search_form .select2-container--default .select2-selection--single, #compact-search-form .btn,
+#search_form .select2-container--default .select2-selection--single,
 #search_form .select2-container--default .select2-selection--multiple{
     box-shadow: none;
     border-radius: 0;
@@ -439,7 +449,7 @@ Search form
 }
 
 .btn-search{
-    background-color: linen;
+    background-color: rgba(255, 190, 159, 0.8);
     color: #555;
     width: 100%;
     height: 37px;
@@ -448,7 +458,6 @@ Search form
 }
 
 .btn-search:hover{
-    color: #555;
     background-color: #FFBE9F;
 }
 
@@ -677,9 +686,7 @@ Parallax
     .container-fluid {
         width: 90%;
     }
-    .intro-space h4{
-        font-size: 18px;
-    }
+
 }
 
 @media(min-width:767px) and (max-width: 992px){
@@ -742,7 +749,7 @@ Parallax
     }
 
     .intro {
-        background: none;
+        background: #FFFAFA;
         height: 100%;
     }
 
