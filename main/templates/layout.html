@@ -13,9 +13,9 @@
 	{% block styles %}
 		{% load bootstrap3 %}
         {% load compress %}
+        {% bootstrap_css %}
+        {% load staticfiles %}
         {% compress css %}
-		    {% bootstrap_css %}
-		    {% load staticfiles %}
     	    <link href="{% static 'css/style.css' %}" rel="stylesheet">
             <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicons/apple-touch-icon.png' %}">
             <link rel="icon" sizes="48x48" href="{% static 'img/favicons/favicon.ico' %}">
@@ -25,10 +25,8 @@
             <link rel="mask-icon" href="{% static 'img/favicons/safari-pinned-tab.svg' %}" color="#ffabc2">
             <meta name="theme-color" content="#ffffff">
         {% endcompress %}
-        {% compress js %}
-            <script src="{% bootstrap_jquery_url %}"></script>
-            {% bootstrap_javascript %}
-        {% endcompress %}
+        <script src="{% bootstrap_jquery_url %}"></script>
+        {% bootstrap_javascript %}
     {% endblock %}
 </head>
 
