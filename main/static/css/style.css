@@ -53,16 +53,6 @@ a:focus {
     font-weight: 400;
 }
 
-blockquote {
-    background: #E1F5FF;
-    padding: 0;
-}
-blockquote:before {
-    content: "\201C";
-    font-size: 30px;
-    letter-spacing: 2px;
-}
-
 .navbar {
     margin-bottom: 0;
 }
@@ -136,19 +126,16 @@ hr {
 --- Intro
 ============================ */
 
-.intro {
-	width: 100%;
-    margin-top: -90px;
+#intro {
 	background: url(../img/bg.jpg) no-repeat top center;
     background-size: cover;
-    height: auto;
 }
 
-.intro-space {
+.cover-space {
 	padding: 23% 0 0 0;
 }
 
-.intro-space h4 {
+#intro h4 {
     text-align: right;
     margin: 15px;
     color: #453536;
@@ -201,6 +188,17 @@ hr {
     background-color: #f9f9f9;
     padding: 15px 0 0 0;
     font-weight: 500;
+}
+
+blockquote {
+    background: #E1F5FF;
+    padding: 0;
+}
+
+blockquote:before {
+    content: "\201C";
+    font-size: 30px;
+    letter-spacing: 2px;
 }
 
 /* ===========================
@@ -647,10 +645,41 @@ Parallax
 	z-index: -1;
 }
 
+/* ===========================
+--- 404
+============================ */
+/*.nav-space{*/
+    /*margin-top: 90px;*/
+/*}*/
+
+
+#err {
+	background: url(../img/404.jpeg) no-repeat top left fixed;
+    background-size: cover;
+}
+
+#err h1, #err h3{
+    text-align: right;
+    color: white;
+    text-shadow: 2px 2px #453536;
+}
+
+#err h1{
+    font-size: 3em;
+}
+
 
 /* ===========================
 --- Elements
 ============================ */
+
+.cover {
+	width: 100%;
+    margin-top: -90px;
+    height: 100%;
+    padding: 0;
+}
+
 
 .btn-circle {
     width: 70px;
@@ -711,12 +740,6 @@ Parallax
         transition: background .5s ease-in-out,padding .5s ease-in-out;
     }
 
-	
-    .intro{
-        height: 100%;
-        padding: 0;
-    }
-
 }
 
 
@@ -748,13 +771,20 @@ Parallax
         margin-top: 0;
     }
 
-    .intro {
+    #intro {
         background: #FFFAFA;
-        height: 100%;
+    }
+
+    #err h1, #err h3{
+        text-align: left;
+    }
+
+    #err .cover-space {
+        padding-top: 60%;
     }
 
     #compact-search-form{
-        padding-top: 40%;
+        margin: 40% 0;
     }
 
     .aroma-pic {
