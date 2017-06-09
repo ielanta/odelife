@@ -2,8 +2,8 @@ from django.conf import settings
 from django.shortcuts import render
 
 
-def home(request):
-    return render(request, 'home.html')
+def tos(request):
+    return render(request, 'tos.html')
 
 
 def contacts(request):

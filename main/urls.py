@@ -5,4 +5,5 @@ from aroma.views import AromaCompactSearch
 urlpatterns = [
     url(r'^$', AromaCompactSearch.as_view(), name='home'),
     url(r'^contacts/$', views.contacts, name='contacts'),
+    url(r'^tos/$', views.tos, name='tos'),
 ]
