@@ -4,6 +4,7 @@ Django-bootstrap3==8.2.2
 django_compressor==2.1.1
 django-crispy-forms==1.6.1
 django_filter==1.0.2
+django-registration-redux==1.6
 Djangorestframework==3.6.2
 psycopg2==2.7.1
 Pillow==4.1.1

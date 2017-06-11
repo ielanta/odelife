@@ -41,6 +41,7 @@ a {
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+    color: royalblue;
 }
 
 a:hover,
@@ -67,6 +68,7 @@ a:focus {
     font-size: 26px;
     line-height: 40px;
     font-family: "Gill Sans", Arial, Helvetica, sans-serif;
+    /*text-shadow: 2px 2px #666;*/
 }
 
 .navbar-brand:focus {
@@ -78,17 +80,17 @@ a:focus {
 }
 
 .navbar-custom ul.nav li a {
-	font-size: 12px;
+	font-size: 11px;
 	letter-spacing: 1px;
     color: #444;
 	text-transform: uppercase;
-	font-weight: 700;
+	font-weight: 600;
 }
 
 .navbar-custom ul.nav ul.dropdown-menu {
-    border-radius: 0;
     border: none;
-    background-color: #FFFAFA;
+    border-radius: 0;
+    background-color: rgba(255,255,255,.9);
     padding: 0;
     margin: 0;
 }
@@ -98,24 +100,38 @@ a:focus {
 /*}*/
 
 .navbar-custom ul.nav ul.dropdown-menu li {
-	border-bottom: 1px solid #f5f5f5;
-    padding: 10px 15px;
+	/*border-bottom: 1px solid #f2dede;*/
+    padding: 10px 20px;
 }
 
 .navbar-custom ul.nav ul.dropdown-menu li:last-child{
 	border-bottom: none;
 }
 
-.navbar-custom.top-nav-collapse ul.nav ul.dropdown-menu li a {
-	color: #666;
+.navbar-custom ul.nav ul.dropdown-menu li a{
+    font-size: 11px;
+    font-weight: 500;
 }
 
-.navbar-custom .nav li a:hover,
-.navbar-custom .nav li a:focus,
+.navbar-custom ul.nav ul.dropdown-menu li a:hover{
+	text-shadow: .2px 0px 0px #444;
+}
+
+.navbar-custom .nav li a:hover:not(.no-hover),
+.navbar-custom .nav li a:focus:not(.no-hover),
 .navbar-custom .nav li.active {
     outline: 0;
     background-color: rgba(255,255,255,.2);
 }
+
+.navbar-custom .nav li .no-hover a:hover{
+    background-color: transparent;
+}
+
+#navbar-main .dropdown-user span{
+    color: #bc8f8f;
+}
+
 
 /* misc */
 hr {
@@ -320,7 +336,6 @@ blockquote:before {
     color: #FFF;
     font-size: 13px;
     letter-spacing: 1px;
-    height: auto;
     text-align: left;
 	padding: 10px 0;
 }
@@ -402,12 +417,23 @@ Search form
 
 
 
-#search_form .has-error .help-block, #search_form .has-error .control-label{
-    color: crimson;
+.base-form .has-error .help-block, .base-form .has-error .control-label{
+    color: #dc143c;
 }
 
-#search_form .has-error .form-control, #search_form .has-error .help-block, #search_form .has-error .control-label{
-    border-color: crimson;
+.base-form .has-error .form-control, .base-form .has-error .help-block, .base-form .has-error .control-label{
+    border-color: #dc143c;
+}
+
+.base-form .alert-danger{
+    border-radius: 0;
+    border-color: #dc143c;
+    color: #dc143c;
+    background-color: transparent;
+}
+
+.base-form .alert ul{
+    list-style-type: none;
 }
 
 .form-group{
@@ -446,8 +472,8 @@ Search form
     padding: 0 1px 0 1px;
 }
 
-.btn-search{
-    background-color: rgba(255, 190, 159, 0.8);
+.btn-base{
+    background-color: rgba(255, 190, 159, 0.85);
     color: #555;
     width: 100%;
     height: 37px;
@@ -455,7 +481,7 @@ Search form
     border-radius: 0;
 }
 
-.btn-search:hover{
+.btn-base:hover{
     background-color: #FFBE9F;
 }
 
@@ -479,7 +505,21 @@ Search form
     cursor: default;
 }
 
+/* ==========================
+    TOS
+============================= */
+#tos{
+    text-align: justify;
+    padding: 20px 35px;
+}
 
+#tos h6{
+    text-indent: 20px;
+}
+
+#tos h4{
+    padding: 20px 0;
+}
 
 /* ==========================
 Aroma List
@@ -668,6 +708,59 @@ Parallax
     font-size: 3em;
 }
 
+/* ===========================
+--- Authorization
+============================ */
+#auth {
+	background: url(../img/login1.jpg) no-repeat center bottom fixed;
+    background-size: cover;
+    box-shadow:0 0 0 500px rgba(255, 250, 250, 0.91) inset;
+    color: #453536;
+}
+
+#auth .cover-space {
+	padding-top: 80px;
+}
+
+#auth h3{
+    padding-top: 20px;
+}
+
+#auth h5{
+    padding-bottom: 10px;
+}
+
+#transparent-form input, #transparent-form .btn-default{
+    height: 40px;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+#transparent-form .btn-base{
+    height: 50px;
+    /*background-color: #FFBEBE;*/
+    font-weight: 300;
+    /*text-transform: uppercase;*/
+    color: #453536;
+}
+
+#transparent-form {
+    padding: 20px 0;
+}
+
+#transparent-form label{
+    color: #453536;
+    font-weight: 300;
+}
+
+#transparent-form input{
+    border: none;
+    background-color: rgba(255, 255, 255, 0.80);
+    height: 45px;
+    border: 1px solid #f2dede
+}
+
+
 
 /* ===========================
 --- Elements
@@ -676,7 +769,8 @@ Parallax
 .cover {
 	width: 100%;
     margin-top: -90px;
-    height: 100%;
+    min-height: 100%;
+    height: auto;
     padding: 0;
 }
 
@@ -781,10 +875,6 @@ Parallax
 
     #err .cover-space {
         padding-top: 60%;
-    }
-
-    #compact-search-form{
-        margin: 40% 0;
     }
 
     .aroma-pic {

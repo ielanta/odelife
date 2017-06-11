@@ -1,6 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Field
 from dal import autocomplete
 
 from aroma.models import Aroma, Brand, Note, Group, Nose
@@ -29,10 +31,8 @@ class AromaSearchForm(forms.Form):
                                            widget=autocomplete.ModelSelect2Multiple(url='notes-autocomplete'))
     noses = forms.ModelMultipleChoiceField(label='Парфюмеры', queryset=Nose.objects.all(), required=False,
                                            widget=autocomplete.ModelSelect2Multiple(url='noses-autocomplete'))
-    def __init__(self, *args, **kwargs):
-        from crispy_forms.helper import FormHelper
-        from crispy_forms.layout import Layout, Field
 
+    def __init__(self, *args, **kwargs):
         super(AromaSearchForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout('title', Field('gender', template='checkbox_helper.html'))
@@ -48,5 +48,7 @@ class AromaCompactSearchForm(forms.ModelForm):
     class Meta:
         model = Aroma
         fields = ('title',)
+
     title = forms.CharField(label="", required=False, max_length=200,
-                            widget=forms.TextInput(attrs={'placeholder': 'Название парфюма', 'itemprop':'query-input'}))
+                            widget=forms.TextInput(
+                                attrs={'placeholder': 'Название парфюма', 'itemprop': 'query-input'}))

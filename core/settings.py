@@ -8,12 +8,14 @@ except ImportError as e:
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 
 # Application definition
 INSTALLED_APPS = [
     'dal',
     'dal_select2',
     'django.contrib.admin',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -42,7 +44,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(PROJECT_PATH, 'accounts', 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -61,7 +63,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Internationalization
 
-LANGUAGE_CODE = 'ru_RU'
+LANGUAGE_CODE = 'ru-RU'
+USE_I18N = True
 DEFAULT_CHARSET = 'utf-8'
 
 TIME_ZONE = 'UTC'
@@ -152,6 +155,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 15,
 }
+
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 GENDER_CHOICES = (
