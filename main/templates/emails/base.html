@@ -1,0 +1,27 @@
+<html lang="ru">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <div style='font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size:14px; font-weight: 300; color:#49545E; line-height: 1.45; letter-spacing: normal; padding:20px; background-color:#f7f7f7'>
+        <div style="max-width:500px;margin:0 auto;padding:20px;background-color:#fff;">
+            <a href="{% url 'home' %}" target="_blank" style="border: 0; margin: 0; padding: 0; text-decoration: none;">
+                <div style="color: #FFABC2; font-size: 22px; line-height: 30px; font-weight: 400; font-family: 'Gill Sans', Arial, Helvetica, sans-serif;">Ode Life</div>
+            </a>
+            <p style="margin-bottom:20px;color:#49545E;">
+                {% block content %}{% endblock %}
+            </p>
+            <p style="margin-bottom:20px;color:#49545E;">
+                Хорошего дня,<br>
+                команда Ode Life<br>
+            </p>
+            <p style="color:#898c92;font-size:11px;">
+                <a style="color: #ffb6c1; font-weight: 300; text-decoration: none;" href="mailto:support@odelife.ru">support@odelife.ru</a><br>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

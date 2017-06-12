@@ -1,0 +1,26 @@
+{% extends 'emails/base.html' %}
+
+{% block title %}Регистрация на {{ site.name }}{% endblock %}
+
+{% block content %}
+    <p style="margin-bottom:20px;color:#49545E;">Добро пожаловать!</p>
+    <p style="margin-bottom:20px;color:#49545E;">
+        Остался всего один шаг, и вы получите полный доступ к возможностям сайта.
+        Для подтверждения регистрации нажмите на кнопку ниже:
+    </p>
+    <a style="display: inline-block; height: 35px; line-height: 35px; padding: 0 30px; margin-bottom: 15px; border-radius: 0; background: #FFBE9F; color: #ffffff; text-decoration: none; margin-right: 10px; vertical-align: middle; text-transform:uppercase;" href="http://{{site.domain}}{% url 'registration_activate' activation_key %}">
+        Активировать
+    </a>
+
+
+    <p style="margin-bottom:30px;color:#898c92;font-size:11px;">
+        Или перейдите по ссылке:<br>
+    <a style="color: #ffb6c1; font-weight: 300; text-decoration: none;" href="http://{{site.domain}}{% url 'registration_activate' activation_key %}">
+        {{site.domain}}{% url 'registration_activate' activation_key %}
+    </a>
+    <p style="margin-bottom:20px;color:#49545E;">
+        Ваши данные для доступа<br>
+        E-mail: {{ user.email }}<br>
+        Имя пользователя: {{ user.username }}<br>
+    </p>
+{% endblock %}

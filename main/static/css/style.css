@@ -1,14 +1,16 @@
 body {
     width: 100%;
     height: 100%;
-	font-weight: 300;
+    /*font-weight: 300;*/
     color: #666;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    /*background-color: #FFBE9F;*/
+    background-color: #FCCAAC;
+    /*box-shadow:0 0 0 500px rgba(69, 53, 54, 0.40) inset;*/
     /*background:fixed linear-gradient(40deg, #FFC27B, #FFABC2) no-repeat, fixed linear-gradient(-40deg, transparent 40%, blue) no-repeat;*/
     /*background:fixed  linear-gradient(40deg, #FFABC2 20%, #FFC27B) no-repeat, fixed linear-gradient(-20deg, white 10%, #FFABC2  90%) no-repeat;*/
     /*background:fixed  linear-gradient(40deg, transparent 40%, #FFC27B) no-repeat, fixed linear-gradient(-40deg, brown 20%, #FFABC2  90%) no-repeat;*/
-    background:fixed linear-gradient(to left top, #FFC27B, #FFABC2) no-repeat;
+    /*background:fixed linear-gradient(to left top, #FFC27B, #FFABC2) no-repeat;*/
+    /*background: #FFC29E;*/
 }
 
 html {
@@ -41,7 +43,7 @@ a {
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
-    color: royalblue;
+    color: #337ab7;
 }
 
 a:hover,
@@ -338,6 +340,7 @@ blockquote:before {
     letter-spacing: 1px;
     text-align: left;
 	padding: 10px 0;
+    font-weight: 300;
 }
 
 #footer a{
@@ -408,7 +411,7 @@ Search form
 }
 .styled-checkbox:checked + label:before{
 	content: "\2713";
-	color: #FFBE9F;
+	color: #FFACB6;
 	font-size: 18px;
 	text-align: center;
 	line-height: 18px;
@@ -417,19 +420,24 @@ Search form
 
 
 
-.base-form .has-error .help-block, .base-form .has-error .control-label{
+.base-form .has-error .help-block, .base-form .has-error .control-label, .base-form .alert-danger{
     color: #dc143c;
 }
 
-.base-form .has-error .form-control, .base-form .has-error .help-block, .base-form .has-error .control-label{
+.base-form .has-error .form-control, .base-form .has-error .help-block, .base-form .has-error .control-label, .base-form .alert-danger{
     border-color: #dc143c;
 }
 
-.base-form .alert-danger{
+.base-form .alert-danger, .base-form .alert-success, .base-form .alert-info{
     border-radius: 0;
-    border-color: #dc143c;
-    color: #dc143c;
     background-color: transparent;
+    text-align: justify;
+    font-weight: 400;
+}
+
+.base-form .alert-info{
+    color: #337ab7;
+    border-color: #337ab7;
 }
 
 .base-form .alert ul{
@@ -473,7 +481,7 @@ Search form
 }
 
 .btn-base{
-    background-color: rgba(255, 190, 159, 0.85);
+    background-color: rgba(255, 172, 182, 0.85);
     color: #555;
     width: 100%;
     height: 37px;
@@ -482,7 +490,7 @@ Search form
 }
 
 .btn-base:hover{
-    background-color: #FFBE9F;
+    background-color: #FFACB6;
 }
 
 .help-block{
@@ -631,7 +639,7 @@ Pagination
 }
 
 #pagination .active a{
-    background-color: #FFBE9F;
+    background-color: #ffcfbe;
     cursor: default;
 }
 
@@ -712,10 +720,10 @@ Parallax
 --- Authorization
 ============================ */
 #auth {
-	background: url(../img/login1.jpg) no-repeat center bottom fixed;
     background-size: cover;
-    box-shadow:0 0 0 500px rgba(255, 250, 250, 0.91) inset;
+    background-color: #FFABC2;
     color: #453536;
+
 }
 
 #auth .cover-space {
@@ -728,9 +736,21 @@ Parallax
 
 #auth h5{
     padding-bottom: 10px;
+    font-weight: 300;
+
+}
+
+#auth h5 a:hover{
+    color: #fff;
+}
+
+#auth h5 a{
+    /*color: #337ab7;*/
+    text-decoration: underline;
 }
 
 #transparent-form input, #transparent-form .btn-default{
+
     height: 40px;
     box-shadow: none;
     border-radius: 0;
@@ -738,10 +758,13 @@ Parallax
 
 #transparent-form .btn-base{
     height: 50px;
-    /*background-color: #FFBEBE;*/
     font-weight: 300;
-    /*text-transform: uppercase;*/
     color: #453536;
+    background-color: rgba(255, 207, 190, 0.85);
+}
+
+#transparent-form .btn-base:hover{
+    background-color: #ffcfbe;
 }
 
 #transparent-form {
@@ -755,12 +778,9 @@ Parallax
 
 #transparent-form input{
     border: none;
-    background-color: rgba(255, 255, 255, 0.80);
+    background-color: rgba(255, 255, 255, 0.70);
     height: 45px;
-    border: 1px solid #f2dede
 }
-
-
 
 /* ===========================
 --- Elements
@@ -840,7 +860,7 @@ Parallax
 @media (max-width:767px){
     .navbar{
         padding-top: 10px;
-        background-color: seashell;
+        background-color: #ffcfbe;
     }
     .navbar-custom ul.nav li a{
         color: #555;
@@ -867,6 +887,10 @@ Parallax
 
     #intro {
         background: #FFFAFA;
+    }
+
+    #compact-search-form{
+            padding-top: 40%;
     }
 
     #err h1, #err h3{
