@@ -50,5 +50,5 @@ class AromaCompactSearchForm(forms.ModelForm):
         fields = ('title',)
 
     title = forms.CharField(label="", required=False, max_length=200,
-                            widget=forms.TextInput(
-                                attrs={'placeholder': 'Название парфюма', 'itemprop': 'query-input'}))
+                            widget=forms.TextInput(attrs={'placeholder': 'Название парфюма', 'itemprop': 'query-input',
+                                                          'autofocus': True}))

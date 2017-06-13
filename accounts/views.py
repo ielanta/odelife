@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
 
 
 from registration.backends.default.views import RegistrationView, ActivationView, ResendActivationView
@@ -28,3 +28,8 @@ class ExtPasswordResetView(SuccessMessageMixin, PasswordResetView):
     success_message = 'Письмо со ссылкой для смены пароля было успешно отправлено'
     success_url = reverse_lazy('auth_password_reset')
     html_email_template_name = 'registration/password_reset_email.html'
+
+
+class ExtPasswordResetConfirmView(SuccessMessageMixin, PasswordResetConfirmView):
+    success_message = 'Пароль был успешно изменен'
+    success_url = reverse_lazy('auth_login')
