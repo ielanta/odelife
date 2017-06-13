@@ -1,0 +1,14 @@
+{% extends 'registration/base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}Активация провалилась{% endblock %}
+
+{% block authform %}
+
+    <h3 class="center-text">Активация провалилась</h3>
+    <h5 class="center-text">Срок действия ссылки активации составляет 7 дней</h5>
+    <h5 class="center-text">Попробуйте активировать аккаунт еще раз</h5>
+    <h5 class="center-text"><a href="{% url 'registration_resend_activation' %}">Активировать</a></h5>
+
+{% endblock %}

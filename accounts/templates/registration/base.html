@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="cover" id="auth">
+        <div class="cover-space">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-sm-3"></div>
+                    <div class="col-md-4 col-sm-6">
+                        {% block authform %}{% endblock %}
+                    </div>
+                    <div class="col-md-4 col-sm-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
