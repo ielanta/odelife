@@ -777,6 +777,10 @@ Parallax
     padding: 20px 0;
 }
 
+#transparent-form li {
+    text-align: justify;
+}
+
 #transparent-form label{
     color: #453536;
     font-weight: 300;

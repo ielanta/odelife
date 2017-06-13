@@ -8,6 +8,7 @@
 
     <h3 class="center-text">Вход</h3>
     <form method="post" action="" id="transparent-form" class="base-form">
+        {% include "elements/messages.html" with messages=messages %}
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="btn btn-base center-block">Войти</button>
