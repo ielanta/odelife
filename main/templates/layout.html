@@ -17,6 +17,7 @@
         {% load staticfiles %}
         {% compress css %}
     	    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+            <link href="{% static 'css/bootstrap-social.css' %}" rel="stylesheet">
             <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicons/apple-touch-icon.png' %}">
             <link rel="icon" href="{% static 'img/favicons/favicon.ico' %}">
             <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicons/favicon-16x16.png' %}">
@@ -48,11 +49,11 @@
 					<li><a href="javascript:void(0);">Ноты</a></li>
 					<li><a href="javascript:void(0);">Носы</a></li>
 					<li {% if 'contacts' in request.path %}class="active"{% endif %}><a href="{% url 'contacts' %}">Контакты</a></li>
-        			{% if not request.user.is_authenticated %}
+        			{% if not user.is_authenticated %}
                         <li><a class="nav-auth" href="{% url 'auth_login' %}?next={{ request.path|urlencode }}"><img src="{% static 'img/icons/sign-in.svg' %}"/> Войти</a></li>
                     {% else %}
                     <li class="dropdown">
-          				<a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown"><span class="glyphicon glyphicon-user"> </span> {{ request.user.username }}<b class="caret"></b></a>
+          				<a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown"><span class="glyphicon glyphicon-user"> </span> {{ user.account.get_short_name }}<b class="caret"></b></a>
 						<ul class="dropdown-menu no-hover">
 							<li><a href="#" >Мои ароматы</a></li>
             				<li><a href="#">Настройки</a></li>
