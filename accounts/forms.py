@@ -17,6 +17,10 @@ class ExtRegistrationForm(RegistrationFormUniqueEmail):
 
 
 class EmailAuthenticationForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(EmailAuthenticationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].label = 'E-mail или Имя пользователя'
+
     def clean_username(self):
         username = self.data['username']
         if '@' in username:
@@ -29,7 +33,3 @@ class EmailAuthenticationForm(AuthenticationForm):
                     params={'username': self.username_field.verbose_name},
                 )
         return username
-
-    def __init__(self, *args, **kwargs):
-        super(EmailAuthenticationForm, self).__init__(*args, **kwargs)
-        self.fields['username'].label = 'E-mail или Имя пользователя'

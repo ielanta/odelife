@@ -13,6 +13,6 @@ urlpatterns = [
     url(r'^password/reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$',
         ExtPasswordResetConfirmView.as_view(), name='auth_password_reset_confirm'),
     url(r'^password/reset/$', ExtPasswordResetView.as_view(), name='auth_password_reset'),
+    url(r'', include('social_django.urls', namespace='social')),
     url(r'^', include('registration.backends.default.urls')),
 ]
-

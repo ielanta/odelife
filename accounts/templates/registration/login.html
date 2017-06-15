@@ -13,6 +13,7 @@
         {{ form|crispy }}
         <button type="submit" class="btn btn-base center-block">Войти</button>
         <input type="hidden" name="next" value="{{ next }}" />
+        <a href="{% url "social:begin" "facebook" %}?next={{ next }}">Facebook</a>
     </form>
     <h5 class="center-text">Нет аккаунта? <a href="{% url 'registration_register' %}">Зарегистрировать</a></h5>
     <h5 class="center-text"><a href="{% url 'auth_password_reset' %}">Забыли пароль</a></h5>

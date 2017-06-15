@@ -14,9 +14,9 @@ PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 INSTALLED_APPS = [
     'dal',
     'dal_select2',
-    'django.contrib.admin',
     'registration',
     'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -25,8 +25,10 @@ INSTALLED_APPS = [
     'compressor',
     'rest_framework',
     'crispy_forms',
+    'social_django',
     'main',
     'aroma',
+    'accounts'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -52,6 +54,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -159,6 +163,12 @@ REST_FRAMEWORK = {
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.vk.VKOAuth2',
+)
+
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 GENDER_CHOICES = (
     ('f', 'женский'),
@@ -169,23 +179,23 @@ GENDER_CHOICES = (
 MAIL_SERVICE = 'support@odelife.ru'
 MAIL_MARKETING = 'marketing@odelife.ru'
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#     },
-#     'loggers': {
-#         'django.request': {
-#             'level': 'DEBUG',
-#             'handlers': ['console'],
-#             'propagate': True,
-#         },
-#         'django.db.backends': {
-#             'level': 'DEBUG',
-#             'handlers': ['console'],
-#         }
-#     },
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': True,
+        },
+        # 'django.db.backends': {
+        #     'level': 'DEBUG',
+        #     'handlers': ['console'],
+        # }
+    },
+}
