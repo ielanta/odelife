@@ -1,6 +1,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.contenttypes.fields import GenericRelation
+
+from accounts.models import Activity
 from core.settings import GENDER_CHOICES
 
 
@@ -53,12 +56,19 @@ class Aroma(models.Model):
     noses = models.ManyToManyField(Nose, blank=True)
     notes = models.ManyToManyField(Note, through='CategoryNotes', related_name='notes', blank=True)
     is_public = models.BooleanField(default=False)
+    marks = GenericRelation(Activity)
 
     class Meta:
         unique_together = ('title', 'brand', 'gender')
 
     def __str__(self):
         return self.title
+
+    def get_mark_by_type(self, activity_type, user):
+        mark = self.marks.filter(activity_type=activity_type, user_id=user.id).first()
+        if mark:
+            return mark.id
+        return mark
 
 
 class AromaCounter(models.Model):
@@ -81,6 +91,3 @@ class CategoryNotes(models.Model):
     aroma = models.ForeignKey(Aroma, on_delete=models.CASCADE)
     note = models.ForeignKey(Note, on_delete=models.CASCADE)
     category = models.SmallIntegerField(choices=CATEGORY_CHOICES)
-
-
-

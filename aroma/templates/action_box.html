@@ -1,22 +1,38 @@
-{% load aroma_extras %}
-
 <div class="action-box" >
-    <span class="star-icon">
-        <i class="glyphicon glyphicon-star-empty" title="Добавить в мои ароматы" aria-label="tooltip"></i>
-    </span>
-    <form method="post"
+    <form onsubmit="preventDoubleClick(this)"
             {% if not user.is_authenticated %}
-                action="{% url 'auth_login' %}?next={{request.get_full_path|urlencode}}"
+                method="post" action="{% url 'auth_login' %}?next={{request.get_full_path|urlencode}}"
+            {% elif favorite %}
+                method="delete" action="{% url 'delete-favorite' aroma_id=aroma_id pk=favorite %}"
             {% else %}
-                action="{% url 'add-favorite' aroma_id=aroma_id %}"
+                method="post" action="{% url 'add-favorite' aroma_id=aroma_id %}"
             {% endif %}>
         {% csrf_token %}
-        <button class="heart-icon" type="submit">
+        <button class="star-icon preventDouble" type="submit" name="submit">
             <i aria-label="tooltip"
-                    {% if user.is_authenticated and user.account.favorites|aroma_in_favorites:aroma_id  %}
-                        class="glyphicon glyphicon-heart" title="Убрать из избранного"
+                    {% if favorite %}
+                        class="glyphicon glyphicon-star" title="Убрать из избранного"
                     {% else %}
-                        class="glyphicon glyphicon-heart-empty" title="Добавить в избранное"
+                        class="glyphicon glyphicon-star-empty" title="Добавить в избранное"
+                    {% endif %}>
+            </i>
+        </button>
+    </form>
+    <form onsubmit="preventDoubleClick(this)"
+            {% if not user.is_authenticated %}
+                method="post" action="{% url 'auth_login' %}?next={{request.get_full_path|urlencode}}"
+            {% elif like %}
+                method="delete" action="{% url 'delete-like' aroma_id=aroma_id pk=like %}"
+            {% else %}
+                method="post" action="{% url 'add-like' aroma_id=aroma_id %}"
+            {% endif %}>
+        {% csrf_token %}
+        <button class="heart-icon preventDouble" type="submit" name="submit">
+            <i aria-label="tooltip"
+                    {% if like %}
+                        class="glyphicon glyphicon-heart" title="Уже не нравится"
+                    {% else %}
+                        class="glyphicon glyphicon-heart-empty" title="Нравится"
                     {% endif %}>
             </i>
         </button>

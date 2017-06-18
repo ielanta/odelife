@@ -20,3 +20,9 @@ $(function() {
     });
     onNavbar();
 });
+
+function preventDoubleClick(form)
+{
+    form.submit.disabled = true;
+    return true;
+};

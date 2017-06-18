@@ -3,6 +3,7 @@ from django_filters.rest_framework import NumberFilter, FilterSet, MultipleChoic
 from rest_framework import serializers
 
 from aroma.models import Aroma, Brand, Note, Group, Nose, CategoryNotes
+from accounts.models import Activity
 from core.settings import GENDER_CHOICES
 
 
@@ -21,13 +22,24 @@ class SearchFilter(FilterSet):
         fields = ('gender', 'min_year', 'max_year', 'title', 'brand', 'notes', 'notes', 'groups', 'noses')
 
 
-class AromaListSerializer(serializers.ModelSerializer):
+class AromaCommonSerializer(serializers.ModelSerializer):
+    favorite = serializers.SerializerMethodField('_favorite')
+    like = serializers.SerializerMethodField('_like')
+
+    def _favorite(self, obj):
+        return obj.get_mark_by_type(Activity.FAVORITE, self.context['request'].user)
+
+    def _like(self, obj):
+        return obj.get_mark_by_type(Activity.LIKE, self.context['request'].user)
+
+
+class AromaListSerializer(AromaCommonSerializer):
     groups = serializers.SlugRelatedField(read_only=True, many=True, slug_field='title')
     brand = serializers.SlugRelatedField(read_only=True, slug_field='title')
 
     class Meta:
         model = Aroma
-        fields = ('id', 'title', 'year', 'brand', 'pic', 'groups')
+        fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'favorite', 'like')
 
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -54,7 +66,7 @@ class NoseSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-class AromaDetailSerializer(serializers.ModelSerializer):
+class AromaDetailSerializer(AromaCommonSerializer):
     top_notes = serializers.SerializerMethodField()
     middle_notes = serializers.SerializerMethodField()
     base_notes = serializers.SerializerMethodField()
@@ -91,4 +103,4 @@ class AromaDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Aroma
         fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'gender', 'gender_label', 'noses', 'description',
-                  'top_notes', 'middle_notes', 'base_notes', 'general_notes')
+                  'top_notes', 'middle_notes', 'base_notes', 'general_notes', 'favorite', 'like')

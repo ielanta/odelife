@@ -17,7 +17,7 @@
                 <h3 class="center-text" itemprop="name">{{ title }}</h3>
                 <div class="col-md-offset-1 col-md-6 col-sm-7 center-text">
                     <img src={{ pic }} alt="{{ title }}" class="aroma-pic img-responsive center-block" />
-                    {% include "action_box.html" with aroma_id=id %}
+                    {% include "action_box.html" with aroma_id=id  favorite=favorite like=like %}
                     <p class="aroma_description" itemprop="description">{{ description }}</p>
                     <div class="row-fluid feature_data">
                         {% include "notes.html" with notes=general_notes note_title='Ноты' %}
