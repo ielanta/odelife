@@ -548,7 +548,7 @@ Aroma List
     vertical-align: bottom;
     height: 150px;
 }
-.aroma-card {
+.aroma-box {
     background: white;
     /*border: 1px solid #f2dede;*/
     box-shadow: 0 1px 1px #f2dede;
@@ -590,7 +590,6 @@ Aroma List
 
 .summary-box{
     font-size: 13px;
-    color: #aaa;
     padding: 8px 0;
     line-height: 1.4em;
 }
@@ -604,19 +603,20 @@ Aroma List
 }
 
 .action-box button {
-    visibility: hidden;
+    background: none;
+    border: none;
 }
 
-.action-box i {
-    visibility:visible;
+.star-icon{
+    color: #ffcfbe;
 }
 
-.star-icon:hover{
-    color: #FFB862;
-}
-
-.heart-icon:hover{
+.heart-icon{
     color: #FFABC2;
+}
+
+.heart-icon:hover, .star-icon:hover{
+    color: #aaa;
 }
 
 .num-results {
@@ -627,7 +627,7 @@ Aroma List
 }
 
 .row-centered {
-    text-align:center;
+    text-align: center;
     padding-right: 10px;
     padding-left: 10px;
 }

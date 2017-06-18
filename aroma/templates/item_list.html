@@ -8,18 +8,22 @@
     {% endif %}
     {% for item in items.results %}
         <div class="col-sm-4 col-xs-6 col-centered" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
-            <a href="{% url 'aroma-detail' pk=item.id %}" class="aroma-card pointed" itemprop="url">
-                <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma-list-pic pointed" />
-                <div class="card-title" itemprop="name">{{ item.title }}</div>
-                <div class="melted-text" itemprop="brand">{{ item.brand }}</div>
-                <div class="card-text">{% for group in item.groups %}{{ group }}, {% endfor %}{{ item.year }}г</div>
+            <div class="aroma-box">
+                <div class="aroma-card">
+                    <a href="{% url 'aroma-detail' pk=item.id %}" class="pointed" itemprop="url">
+                        <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma-list-pic pointed" />
+                        <div class="card-title" itemprop="name">{{ item.title }}</div>
+                        <div class="melted-text" itemprop="brand">{{ item.brand }}</div>
+                        <div class="card-text">{% for group in item.groups %}{{ group }}, {% endfor %}{{ item.year }}г</div>
+                    </a>
+                </div>
                 <div class="row summary-box">
                     <div class="col-sm-6">1 отзыв</div>
                     <div class="col-sm-6" >
                         {% include "action_box.html" with aroma_id=item.id favorite=item.favorite like=item.like %}
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
     {% endfor %}
 {% else %}
