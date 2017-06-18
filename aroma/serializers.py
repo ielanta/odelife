@@ -39,7 +39,10 @@ class AromaListSerializer(AromaCommonSerializer):
 
     class Meta:
         model = Aroma
-        fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'favorite', 'like')
+        fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'favorite', 'like', 'url')
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }
 
 
 class NoteSerializer(serializers.ModelSerializer):

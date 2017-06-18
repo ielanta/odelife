@@ -42,6 +42,7 @@ class AromaDetail(generics.RetrieveAPIView):
     allowed_methods = ['GET']
     queryset = Aroma.objects.filter(is_public=True).all()
     permission_classes = (PublicEndpoint,)
+    lookup_field = 'slug'
 
 
 class BrandAutocomplete(autocomplete.Select2QuerySetView):

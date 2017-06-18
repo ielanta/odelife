@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
+from django.utils.text import slugify
 
 from accounts.models import Activity
 from core.settings import GENDER_CHOICES
@@ -57,6 +58,8 @@ class Aroma(models.Model):
     notes = models.ManyToManyField(Note, through='CategoryNotes', related_name='notes', blank=True)
     is_public = models.BooleanField(default=False)
     marks = GenericRelation(Activity)
+    slug = models.SlugField(max_length=256, blank=True, null=True)
+
 
     class Meta:
         unique_together = ('title', 'brand', 'gender')
@@ -69,6 +72,11 @@ class Aroma(models.Model):
         if mark:
             return mark.id
         return mark
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify('-'.join([self.brand.title, self.title, self.gender]))[:256]
+        super(Aroma, self).save(*args, **kwargs)
 
 
 class AromaCounter(models.Model):

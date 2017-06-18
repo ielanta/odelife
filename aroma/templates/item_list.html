@@ -10,7 +10,7 @@
         <div class="col-sm-4 col-xs-6 col-centered" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
             <div class="aroma-box">
                 <div class="aroma-card">
-                    <a href="{% url 'aroma-detail' pk=item.id %}" class="pointed" itemprop="url">
+                    <a href="{{ item.url }}" class="pointed" itemprop="url">
                         <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma-list-pic pointed" />
                         <div class="card-title" itemprop="name">{{ item.title }}</div>
                         <div class="melted-text" itemprop="brand">{{ item.brand }}</div>
