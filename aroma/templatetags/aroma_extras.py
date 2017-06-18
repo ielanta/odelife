@@ -30,3 +30,8 @@ def url_replace(request, field, value):
     dict_ = request.GET.copy()
     dict_[field] = value
     return dict_.urlencode()
+
+
+@register.filter
+def aroma_in_favorites(favorites, aroma_id):
+    return favorites.filter(id=aroma_id).exists()

@@ -599,6 +599,18 @@ Aroma List
     font-size: 17px;
 }
 
+.action-box form{
+    display: inline-block;
+}
+
+.action-box button {
+    visibility: hidden;
+}
+
+.action-box i {
+    visibility:visible;
+}
+
 .star-icon:hover{
     color: #FFB862;
 }
