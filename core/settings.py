@@ -28,7 +28,9 @@ INSTALLED_APPS = [
     'social_django',
     'main',
     'aroma',
-    'accounts'
+    'accounts',
+    'activity',
+    'tag',
 ]
 
 MIDDLEWARE_CLASSES = [

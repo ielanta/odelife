@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^aromas/', include('aroma.urls')),
+    url(r'^me/', include('activity.urls')),
     url(r'^', include('main.urls')),
     # url(r'^404/$', page_not_found, kwargs={'exception': Exception("Page not Found")}),
     # url(r'^500/$', server_error),

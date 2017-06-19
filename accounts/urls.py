@@ -2,8 +2,7 @@ from django.conf.urls import url, include
 from django.contrib.auth.views import LoginView
 from accounts.forms import ExtRegistrationForm, EmailAuthenticationForm
 from accounts.views import ExtRegistrationView, ExtActivationView, ExtResendActivationView, ExtPasswordResetView, \
-    ExtPasswordResetConfirmView, ActivityCreate, ActivityDelete
-from accounts.models import Activity
+    ExtPasswordResetConfirmView
 
 urlpatterns = [
     url(r'^register/$', ExtRegistrationView.as_view(form_class=ExtRegistrationForm), name='registration_register'),
@@ -16,11 +15,4 @@ urlpatterns = [
     url(r'^password/reset/$', ExtPasswordResetView.as_view(), name='auth_password_reset'),
     url(r'', include('social_django.urls', namespace='social')),
     url(r'^', include('registration.backends.default.urls')),
-    url(r'^me/favorites/(?P<aroma_id>[0-9]+)$', ActivityCreate.as_view(activity_type=Activity.FAVORITE),
-        name='add-favorite'),
-    url(r'^me/favorites/(?P<aroma_id>[0-9]+)/(?P<pk>[0-9]+)$', ActivityDelete.as_view(activity_type=Activity.FAVORITE),
-        name='delete-favorite'),
-    url(r'^me/likes/(?P<aroma_id>[0-9]+)$', ActivityCreate.as_view(activity_type=Activity.LIKE), name='add-like'),
-    url(r'^me/likes/(?P<aroma_id>[0-9]+)/(?P<pk>[0-9]+)$', ActivityDelete.as_view(activity_type=Activity.LIKE),
-        name='delete-like'),
 ]

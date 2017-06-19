@@ -1,0 +1,53 @@
+from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.models import ContentType
+from django.db import models
+
+from tag.models import Tag
+
+
+class Activity(models.Model):
+    FAVORITE = 'F'
+    LIKE = 'L'
+    UP_VOTE = 'U'
+    DOWN_VOTE = 'D'
+    ACTIVITY_TYPES = (
+        (FAVORITE, 'Favorite'),
+        (LIKE, 'Like'),
+        (UP_VOTE, 'Up Vote'),
+        (DOWN_VOTE, 'Down Vote'),
+    )
+
+    user = models.ForeignKey(User)
+    activity_type = models.CharField(max_length=1, choices=ACTIVITY_TYPES)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey()
+
+    def __str__(self):
+        return "User %s(%d) %s %s(%d)" % (self.user.username, self.user.id, self.get_activity_type_display(),
+                                          self.content_type, self.object_id)
+
+
+class Comment(models.Model):
+    LONGEVITY_TYPES = (('M', 'Средняя'), ('W', 'Слабая'), ('S', 'Сильная'),)
+    SILLAGE_TYPES = (('M', 'Средний'), ('W', 'Близко к коже'), ('S', 'Сильный'),)
+    SEASON_TYPES = (('SP', 'Весна'), ('SM', 'Лето'), ('A', 'Осень'), ('W', 'Зима'), ('E', 'Любое'))
+    IMPRESSION_TYPES = (('F', 'Люблю'), ('L', 'Нравится'), ('N', 'Нейтрально'), ('D', 'Не нравится'),)
+    user = models.ForeignKey(User)
+    aroma = models.ForeignKey('aroma.Aroma')
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_approved = models.BooleanField(default=True)
+    text = models.TextField()
+    votes = GenericRelation(Activity)
+    longevity = models.CharField(max_length=1, choices=LONGEVITY_TYPES)
+    sillage = models.CharField(max_length=1, choices=SILLAGE_TYPES)
+    season = models.CharField(max_length=2, choices=SEASON_TYPES)
+    impression = models.CharField(max_length=1, choices=IMPRESSION_TYPES)
+    rating = models.SmallIntegerField(default=0)
+    tags = GenericRelation(Tag)
+
+    def __str__(self):
+        return self.text

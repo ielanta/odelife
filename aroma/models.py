@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
 from django.utils.text import slugify
 
-from accounts.models import Activity
+from activity.models import Activity
 from core.settings import GENDER_CHOICES
 
 

@@ -3,7 +3,7 @@ from django_filters.rest_framework import NumberFilter, FilterSet, MultipleChoic
 from rest_framework import serializers
 
 from aroma.models import Aroma, Brand, Note, Group, Nose, CategoryNotes
-from accounts.models import Activity
+from activity.models import Activity
 from core.settings import GENDER_CHOICES
 
 
