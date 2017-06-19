@@ -78,6 +78,10 @@ class Aroma(models.Model):
             self.slug = slugify('-'.join([self.brand.title, self.title, self.gender]))[:256]
         super(Aroma, self).save(*args, **kwargs)
 
+    @property
+    def comments_counter(self):
+        return self.comment_set.count()
+
 
 class AromaCounter(models.Model):
     aroma = models.ForeignKey(Aroma, on_delete=models.CASCADE)

@@ -208,16 +208,16 @@ hr {
     font-weight: 500;
 }
 
-blockquote {
-    background: #E1F5FF;
-    padding: 0;
-}
+/*blockquote {*/
+    /*background: #E1F5FF;*/
+    /*padding: 0;*/
+/*}*/
 
-blockquote:before {
-    content: "\201C";
-    font-size: 30px;
-    letter-spacing: 2px;
-}
+/*blockquote:before {*/
+    /*content: "\201C";*/
+    /*font-size: 30px;*/
+    /*letter-spacing: 2px;*/
+/*}*/
 
 /* ===========================
 --- Aroma
@@ -327,6 +327,21 @@ blockquote:before {
 #aroma-detail .action-box{
     font-size: 22px;
     color: #ccc;
+}
+
+/* ===========================
+--- Comments
+============================ */
+#comments{
+    text-align: justify;
+    padding: 30px 0;
+}
+
+#comment-form{
+    padding: 13px 0;
+}
+
+#comment-form .btn-base{
 }
 
 /* ===========================
@@ -489,7 +504,7 @@ Search form
 }
 
 .btn-base{
-    background-color: lightpink;
+    background-color: #FFB860;
     color: #555;
     width: 100%;
     height: 37px;
@@ -497,7 +512,7 @@ Search form
 }
 
 .btn-base:hover{
-    background-color: #FFACB6;
+    background-color: orange;
 }
 
 .help-block{
@@ -585,7 +600,7 @@ Aroma List
 }
 
 .aroma-card:hover .card-title {
-    color: #FFB862;
+    color: #FFB860;
 }
 
 .summary-box{

@@ -7,8 +7,8 @@
 
 {% block content %}
     <div class="container-space" id="aroma-detail">
-        <div class="container-fluid">
-            <div class="row aroma-container" itemscope itemtype="http://schema.org/Product">
+        <div class="container-fluid aroma-container">
+            <div class="row" itemscope itemtype="http://schema.org/Product">
                 <ul class="list-inline breadcrumbs">
                     <li><a href="{% url 'aroma-list' %}">Ароматы</a></li>
                     <li><a href="{% url 'aroma-list' %}?brand={{ brand.id }}">{{ brand.title }}</a></li>
@@ -62,6 +62,12 @@
                             <img src="{{ brand.logo }}" alt="{{ brand.title }}" class="logo center-block"/>
                         </a>
                     </div>
+                </div>
+                <div class="col-md-1"> </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    {% include "comments_list.html" with comments=comments %}
                 </div>
             </div>
         </div>

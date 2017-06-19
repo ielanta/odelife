@@ -18,7 +18,13 @@
                     </a>
                 </div>
                 <div class="row summary-box">
-                    <div class="col-sm-6">1 отзыв</div>
+                    <div class="col-sm-6 card-text">
+                        {% if item.comments_counter %}
+                            <a href="{{ item.url }}#comments">
+                                {{ item.comments_counter }} {{ item.comments_counter| ru_pluralize:"отзыв,отзыва,отзывов" }}
+                            </a>
+                        {% endif %}
+                    </div>
                     <div class="col-sm-6" >
                         {% include "action_box.html" with aroma_id=item.id favorite=item.favorite like=item.like %}
                     </div>

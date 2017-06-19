@@ -1,0 +1,24 @@
+{% load aroma_extras %}
+
+<section id="comments">
+    <hr>
+    <div class="col-md-8">
+        {% if comments %}
+            <h3>{{ comments|length }} {{ comments|length| ru_pluralize:"Отзыв,Отзыва,Отзывов" }}</h3>
+            {% for comment in comments %}
+                {% include "comment.html" with comment=comment %}
+            {% endfor %}
+        {% else %}
+            <h3>Отзывов пока нет :(</h3>
+            <h6>Поделитесь своим впечатлением о парфюме.</h6>
+            <h6>Ваш отзыв может помочь другим при выборе аромата.</h6>
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        <form name="comment-form" id="comment-form" class="base-form" method="POST">
+    {#        {% crispy form %}#}
+            <button type="submit" class="btn btn-base">Написать отзыв</button>
+        </form>
+    </div>
+
+</section>

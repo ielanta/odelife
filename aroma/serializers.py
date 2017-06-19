@@ -3,7 +3,8 @@ from django_filters.rest_framework import NumberFilter, FilterSet, MultipleChoic
 from rest_framework import serializers
 
 from aroma.models import Aroma, Brand, Note, Group, Nose, CategoryNotes
-from activity.models import Activity
+from activity.models import Activity, Comment
+from accounts.models import Account
 from core.settings import GENDER_CHOICES
 
 
@@ -39,7 +40,7 @@ class AromaListSerializer(AromaCommonSerializer):
 
     class Meta:
         model = Aroma
-        fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'favorite', 'like', 'url')
+        fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'favorite', 'like', 'url', 'comments_counter')
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}
         }
@@ -69,6 +70,19 @@ class NoseSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = ('id', 'get_full_name')
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+
 class AromaDetailSerializer(AromaCommonSerializer):
     top_notes = serializers.SerializerMethodField()
     middle_notes = serializers.SerializerMethodField()
@@ -78,6 +92,7 @@ class AromaDetailSerializer(AromaCommonSerializer):
     gender_label = serializers.SerializerMethodField()
     brand = BrandSerializer(read_only=True)
     groups = GroupSerializer(read_only=True, many=True)
+    comments = serializers.SerializerMethodField()
 
     @staticmethod
     def get_gender_label(obj):
@@ -103,7 +118,12 @@ class AromaDetailSerializer(AromaCommonSerializer):
         notes = obj.notes.filter(categorynotes__category=CategoryNotes.GENERAL_NOTES).all()
         return NoteSerializer(notes, many=True, read_only=True).data
 
+    @staticmethod
+    def get_comments(obj):
+        comments = obj.comment_set.filter(is_approved=True).all()
+        return CommentSerializer(comments, many=True, read_only=True).data
+
     class Meta:
         model = Aroma
         fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'gender', 'gender_label', 'noses', 'description',
-                  'top_notes', 'middle_notes', 'base_notes', 'general_notes', 'favorite', 'like')
+                  'top_notes', 'middle_notes', 'base_notes', 'general_notes', 'favorite', 'like', 'comments')
