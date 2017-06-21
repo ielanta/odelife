@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from activity.views import ActivityCreate, ActivityDelete
+from activity.views import ActivityCreate, ActivityDelete, VoteAdd
 from activity.models import Activity
 
 urlpatterns = [
@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^likes/(?P<aroma_id>[0-9]+)$', ActivityCreate.as_view(activity_type=Activity.LIKE), name='add-like'),
     url(r'^likes/(?P<aroma_id>[0-9]+)/(?P<pk>[0-9]+)$', ActivityDelete.as_view(activity_type=Activity.LIKE),
         name='delete-like'),
+    url(r'^votes/(?P<comment_id>[0-9]+)$', VoteAdd.as_view(), name='add-vote'),
 ]

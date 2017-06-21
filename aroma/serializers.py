@@ -78,9 +78,34 @@ class UserSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
+    longevity = serializers.SerializerMethodField()
+    sillage = serializers.SerializerMethodField()
+    season = serializers.SerializerMethodField()
+    impression = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_longevity(obj):
+        return obj.get_longevity_display()
+
+    @staticmethod
+    def get_sillage(obj):
+        return obj.get_sillage_display()
+
+    @staticmethod
+    def get_season(obj):
+        icon_dict = {'SP': ['spring.png'], 'SM': ['summer.png'], 'A': ['autumn.png'], 'W': ['winter.png'],
+                     'E': ['spring.png', 'summer.png', 'autumn.png', 'winter.png']}
+        return {obj.get_season_display(): icon_dict.get(obj.season)}
+
+    @staticmethod
+    def get_impression(obj):
+        icon_dict = {'F': 'love.png', 'L': 'like.png', 'N': 'neutral.png', 'D': 'dislike.png'}
+        print(obj.get_impression_display(), icon_dict.get(obj.impression))
+        return {obj.get_impression_display(): icon_dict.get(obj.impression)}
+
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ('id', 'user', 'impression', 'longevity', 'sillage', 'season', 'text', 'rating')
 
 
 class AromaDetailSerializer(AromaCommonSerializer):
@@ -120,7 +145,7 @@ class AromaDetailSerializer(AromaCommonSerializer):
 
     @staticmethod
     def get_comments(obj):
-        comments = obj.comment_set.filter(is_approved=True).all()
+        comments = obj.comment_set.filter(is_approved=True).order_by('-created_at').all()
         return CommentSerializer(comments, many=True, read_only=True).data
 
     class Meta:

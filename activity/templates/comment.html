@@ -1,0 +1,41 @@
+{% load static %}
+
+<div class="comment" itemprop="review" itemscope itemtype="http://schema.org/Review">
+    <h5><a class="author" itemprop="author">{{ comment.user.get_full_name }}</a></h5>
+    <div class="row">
+        <div class="col-sm-9 text">
+            <span itemprop="description">{{ comment.text }}</span>
+            <div class="rating action-box"><span class="text">Полезно?</span>
+                <form method="post" onsubmit="preventDoubleClick(this)"
+                    {% if not user.is_authenticated %}
+                        action="{% url 'auth_login' %}?next={{request.get_full_path|urlencode}}"
+                    {% else %}
+                        action="{% url 'add-vote' comment_id=comment.id %}"
+                    {% endif %}>
+                    {% csrf_token %}
+                    <button class="preventDouble" type="submit" name="submit">
+                        <i class="glyphicon glyphicon-thumbs-up"></i>
+                    </button>
+                </form>
+                <span itemprop="reviewRating">{{ comment.rating }}</span>
+            </div>
+        </div>
+        <div class="col-sm-3 summary-line">
+            <div class="trait">Впечатление:
+                {% for imp, ico in comment.impression.items %}
+                    <img src="{% static 'img/icons/'|add:ico %}" alt={{ imp }} title="{{ imp }}" aria-label="tooltip">
+                {% endfor %}</div>
+            <div class="trait">Стойкость: <span class="trait-data">{{ comment.longevity }}</span></div>
+            <div class="trait">Шлейф: <span class="trait-data">{{ comment.sillage }}</span></div>
+            <div class="trait">Время года:
+                <span class="season">
+                {% for season, icons in comment.season.items %}
+                    {% for ico in icons %}
+                        <img src="{% static 'img/icons/'|add:ico %}" alt={{ season }} title="{{ season }}" aria-label="tooltip">
+                    {% endfor %}
+                {% endfor %}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

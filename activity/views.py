@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, redirect
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
-from activity.models import Activity
+from activity.models import Activity, Comment
 from aroma.models import Aroma
 
 
@@ -24,3 +24,16 @@ class ActivityDelete(generics.DestroyAPIView):
     def get(self, request, *args, **kwargs):
         Activity.objects.get(pk=kwargs.get('pk')).delete()
         return redirect(request.META.get('HTTP_REFERER'))
+
+
+class VoteAdd(generics.CreateAPIView):
+    permission_classes = (IsAuthenticated,)
+    activity_type = ''
+
+    def post(self, request, *args, **kwargs):
+        comment = get_object_or_404(Comment, id=kwargs.get('comment_id'))
+        vote, created = comment.votes.get_or_create(user=request.user)
+        if created:
+            comment.rating += 1
+            comment.save()
+        return redirect(request.META.get('HTTP_REFERER')+'#comments')

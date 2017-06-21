@@ -34,8 +34,8 @@ class Activity(models.Model):
 class Comment(models.Model):
     LONGEVITY_TYPES = (('S', 'Сильная'), ('M', 'Средняя'), ('W', 'Слабая'),)
     SILLAGE_TYPES = (('S', 'Сильный'), ('M', 'Средний'), ('W', 'Близко к коже'),)
-    SEASON_TYPES = (('SP', 'Весна'), ('SM', 'Лето'), ('A', 'Осень'), ('W', 'Зима'), ('E', 'Любое'))
-    IMPRESSION_TYPES = (('F', 'Люблю'), ('L', 'Нравится'), ('N', 'Нейтрально'), ('D', 'Не нравится'),)
+    SEASON_TYPES = (('SP', 'Весна'), ('SM', 'Лето'), ('A', 'Осень'), ('W', 'Зима'), ('E', 'Любой'))
+    IMPRESSION_TYPES = (('F', 'Люблю'), ('L', 'Нравится'), ('N', 'Нейтральное'), ('D', 'Не нравится'),)
     user = models.ForeignKey(User)
     aroma = models.ForeignKey('aroma.Aroma', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

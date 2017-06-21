@@ -226,6 +226,7 @@ hr {
     background-color: #fff;
     padding: 15px 0;
     font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "HelveticaNeueLight", Helvetica, Arial, sans-serif;
+    font-weight: 300;
 }
 
 .breadcrumbs {
@@ -325,8 +326,11 @@ hr {
 }
 
 #aroma-detail .action-box{
-    font-size: 22px;
-    color: #ccc;
+    font-size: 25px;
+}
+
+#aroma-detail .aroma-container{
+    padding: 15px;
 }
 
 /* ===========================
@@ -337,13 +341,57 @@ hr {
     padding: 30px 0;
 }
 
-#comment-form{
-    padding: 13px 0;
+#comments .comment{
+    padding: 15px 0;
 }
 
-#comment-form .btn-base{
+#comments h5{
+    padding-bottom: 8px;
 }
 
+#comments .summary-line{
+    text-align: left;
+}
+
+#comments .text{
+    padding-bottom: 5px;
+}
+
+#comments .action-box{
+    font-size: 14px;
+    color: #333;
+}
+
+#comments .rating{
+    padding-top: 15px;
+}
+
+#comments .action-box .text{
+    margin-right: 20px;
+}
+
+#comments .trait{
+    color: #aaa;
+}
+#comments .trait-data{
+    color: #666;
+    text-transform: lowercase;
+}
+
+#comments img{
+    height: 20px;
+    opacity: 0.7;
+}
+
+.btn-base i{
+    color: midnightblue;
+    margin-right: 7px;
+}
+
+#comments .author{
+    color: darkorange;
+    padding-bottom: 10px;
+}
 /* ===========================
 --- Footer
 ============================ */
@@ -739,8 +787,10 @@ Parallax
 
 #err h1, #err h3{
     text-align: right;
-    color: white;
+    color: seashell;
     text-shadow: 2px 2px #453536;
+    text-transform: uppercase;
+    font-weight: 400;
 }
 
 #err h1{
@@ -866,15 +916,12 @@ Parallax
     .container-fluid {
         width: 90%;
     }
-
 }
 
 @media(min-width:767px) and (max-width: 992px){
-    .container-fluid {
-        width: 95%;
-    }
+
     div{
-        font-size: 12px;
+        font-size: 13px;
     }
 }
 
@@ -918,9 +965,7 @@ Parallax
         padding: 0;
         margin: 0;
     }
-    .container-space {
-        margin-top: 0;
-    }
+
 
     #intro {
         background: #FFFAFA;
