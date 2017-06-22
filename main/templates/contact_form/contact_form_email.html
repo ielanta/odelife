@@ -1,0 +1,8 @@
+{% extends 'emails/base.html' %}
+
+{% block content %}
+    <p style="margin-bottom:20px;color:#49545E;">От <{{ form.email.data }}></p>
+    <p style="margin-bottom:20px;color:#49545E;">
+        {{ form.msg.data }}
+    </p>
+{% endblock %}
