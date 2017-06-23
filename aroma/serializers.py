@@ -95,12 +95,12 @@ class CommentSerializer(serializers.ModelSerializer):
     def get_season(obj):
         icon_dict = {'SP': ['spring.png'], 'SM': ['summer.png'], 'A': ['autumn.png'], 'W': ['winter.png'],
                      'E': ['spring.png', 'summer.png', 'autumn.png', 'winter.png']}
-        return {obj.get_season_display(): icon_dict.get(obj.season)}
+        if icon_dict.get(obj.season):
+            return {obj.get_season_display(): icon_dict.get(obj.season)}
 
     @staticmethod
     def get_impression(obj):
         icon_dict = {'F': 'love.png', 'L': 'like.png', 'N': 'neutral.png', 'D': 'dislike.png'}
-        print(obj.get_impression_display(), icon_dict.get(obj.impression))
         return {obj.get_impression_display(): icon_dict.get(obj.impression)}
 
     class Meta:

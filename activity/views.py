@@ -1,10 +1,12 @@
 from django.shortcuts import get_object_or_404, redirect
+from django.views.generic.edit import CreateView
 
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
 from activity.models import Activity, Comment
 from aroma.models import Aroma
+from activity.forms import CommentCreateForm
 
 
 class ActivityCreate(generics.CreateAPIView):
@@ -37,3 +39,23 @@ class VoteAdd(generics.CreateAPIView):
             comment.rating += 1
             comment.save()
         return redirect(request.META.get('HTTP_REFERER')+'#comments')
+
+
+class CommentCreate(CreateView):
+    template_name = 'comment_create_form.html'
+    permission_classes = (IsAuthenticated,)
+    form_class = CommentCreateForm
+
+    def get(self, request, *args, **kwargs):
+        aroma = get_object_or_404(Aroma, id=kwargs.get('aroma_id'))
+        request.GET.aroma = aroma.title
+        request.GET.aroma_brand = aroma.brand.title
+        return super(CommentCreate, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        aroma = get_object_or_404(Aroma, id=kwargs.get('aroma_id'))
+        form = self.form_class(data=request.POST)
+        if form.is_valid():
+            obj = Comment(user=request.user, aroma=aroma,  **form.cleaned_data)
+            obj.save()
+        return redirect(aroma.get_absolute_url())

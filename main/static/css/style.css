@@ -200,7 +200,6 @@ hr {
 .container-space {
     height: auto;
     margin-top: 40px;
-    font-weight: 500;
 }
 
 #contacts .btn-base i{
@@ -461,10 +460,11 @@ Search form
 }
 
 .styled-checkbox{
-  display:none;
+    display:none;
 }
 .styled-checkbox + label{
-  cursor:pointer;
+    cursor:pointer;
+    font-weight: 300;
 }
 .styled-checkbox + label:before{
     content: " ";
@@ -521,7 +521,7 @@ Search form
 
 .form-group label{
     color: #555;
-    font-weight: 500;
+    font-weight: 300;
     margin: 0;
 }
 
@@ -868,6 +868,48 @@ Parallax
 
 #transparent-form textarea{
     height: 100px;
+}
+
+/* ===========================
+--- Create comment
+============================ */
+.comment-form h3{
+    color: #666;
+}
+
+
+.comment-form .btn-radio{
+    position: absolute;
+    visibility: hidden;
+    display: none;
+}
+
+.comment-form .btn-radio + label {
+    cursor: pointer;
+    padding: 5px 20px;
+}
+
+.comment-form .btn-radio:checked + label{
+    background: #FFABC2;
+}
+
+.comment-form .radio {
+    border: solid 1px #f2dede;
+    display: inline-block;
+    background-color: #fff;
+    overflow: hidden;
+    margin: 1px 0;
+}
+
+.comment-form textarea{
+    height: 130px;
+}
+
+.comment-form .btn-base{
+    border: none;
+    color: #555;
+    width: 50%;
+    margin-top: 30px;
 }
 
 /* ===========================

@@ -1,0 +1,19 @@
+{% load crispy_forms_filters %}
+{% load l10n %}
+
+<div id="div_{{ field.auto_id }}" class="form-group{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if form_show_errors and field.errors %} has-error{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
+    {% if field.label %}
+        <label for="{{ field.auto_id }}"  class="control-label {{ label_class }}{% if field.field.required %} requiredField{% endif %}">
+            {{ field.label|safe }}{% if field.field.required %}<span class="asteriskField">*</span>{% endif %}
+        </label>
+    {% endif %}
+    <div class="controls {{ field_class }}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
+        {% for choice in field.field.choices %}
+            <div class="radio">
+                <input type="radio" class="btn-radio"{% if choice.0|stringformat:"s" == field.value|default_if_none:""|stringformat:"s" %} checked="checked"{% endif %} name="{{ field.html_name }}" id="id_{{ field.html_name }}_{{ forloop.counter }}" value="{{ choice.0|unlocalize }}" {{ field.field.widget.attrs|flatatt }}>
+                <label for="id_{{ field.html_name }}_{{ forloop.counter }}" class="{% if inline_class %}radio-{{ inline_class }}{% endif %}">{{ choice.1|unlocalize }}</label>
+            </div>
+        {% endfor %}
+    {% include 'bootstrap3/layout/field_errors_block.html' %}
+    </div>
+</div>

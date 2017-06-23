@@ -6,7 +6,7 @@ from registration.forms import RegistrationFormUniqueEmail
 
 
 class ExtRegistrationForm(RegistrationFormUniqueEmail):
-    username = UsernameField(max_length=254, min_length=6, widget=forms.TextInput(attrs={'autofocus': True}))
+    username = UsernameField(label='Имя пользователя', max_length=254, min_length=6, widget=forms.TextInput(attrs={'autofocus': True}))
 
     def __init__(self, *args, **kwargs):
         super(ExtRegistrationForm, self).__init__(*args, **kwargs)

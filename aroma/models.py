@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
 from django.utils.text import slugify
+from django.urls import reverse
 
 from activity.models import Activity
 from core.settings import GENDER_CHOICES
@@ -66,6 +67,9 @@ class Aroma(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('aroma-detail', kwargs={'slug': self.slug})
 
     def get_mark_by_type(self, activity_type, user):
         mark = self.marks.filter(activity_type=activity_type, user_id=user.id).first()

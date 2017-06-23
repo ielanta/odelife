@@ -25,17 +25,23 @@
                 {% for imp, ico in comment.impression.items %}
                     <img src="{% static 'img/icons/'|add:ico %}" alt={{ imp }} title="{{ imp }}" aria-label="tooltip">
                 {% endfor %}</div>
-            <div class="trait">Стойкость: <span class="trait-data">{{ comment.longevity }}</span></div>
-            <div class="trait">Шлейф: <span class="trait-data">{{ comment.sillage }}</span></div>
-            <div class="trait">Время года:
-                <span class="season">
-                {% for season, icons in comment.season.items %}
-                    {% for ico in icons %}
-                        <img src="{% static 'img/icons/'|add:ico %}" alt={{ season }} title="{{ season }}" aria-label="tooltip">
+            {% if comment.longevity %}
+                <div class="trait">Стойкость: <span class="trait-data">{{ comment.longevity }}</span></div>
+            {% endif %}
+            {% if comment.sillage %}
+                <div class="trait">Шлейф: <span class="trait-data">{{ comment.sillage }}</span></div>
+            {% endif %}
+            {% if comment.season %}
+                <div class="trait">Время года:
+                    <span class="season">
+                    {% for season, icons in comment.season.items %}
+                        {% for ico in icons %}
+                            <img src="{% static 'img/icons/'|add:ico %}" alt={{ season }} title="{{ season }}" aria-label="tooltip">
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
-                </span>
-            </div>
+                    </span>
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>

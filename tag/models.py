@@ -5,8 +5,8 @@ from django.db import models
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True, db_index=True)
-    slug = models.SlugField(max_length=50)
-    color_hex = models.CharField(max_length=6)
+    slug = models.SlugField(max_length=50, blank=True, null=True)
+    color_hex = models.CharField(max_length=6, blank=True, null=True)
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
