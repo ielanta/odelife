@@ -9,8 +9,9 @@ from aroma.models import Aroma
 from activity.forms import CommentCreateForm
 
 
-class ActivityCreate(generics.CreateAPIView):
+class ActivityCreate(CreateView):
     permission_classes = (IsAuthenticated,)
+    http_method_names = ['post']
     activity_type = ''
 
     def post(self, request, *args, **kwargs):
@@ -24,7 +25,7 @@ class ActivityDelete(generics.DestroyAPIView):
     activity_type = ''
 
     def get(self, request, *args, **kwargs):
-        Activity.objects.get(pk=kwargs.get('pk')).delete()
+        get_object_or_404(Activity, pk=kwargs.get('pk')).delete()
         return redirect(request.META.get('HTTP_REFERER'))
 
 

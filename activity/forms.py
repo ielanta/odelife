@@ -15,6 +15,10 @@ class CommentCreateForm(forms.ModelForm):
     season = forms.ChoiceField(choices=Comment.SEASON_TYPES, label="Время года", required=False,
                                widget=forms.RadioSelect)
 
+    class Meta:
+        model = Comment
+        fields = ('text', 'impression', 'longevity', 'sillage', 'season')
+
     def __init__(self, *args, **kwargs):
         super(CommentCreateForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
@@ -24,7 +28,3 @@ class CommentCreateForm(forms.ModelForm):
                                     Field('sillage', template='radio_button.html'),
                                     Field('season', template='radio_button.html'),)
         self.helper.layout.append(Submit('save', 'Отправить', css_class='btn btn-base center-block'))
-
-    class Meta:
-        model = Comment
-        fields = ('text', 'impression', 'longevity', 'sillage', 'season')

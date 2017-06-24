@@ -1,8 +1,12 @@
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
+from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from registration.backends.default.views import RegistrationView, ActivationView, ResendActivationView
+from django.views.generic.edit import UpdateView
+
+from .forms import ProfileForm
 
 
 class ExtRegistrationView(SuccessMessageMixin, RegistrationView):
@@ -31,3 +35,16 @@ class ExtPasswordResetView(SuccessMessageMixin, PasswordResetView):
 class ExtPasswordResetConfirmView(SuccessMessageMixin, PasswordResetConfirmView):
     success_message = 'Пароль успешно изменен'
     success_url = reverse_lazy('auth_login')
+
+
+class ProfileView(SuccessMessageMixin, UpdateView):
+    model = User
+    template_name = 'profile.html'
+    form_class = ProfileForm
+    success_message = 'Данные профиля успешно обновлены'
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_success_url(self):
+        return self.request.META.get('HTTP_REFERER')

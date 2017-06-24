@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from activity.views import ActivityCreate, ActivityDelete, VoteAdd, CommentCreate
+from django.contrib.auth.decorators import login_required
 from activity.models import Activity
 
 urlpatterns = [
@@ -11,5 +12,5 @@ urlpatterns = [
     url(r'^aromas/(?P<aroma_id>[0-9]+)/likes/(?P<pk>[0-9]+)/$', ActivityDelete.as_view(activity_type=Activity.LIKE),
         name='delete-like'),
     url(r'^comments/(?P<comment_id>[0-9]+)/votes/$', VoteAdd.as_view(), name='add-vote'),
-    url(r'^aromas/(?P<aroma_id>[0-9]+)/comments/$', CommentCreate.as_view(), name='add-comment'),
+    url(r'^aromas/(?P<aroma_id>[0-9]+)/comments/$', login_required(CommentCreate.as_view()), name='add-comment'),
 ]

@@ -33,3 +33,15 @@ class EmailAuthenticationForm(AuthenticationForm):
                     params={'username': self.username_field.verbose_name},
                 )
         return username
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name')
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.fields['username'].help_text = ''
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True

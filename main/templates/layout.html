@@ -56,7 +56,7 @@
           				<a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown"><span class="glyphicon glyphicon-user"> </span> {{ user.account.get_short_name }}<b class="caret"></b></a>
 						<ul class="dropdown-menu no-hover">
 							<li><a href="#" >Мои ароматы</a></li>
-            				<li><a href="#">Настройки</a></li>
+            				<li><a href="{% url 'profile' username=user.username %}">Настройки</a></li>
             				<li><a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">Выход</a></li>
           				</ul>
         			</li>
