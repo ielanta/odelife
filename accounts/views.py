@@ -1,4 +1,4 @@
-from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordChangeView
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse_lazy
@@ -35,6 +35,11 @@ class ExtPasswordResetView(SuccessMessageMixin, PasswordResetView):
 class ExtPasswordResetConfirmView(SuccessMessageMixin, PasswordResetConfirmView):
     success_message = 'Пароль успешно изменен'
     success_url = reverse_lazy('auth_login')
+
+
+class ExtPasswordChangeView(SuccessMessageMixin, PasswordChangeView):
+    success_message = 'Пароль успешно изменен'
+    success_url = reverse_lazy('auth_password_change')
 
 
 class ProfileView(SuccessMessageMixin, UpdateView):
