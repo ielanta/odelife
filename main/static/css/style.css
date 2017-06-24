@@ -198,6 +198,7 @@ hr {
 }
 
 .container-space {
+    min-height: 100%;
     height: auto;
     margin-top: 40px;
 }
@@ -698,8 +699,8 @@ Aroma List
     display:inline-block;
     float:none;
     margin-right:-4px;
-    padding-left: 15px;
-    padding-right: 0;
+    padding-left: 5px;
+    padding-right: 7px;
     padding-bottom: 15px;
 
 }
@@ -796,6 +797,18 @@ Parallax
     font-size: 3em;
 }
 
+/* ===========================
+--- Profile
+============================ */
+
+#profile{
+    padding: 0 15px;
+}
+
+#profile .empty{
+    font-size: 65px;
+    padding: 30px 0;
+}
 /* ===========================
 --- Authorization
 ============================ */

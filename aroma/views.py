@@ -6,7 +6,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.filters import OrderingFilter
 from rest_framework.renderers import TemplateHTMLRenderer
-from rest_framework.response import Response
 from aroma.serializers import AromaListSerializer, SearchFilter, AromaDetailSerializer
 from aroma.forms import AromaSearchForm, AromaCompactSearchForm
 from aroma.models import Aroma, Brand, Note, Group, Nose
@@ -32,7 +31,8 @@ class AromaList(generics.ListCreateAPIView):
         form = AromaSearchForm(data=request.query_params)
         if not form.is_valid():
             form = AromaSearchForm()
-        return Response({'data': response.data, 'form': form})
+        response.data['form'] = form
+        return response
 
 
 class AromaDetail(generics.RetrieveAPIView):

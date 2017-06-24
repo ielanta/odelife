@@ -1,0 +1,5 @@
+{% if page_links|length > 1 %}
+    <div class="center-text">
+        {% include 'pagination.html' with previous_url=previous_url next_url=next_url page_links=page_links %}
+    </div>
+{% endif %}

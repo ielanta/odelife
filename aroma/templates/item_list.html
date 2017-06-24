@@ -1,13 +1,13 @@
 {% load aroma_extras %}
 
 <div class="row row-centered" itemscope itemtype="http://schema.org/ItemList">
-{% if items.results %}
+{% if results %}
     {% if request.GET %}
-        <div class="num-results" itemprop="numberOfItems">{{ items.count | ru_pluralize:"Найден,Найдено,Найдено" }}
-            {{ items.count }} {{ items.count | ru_pluralize:"аромат,аромата,ароматов" }}</div>
+        <div class="num-results" itemprop="numberOfItems">{{ count | ru_pluralize:"Найден,Найдено,Найдено" }}
+            {{ count }} {{ count | ru_pluralize:"аромат,аромата,ароматов" }}</div>
     {% endif %}
-    {% for item in items.results %}
-        <div class="col-sm-4 col-xs-6 col-centered" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
+    {% for item in results %}
+        <div class="{{ aroma_size }} col-xs-6 col-centered" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
             <div class="aroma-box">
                 <div class="aroma-card">
                     <a href="{{ item.url }}" class="pointed" itemprop="url">

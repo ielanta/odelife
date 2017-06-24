@@ -5,8 +5,16 @@ from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from registration.backends.default.views import RegistrationView, ActivationView, ResendActivationView
 from django.views.generic.edit import UpdateView
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.renderers import TemplateHTMLRenderer
+from main.pagination import CustomPagination
 
-from .forms import ProfileForm
+
+from accounts.forms import ProfileForm
+from activity. models import Activity
+from aroma.models import Aroma
+from aroma.serializers import AromaListSerializer
 
 
 class ExtRegistrationView(SuccessMessageMixin, RegistrationView):
@@ -53,3 +61,17 @@ class ProfileView(SuccessMessageMixin, UpdateView):
 
     def get_success_url(self):
         return self.request.META.get('HTTP_REFERER')
+
+
+class MyFavoritesView(ListAPIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'favorites.html'
+    serializer_class = AromaListSerializer
+    pagination_class = CustomPagination
+    allowed_methods = ['GET']
+    permission_classes = (IsAuthenticated,)
+    ordering = ('-id',)
+
+    def get_queryset(self):
+        return Aroma.objects.filter(marks__user_id=self.request.user, marks__activity_type=Activity.FAVORITE)\
+            .order_by('-marks__created_at').all()

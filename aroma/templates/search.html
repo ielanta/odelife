@@ -10,7 +10,7 @@
     <div class="container-space">
         <div class="container-fluid" >
             <div class="row aroma-container aroma-panel">
-                <div class="col-md-9 col-sm-9" >
+                <div class="col-sm-9" >
                     <ul class="list-inline sort">
                         Сортировать:
                         <li><a href="?{% url_replace request 'ordering' '-year' %}"
@@ -20,14 +20,10 @@
                                 {% if request.GET.ordering == '-aromacounter__num_comments' %} class='selected'{% endif %}>
                             по популярности</a></li>
                     </ul>
-                    {% include "item_list.html" with items=data %}
-                    {% if data.page_links|length > 1 %}
-                        <div class="row center-text">
-                            {% include 'pagination.html' with previous_url=data.previous_url next_url=data.next_url page_links=data.page_links %}
-                        </div>
-                    {% endif %}
+                    {% include "item_list.html" with results=results count=count aroma_size='col-sm-4' %}
+                    {% include 'center_pagination.html' with previous_url=previous_url next_url=next_url page_links=page_links %}
                 </div>
-                <div class="col-md-3 col-sm-3">
+                <div class="col-sm-3">
                     <form name="search_form" id="search_form" class="base-form" method="GET">
                         {% crispy form %}
                         <button type="submit" class="btn btn-base">Применить</button>
