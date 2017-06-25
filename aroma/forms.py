@@ -14,7 +14,7 @@ LIMIT_NOTES = 10
 class AromaSearchForm(forms.Form):
     class Meta:
         model = Aroma
-        fields = ('title', 'gender', 'min_year', 'max_year', 'brand', 'notes', 'groups', 'noses')
+        fields = ('title', 'gender', 'min_year', 'max_year', 'brand', 'in_notes', 'ex_notes', 'groups', 'noses')
 
     title = forms.CharField(label="Название", required=False, max_length=200)
     gender = forms.MultipleChoiceField(choices=settings.GENDER_CHOICES, label="Пол", required=False,
@@ -27,7 +27,9 @@ class AromaSearchForm(forms.Form):
                                             widget=autocomplete.ModelSelect2Multiple(url='groups-autocomplete'))
     brand = forms.ModelChoiceField(label='Бренд', queryset=Brand.objects.all(), required=False,
                                    widget=autocomplete.ModelSelect2(url='brand-autocomplete'))
-    notes = forms.ModelMultipleChoiceField(label='Ноты', queryset=Note.objects.all(), required=False,
+    in_notes = forms.ModelMultipleChoiceField(label='Ноты (включить)', queryset=Note.objects.all(), required=False,
+                                           widget=autocomplete.ModelSelect2Multiple(url='notes-autocomplete'))
+    ex_notes = forms.ModelMultipleChoiceField(label='Ноты (исключить)', queryset=Note.objects.all(), required=False,
                                            widget=autocomplete.ModelSelect2Multiple(url='notes-autocomplete'))
     noses = forms.ModelMultipleChoiceField(label='Парфюмеры', queryset=Nose.objects.all(), required=False,
                                            widget=autocomplete.ModelSelect2Multiple(url='noses-autocomplete'))

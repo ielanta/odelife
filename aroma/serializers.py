@@ -14,13 +14,14 @@ class SearchFilter(FilterSet):
     title = CharFilter(name="title", lookup_expr='icontains')
     gender = MultipleChoiceFilter(choices=settings.GENDER_CHOICES,
                                   method=lambda queryset, name, value: queryset.filter(gender__in=value))
-    notes = ModelMultipleChoiceFilter(queryset=Note.objects.all(), conjoined=True)
+    in_notes = ModelMultipleChoiceFilter(name="notes", queryset=Note.objects.all(), conjoined=True)
+    ex_notes = ModelMultipleChoiceFilter(name="notes", queryset=Note.objects.all(), conjoined=True, exclude=True)
     groups = ModelMultipleChoiceFilter(name="groups", queryset=Group.objects.all(), conjoined=True)
     noses = ModelMultipleChoiceFilter(name="noses", queryset=Nose.objects.all(), conjoined=True)
 
     class Meta:
         model = Aroma
-        fields = ('gender', 'min_year', 'max_year', 'title', 'brand', 'notes', 'notes', 'groups', 'noses')
+        fields = ('gender', 'min_year', 'max_year', 'title', 'brand', 'in_notes', 'notes', 'groups', 'noses')
 
 
 class AromaCommonSerializer(serializers.ModelSerializer):
