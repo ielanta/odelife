@@ -11,7 +11,7 @@ from core.settings import GENDER_CHOICES
 class SearchFilter(FilterSet):
     min_year = NumberFilter(name="year", lookup_expr='gte')
     max_year = NumberFilter(name="year", lookup_expr='lte')
-    title = CharFilter(name="title", lookup_expr='contains')
+    title = CharFilter(name="title", lookup_expr='icontains')
     gender = MultipleChoiceFilter(choices=GENDER_CHOICES,
                                   method=lambda queryset, name, value: queryset.filter(gender__in=value))
     notes = ModelMultipleChoiceFilter(queryset=Note.objects.all(), conjoined=True)

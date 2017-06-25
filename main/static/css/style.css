@@ -86,7 +86,7 @@ a:focus {
     color: #333;
 	text-transform: uppercase;
 	font-weight: 600;
-    letter-spacing: 0;
+    letter-spacing: 1px;
 }
 
 .navbar-custom ul.nav ul.dropdown-menu {
@@ -552,7 +552,7 @@ Search form
 }
 
 .btn-base{
-    background-color: #FFB860;
+    background-color: #ffb6c1;
     color: #555;
     width: 100%;
     height: 37px;
@@ -560,7 +560,7 @@ Search form
 }
 
 .btn-base:hover{
-    background-color: orange;
+    background-color: #FFABC2;
 }
 
 .help-block{
@@ -671,7 +671,7 @@ Aroma List
 }
 
 .star-icon{
-    color: #ffcfbe;
+    color: #F8DA6A;
 }
 
 .heart-icon{
@@ -712,10 +712,13 @@ Pagination
     border: none;
     color: #555;
     margin: 0 4px;
-    background-color: #FFFAFA ;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
+    background-color: transparent;
+    font-weight: 300;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    line-height: 33px;
+    min-width: 45px;
 }
 
 #pagination .active a{
@@ -730,8 +733,8 @@ Pagination
 .pagination {
     padding-top: 10px;
     padding-bottom: 10px;
-    font-weight: 500;
-    font-size: 15px;
+    font-size: 17px;
+
 }
 
 /* ==========================
@@ -803,12 +806,62 @@ Parallax
 
 #profile{
     padding: 0 15px;
+    font-weight: 300;
+    min-height: 100%;
+    height: auto;
+}
+
+#profile .profile-space {
+    margin-top: 10px;
+}
+
+#profile .cover-space{
+    padding-top: 180px;
+}
+#profile ul{
+    padding-bottom: 20px;
 }
 
 #profile .empty{
-    font-size: 65px;
-    padding: 30px 0;
+    font-size: 70px;
+    padding-bottom: 40px;
+    color: #453536;
 }
+
+#profile .empty a{
+    color: #453536;
+}
+
+#profile h4{
+    padding-bottom: 30px;
+}
+
+#profile .profile-box{
+    padding-top: 20px;
+}
+
+#profile .nav-pills>li.active>a, #profile .nav-pills>li.active>a:focus, #profile .nav-pills>li.active>a:hover{
+    border-radius: 0;
+    background: transparent;
+    background-color: rgba(255,255,255,.3);
+}
+
+#profile .nav>li, #profile .nav, #profile .nav>li>a{
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+}
+
+#profile .nav>li>a:hover, #profile .nav>li>a:focus{
+    background-color: rgba(250, 240, 230, 0.3);
+    border-radius: 0;
+}
+
+#profile .nav>li>a{
+    color: #444;
+}
+
 /* ===========================
 --- Authorization
 ============================ */

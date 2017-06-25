@@ -16,7 +16,7 @@
     {% else %}
       {% if page_link.is_active %}
         <li class="active">
-          <a href="{{ page_link.url }}" class="no_hover">{{ page_link.number }}</a>
+          <a href="{{ page_link.url }}" class="no-hover">{{ page_link.number }}</a>
         </li>
       {% else %}
         <li>
@@ -28,7 +28,7 @@
 
   {% if next_url %}
     <li>
-      <a href="{{ next_url }}" class="no_hover">
+      <a href="{{ next_url }}" class="no-hover">
         <span aria-hidden="true">Вперед  →</span>
       </a>
     </li>

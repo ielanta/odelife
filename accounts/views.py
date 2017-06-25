@@ -74,4 +74,4 @@ class MyFavoritesView(ListAPIView):
 
     def get_queryset(self):
         return Aroma.objects.filter(marks__user_id=self.request.user, marks__activity_type=Activity.FAVORITE)\
-            .order_by('-marks__created_at').all()
+            .order_by('-marks__created_at')
