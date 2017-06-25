@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {% if 'favorites' in request.path %}
+        Избранное
+    {% else %}
+        Нравится
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div id="profile">
+        <div class="profile-space container-fluid">
+            {% include "profile/profile_menu.html" %}
+            {% if results %}
+                <div class="row profile-box aroma-panel">
+                    <div>
+                        {% include "item_list.html" with results=results count=count aroma_size='col-md-3 col-sm-4' %}
+                        {% include 'center_pagination.html' with previous_url=previous_url next_url=next_url page_links=page_links %}
+                    </div>
+                </div>
+            {% else %}
+                {% include 'profile/profile_favorites_empty.html' %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

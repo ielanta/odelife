@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from accounts.forms import ExtRegistrationForm, EmailAuthenticationForm
 from accounts.views import ExtRegistrationView, ExtActivationView, ExtResendActivationView, ExtPasswordResetView, \
-    ExtPasswordResetConfirmView, ProfileView, ExtPasswordChangeView, MyFavoritesView, MyLikesView
+    ExtPasswordResetConfirmView, ProfileView, ExtPasswordChangeView, MyFavoritesView, MyLikesView, MyCommentsView
 
 urlpatterns = [
     url(r'^register/$', ExtRegistrationView.as_view(form_class=ExtRegistrationForm), name='registration_register'),
@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^', include('registration.backends.default.urls')),
     url(r'^me/favorites/$', login_required(MyFavoritesView.as_view()), name='profile-fav'),
     url(r'^me/likes/$', login_required(MyLikesView.as_view()), name='profile-like'),
+    url(r'^me/comments/$', login_required(MyCommentsView.as_view()), name='profile-comment'),
     url(r'^me/settings/$', login_required(ProfileView.as_view()), name='profile-settings'),
-    url(r'^(?P<username>.+)/comments/$', login_required(MyLikesView.as_view()), name='profile-like'),
+    # url(r'^(?P<username>.+)/comments/$', login_required(MyLikesView.as_view()), name='profile-like'),
 ]

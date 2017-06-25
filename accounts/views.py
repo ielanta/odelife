@@ -12,7 +12,8 @@ from main.pagination import CustomPagination
 
 
 from accounts.forms import ProfileForm
-from activity. models import Activity
+from activity. models import Activity, Comment
+from activity.serializers import AromaCommentSerializer
 from aroma.models import Aroma
 from aroma.serializers import AromaListSerializer
 
@@ -65,7 +66,7 @@ class ProfileView(SuccessMessageMixin, UpdateView):
 
 class MyFavoritesView(ListAPIView):
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'profile_favorites.html'
+    template_name = 'profile/profile_favorites.html'
     serializer_class = AromaListSerializer
     pagination_class = CustomPagination
     allowed_methods = ['GET']
@@ -80,3 +81,15 @@ class MyLikesView(MyFavoritesView):
     def get_queryset(self):
         return Aroma.objects.filter(marks__user_id=self.request.user, marks__activity_type=Activity.LIKE)\
             .order_by('-marks__created_at')
+
+
+class MyCommentsView(ListAPIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'profile/profile_comments.html'
+    serializer_class = AromaCommentSerializer
+    pagination_class = CustomPagination
+    allowed_methods = ['GET']
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return Comment.objects.filter(user_id=self.request.user).order_by('-created_at')

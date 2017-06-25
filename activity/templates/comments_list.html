@@ -1,5 +1,3 @@
-{% load aroma_extras %}
-
 <section id="comments">
     <hr>
     <div>
@@ -12,17 +10,13 @@
         {% else %}
             <div class="col-lg-9">
                 <h3>Отзывов пока нет :(</h3>
-                <h6>Поделитесь своим впечатлением о парфюме.</h6>
-                <h6>Ваш отзыв может помочь другим при выборе аромата.</h6>
+                <h6>Поделитесь своим впечатлением о парфюме</h6>
+                <h6>Ваш отзыв может помочь другим при выборе аромата</h6>
             </div>
         {% endif %}
     </div>
     <div class="col-sm-3">
-        {% if not user.is_authenticated %}
-            <a href="{% url 'auth_login' %}?next={% url 'add-comment' aroma_id=aroma_id %}">
-        {% else %}
-            <a href="{% url 'add-comment' aroma_id=aroma_id %}">
-        {% endif %}
+        <a href="{% url 'add-comment' aroma_id=aroma_id %}">
             <button type="submit" class="btn btn-base"><i class="glyphicon glyphicon-pencil"></i>Написать отзыв</button>
         </a>
     </div>

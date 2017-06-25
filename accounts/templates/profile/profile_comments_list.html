@@ -1,0 +1,20 @@
+{% if results %}
+    <div class="row profile-box aroma-container" id="comments">
+        {% for comment in results %}
+            <div class="row comment">
+                <div class="col-sm-2">
+                    <a href="{{ comment.aroma_url }}">
+                        <img src="{{ comment.aroma_pic }}" alt="{{ comment.aroma_title }}" class="aroma-list-pic pointed center-block" />
+                    </a>
+                </div>
+                <div class="col-sm-10">
+                    {% include "comment.html" with comment=comment %}
+                </div>
+            </div>
+        {% endfor %}
+        <h6 class="text-right">Emoji artwork provided by <a href="www.emojione.com">EmojiOne</a>&nbsp;&nbsp;</h6>
+        {% include 'center_pagination.html' with previous_url=previous_url next_url=next_url page_links=page_links %}
+    </div>
+{% else %}
+    {% include 'profile/profile_comments_empty.html' %}
+{% endif %}

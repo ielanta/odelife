@@ -1,0 +1,5 @@
+<ul class="nav nav-pills nav-justified">
+    <li {% if 'favorites' in request.path %}class="active"{% endif %}><a href="{% url 'profile-fav' %}"><i class="glyphicon glyphicon-star"></i> Избранное</a></li>
+    <li {% if 'likes' in request.path %}class="active"{% endif %}><a href="{% url 'profile-like' %}"><i class="glyphicon glyphicon-heart"></i> Нравится</a></li>
+    <li {% if 'comments' in request.path %}class="active"{% endif %}><a href="{% url 'profile-comment' %}"><i class="glyphicon glyphicon-pencil"></i> Комментарии</a></li>
+</ul>

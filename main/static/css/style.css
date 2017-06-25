@@ -195,8 +195,6 @@ hr {
 }
 
 .container-space {
-    min-height: 100%;
-    height: auto;
     margin-top: 40px;
 }
 
@@ -325,7 +323,7 @@ hr {
     font-size: 25px;
 }
 
-#aroma-detail .aroma-container{
+#aroma-detail .aroma-container, #profile .aroma-container{
     padding: 15px;
 }
 
@@ -374,7 +372,7 @@ hr {
     text-transform: lowercase;
 }
 
-#comments img{
+#comments .icon{
     height: 20px;
     opacity: 0.7;
 }
@@ -667,16 +665,16 @@ Aroma List
     border: none;
 }
 
-.star-icon{
+.star-icon:hover{
     color: #F8DA6A;
 }
 
-.heart-icon{
+.heart-icon:hover{
     color: #FFABC2;
 }
 
-.heart-icon:hover, .star-icon:hover{
-    color: #aaa;
+.heart-icon, .star-icon{
+    color: #bebebe;
 }
 
 .num-results {
@@ -802,7 +800,6 @@ Parallax
 ============================ */
 
 #profile{
-    padding: 0 15px;
     font-weight: 300;
     min-height: 100%;
     height: auto;
@@ -819,6 +816,7 @@ Parallax
 #profile .cover-space{
     padding-top: 180px;
 }
+
 #profile ul{
     padding-bottom: 20px;
 }
@@ -833,8 +831,8 @@ Parallax
     color: #453536;
 }
 
-#profile h4{
-    padding-bottom: 30px;
+#profile .aroma-list-pic{
+    height: 100px;
 }
 
 #profile .profile-box{
@@ -842,7 +840,6 @@ Parallax
 }
 
 #profile .nav-pills>li.active>a, #profile .nav-pills>li.active>a:focus, #profile .nav-pills>li.active>a:hover{
-    background: transparent;
     background-color: rgba(255,255,255,0.6);
 }
 
@@ -868,6 +865,10 @@ Parallax
 #profile .nav>li{
     border-right: 1px solid transparent;
     border-left: 1px solid transparent;
+}
+
+#profile .comment{
+    padding-top: 20px;
 }
 
 /* ===========================

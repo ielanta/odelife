@@ -1,7 +1,9 @@
 {% load static %}
 
 <div class="comment" itemprop="review" itemscope itemtype="http://schema.org/Review">
-    <h5><a class="author" itemprop="author">{{ comment.user.get_full_name }}</a></h5>
+    {% if 'aroma' in request.path %}
+        <h5><a class="author" itemprop="author">{{ comment.user.get_full_name }}</a></h5>
+    {% endif %}
     <div class="row">
         <div class="col-sm-9 text">
             <span itemprop="description">{{ comment.text }}</span>
@@ -23,7 +25,7 @@
         <div class="col-sm-3 summary-line">
             <div class="trait">Впечатление:
                 {% for imp, ico in comment.impression.items %}
-                    <img src="{% static 'img/icons/'|add:ico %}" alt={{ imp }} title="{{ imp }}" aria-label="tooltip">
+                    <img class="icon" src="{% static 'img/icons/'|add:ico %}" alt={{ imp }} title="{{ imp }}" aria-label="tooltip">
                 {% endfor %}</div>
             {% if comment.longevity %}
                 <div class="trait">Стойкость: <span class="trait-data">{{ comment.longevity }}</span></div>
@@ -36,7 +38,7 @@
                     <span class="season">
                     {% for season, icons in comment.season.items %}
                         {% for ico in icons %}
-                            <img src="{% static 'img/icons/'|add:ico %}" alt={{ season }} title="{{ season }}" aria-label="tooltip">
+                            <img class="icon" src="{% static 'img/icons/'|add:ico %}" alt={{ season }} title="{{ season }}" aria-label="tooltip">
                         {% endfor %}
                     {% endfor %}
                     </span>
