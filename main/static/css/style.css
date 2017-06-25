@@ -867,8 +867,12 @@ Parallax
     border-left: 1px solid transparent;
 }
 
-#profile .comment{
+#profile .comment-block{
     padding-top: 20px;
+}
+
+#profile .comment{
+    padding-top: 0px;
 }
 
 /* ===========================

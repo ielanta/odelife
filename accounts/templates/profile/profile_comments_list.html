@@ -4,7 +4,7 @@
             <h3 class="center-text">Комментарии пользователя {{ request.GET.full_username }}</h3>
         {% endif %}
         {% for comment in results %}
-            <div class="row comment">
+            <div class="row comment-block">
                 <div class="col-sm-2">
                     <a href="{{ comment.aroma_url }}">
                         <img src="{{ comment.aroma_pic }}" alt="{{ comment.aroma_title }}" class="aroma-list-pic pointed center-block" />
