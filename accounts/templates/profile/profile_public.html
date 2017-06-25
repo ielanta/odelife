@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block title %}Комментарии пользователя{% endblock %}
+
+{% block content %}
+    <div id="profile">
+        <div class="profile-space container-fluid">
+            {% include "profile/profile_comments_list.html" %}
+        </div>
+    </div>
+{% endblock %}

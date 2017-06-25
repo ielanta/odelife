@@ -899,7 +899,6 @@ Parallax
 }
 
 .auth h5 a{
-    /*color: #337ab7;*/
     text-decoration: underline;
 }
 
@@ -941,7 +940,7 @@ Parallax
 }
 
 #transparent-form textarea{
-    height: 100px;
+    height: 130px;
 }
 
 /* ===========================

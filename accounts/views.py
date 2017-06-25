@@ -2,7 +2,7 @@ from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmVie
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from registration.backends.default.views import RegistrationView, ActivationView, ResendActivationView
 from django.views.generic.edit import UpdateView
 from rest_framework.generics import ListAPIView
@@ -93,3 +93,18 @@ class MyCommentsView(ListAPIView):
 
     def get_queryset(self):
         return Comment.objects.filter(user_id=self.request.user).order_by('-created_at')
+
+
+class PublicCommentsView(MyCommentsView):
+    template_name = 'profile/profile_public.html'
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs['username'])
+        return Comment.objects.filter(user_id=user.id).order_by('-created_at')
+
+    def get(self, request, *args, **kwargs):
+        user = get_object_or_404(User, username=self.kwargs['username'])
+        request.GET.full_username = user.account.get_full_name()
+        return super(PublicCommentsView, self).get(request, *args, **kwargs)
+
+

@@ -46,5 +46,5 @@ class AromaCommentSerializer(CommentSerializer):
 
     class Meta:
         model = Comment
-        fields = ('id', 'user', 'impression', 'longevity', 'sillage', 'season', 'text', 'rating', 'aroma_pic',
+        fields = ('id', 'impression', 'longevity', 'sillage', 'season', 'text', 'rating', 'aroma_pic',
                   'aroma_url')

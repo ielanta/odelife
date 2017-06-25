@@ -2,7 +2,7 @@
 
 <div class="comment" itemprop="review" itemscope itemtype="http://schema.org/Review">
     {% if 'aroma' in request.path %}
-        <h5><a class="author" itemprop="author">{{ comment.user.get_full_name }}</a></h5>
+        <h5><a class="author" itemprop="author" href="{{ comment.user.profile_url }}">{{ comment.user.get_full_name }}</a></h5>
     {% endif %}
     <div class="row">
         <div class="col-sm-9 text">

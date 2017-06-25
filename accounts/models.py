@@ -3,6 +3,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 
 
 class Account(models.Model):
@@ -21,3 +22,6 @@ class Account(models.Model):
 
     def __str__(self):
         return self.get_full_name()
+
+    def get_absolute_url(self):
+        return reverse('profile-public', kwargs={'username': self.user.username})
