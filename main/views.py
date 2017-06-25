@@ -14,7 +14,7 @@ def tos(request):
 
 class ContactView(SuccessMessageMixin, FormView):
     form_class = ContactForm
-    template_name = 'contact_form/contact_form.html'
+    template_name = 'contact/contact_form.html'
     success_message = 'Ваше обращение было успешно отправлено'
     success_url = reverse_lazy('contacts')
 

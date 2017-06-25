@@ -6,7 +6,7 @@ from crispy_forms.layout import Layout, Field
 from dal import autocomplete
 
 from aroma.models import Aroma, Brand, Note, Group, Nose
-from core.settings import GENDER_CHOICES
+from django.conf import settings
 
 LIMIT_NOTES = 10
 
@@ -17,7 +17,7 @@ class AromaSearchForm(forms.Form):
         fields = ('title', 'gender', 'min_year', 'max_year', 'brand', 'notes', 'groups', 'noses')
 
     title = forms.CharField(label="Название", required=False, max_length=200)
-    gender = forms.MultipleChoiceField(choices=GENDER_CHOICES, label="Пол", required=False,
+    gender = forms.MultipleChoiceField(choices=settings.GENDER_CHOICES, label="Пол", required=False,
                                        widget=forms.CheckboxSelectMultiple)
     min_year = forms.IntegerField(label="Год", required=False, min_value=1700, max_value=2100,
                                   widget=forms.NumberInput(attrs={'placeholder': 'с'}))

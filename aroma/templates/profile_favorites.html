@@ -9,9 +9,9 @@
     <div id="profile">
         <div class="profile-space container-fluid">
             <ul class="nav nav-pills nav-justified">
-              <li class="active"><a href="#">Избранное</a></li>
-              <li><a href="#">Нравится</a></li>
-              <li><a href="#">Комментарии</a></li>
+              <li {% if 'favorites' in request.path %}class="active"{% endif %}><a href="{% url 'profile-fav' %}"><i class="glyphicon glyphicon-star"></i> Избранное</a></li>
+              <li {% if 'likes' in request.path %}class="active"{% endif %}><a href="{% url 'profile-like' %}"><i class="glyphicon glyphicon-heart"></i> Нравится</a></li>
+              <li {% if 'comments' in request.path %}class="active"{% endif %}><a href="#username=user.username"><i class="glyphicon glyphicon-pencil"></i> Комментарии</a></li>
             </ul>
             {% if results %}
                 <div class="row profile-box aroma-panel">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
             {% else %}
-                {% include 'empty-list.html' %}
+                {% include 'profile_favorites_empty.html' %}
             {% endif %}
         </div>
     </div>

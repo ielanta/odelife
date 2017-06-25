@@ -2,17 +2,17 @@ from django_filters.rest_framework import NumberFilter, FilterSet, MultipleChoic
     ModelMultipleChoiceFilter
 from rest_framework import serializers
 
+from activity.models import Activity
+from activity.serializers import CommentSerializer
 from aroma.models import Aroma, Brand, Note, Group, Nose, CategoryNotes
-from activity.models import Activity, Comment
-from accounts.models import Account
-from core.settings import GENDER_CHOICES
+from django.conf import settings
 
 
 class SearchFilter(FilterSet):
     min_year = NumberFilter(name="year", lookup_expr='gte')
     max_year = NumberFilter(name="year", lookup_expr='lte')
     title = CharFilter(name="title", lookup_expr='icontains')
-    gender = MultipleChoiceFilter(choices=GENDER_CHOICES,
+    gender = MultipleChoiceFilter(choices=settings.GENDER_CHOICES,
                                   method=lambda queryset, name, value: queryset.filter(gender__in=value))
     notes = ModelMultipleChoiceFilter(queryset=Note.objects.all(), conjoined=True)
     groups = ModelMultipleChoiceFilter(name="groups", queryset=Group.objects.all(), conjoined=True)
@@ -68,44 +68,6 @@ class NoseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Nose
         fields = ('id', 'name')
-
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Account
-        fields = ('id', 'get_full_name')
-
-
-class CommentSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
-    longevity = serializers.SerializerMethodField()
-    sillage = serializers.SerializerMethodField()
-    season = serializers.SerializerMethodField()
-    impression = serializers.SerializerMethodField()
-
-    @staticmethod
-    def get_longevity(obj):
-        return obj.get_longevity_display()
-
-    @staticmethod
-    def get_sillage(obj):
-        return obj.get_sillage_display()
-
-    @staticmethod
-    def get_season(obj):
-        icon_dict = {'SP': ['spring.png'], 'SM': ['summer.png'], 'A': ['autumn.png'], 'W': ['winter.png'],
-                     'E': ['spring.png', 'summer.png', 'autumn.png', 'winter.png']}
-        if icon_dict.get(obj.season):
-            return {obj.get_season_display(): icon_dict.get(obj.season)}
-
-    @staticmethod
-    def get_impression(obj):
-        icon_dict = {'F': 'love.png', 'L': 'like.png', 'N': 'neutral.png', 'D': 'dislike.png'}
-        return {obj.get_impression_display(): icon_dict.get(obj.impression)}
-
-    class Meta:
-        model = Comment
-        fields = ('id', 'user', 'impression', 'longevity', 'sillage', 'season', 'text', 'rating')
 
 
 class AromaDetailSerializer(AromaCommonSerializer):

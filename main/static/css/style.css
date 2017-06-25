@@ -79,6 +79,7 @@ a:focus {
 
 .nav.navbar-nav {
     background-color: rgba(255,255,255,.4);
+
 }
 
 .navbar-custom ul.nav li a {
@@ -128,10 +129,6 @@ a:focus {
 
 .navbar-custom .nav li .no-hover a:hover{
     background-color: transparent;
-}
-
-#navbar-main .dropdown-user span{
-    /*color: #666;*/
 }
 
 /* misc */
@@ -815,6 +812,10 @@ Parallax
     margin-top: 10px;
 }
 
+#profile .aroma-panel{
+    padding: 15px;
+}
+
 #profile .cover-space{
     padding-top: 180px;
 }
@@ -841,25 +842,32 @@ Parallax
 }
 
 #profile .nav-pills>li.active>a, #profile .nav-pills>li.active>a:focus, #profile .nav-pills>li.active>a:hover{
-    border-radius: 0;
     background: transparent;
-    background-color: rgba(255,255,255,.3);
+    background-color: rgba(255,255,255,0.6);
 }
 
 #profile .nav>li, #profile .nav, #profile .nav>li>a{
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 1px;
     border: none;
 }
 
 #profile .nav>li>a:hover, #profile .nav>li>a:focus{
-    background-color: rgba(250, 240, 230, 0.3);
-    border-radius: 0;
+    background-color: rgba(250, 240, 230, 0.6);
 }
 
 #profile .nav>li>a{
-    color: #444;
+    color: #555;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 0;
+    padding: 13px 15px
+}
+
+#profile .nav>li{
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent;
 }
 
 /* ===========================

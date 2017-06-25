@@ -6,7 +6,7 @@ from django.utils.text import slugify
 from django.urls import reverse
 
 from activity.models import Activity
-from core.settings import GENDER_CHOICES
+from django.conf import settings
 
 
 class Note(models.Model):
@@ -51,7 +51,7 @@ class Aroma(models.Model):
     pic = models.ImageField(upload_to='aromas/', blank=True, null=True)
     guise = models.ImageField(upload_to='guises/', blank=True, null=True)
     year = models.IntegerField(blank=True, null=True)
-    gender = models.CharField(choices=GENDER_CHOICES, default='u', max_length=1)
+    gender = models.CharField(choices=settings.GENDER_CHOICES, default='u', max_length=1)
     description = models.TextField(blank=True)
     groups = models.ManyToManyField(Group, blank=True)
     brand = models.ForeignKey(Brand)

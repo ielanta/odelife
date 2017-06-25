@@ -52,7 +52,7 @@ class ExtPasswordChangeView(SuccessMessageMixin, PasswordChangeView):
 
 class ProfileView(SuccessMessageMixin, UpdateView):
     model = User
-    template_name = 'profile.html'
+    template_name = 'profile_settings_form.html'
     form_class = ProfileForm
     success_message = 'Данные профиля успешно обновлены'
 
@@ -65,13 +65,18 @@ class ProfileView(SuccessMessageMixin, UpdateView):
 
 class MyFavoritesView(ListAPIView):
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'favorites.html'
+    template_name = 'profile_favorites.html'
     serializer_class = AromaListSerializer
     pagination_class = CustomPagination
     allowed_methods = ['GET']
     permission_classes = (IsAuthenticated,)
-    ordering = ('-id',)
 
     def get_queryset(self):
         return Aroma.objects.filter(marks__user_id=self.request.user, marks__activity_type=Activity.FAVORITE)\
+            .order_by('-marks__created_at')
+
+
+class MyLikesView(MyFavoritesView):
+    def get_queryset(self):
+        return Aroma.objects.filter(marks__user_id=self.request.user, marks__activity_type=Activity.LIKE)\
             .order_by('-marks__created_at')
