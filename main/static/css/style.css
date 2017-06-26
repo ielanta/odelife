@@ -546,16 +546,19 @@ Search form
     padding: 0 1px 0 1px;
 }
 
-.btn-base{
+.btn-base, .btn{
     background-color: #ffb6c1;
     color: #555;
     width: 100%;
     height: 37px;
     border-radius: 0;
+    box-shadow: none;
 }
 
-.btn-base:hover{
+.btn-base:hover, .btn-base:active:focus, .btn:focus, .btn:active:focus, .btn.active:focus
+{
     background-color: #FFABC2;
+    color: #555;
 }
 
 .help-block{
@@ -998,14 +1001,16 @@ Parallax
 .comment-form .btn-radio + label {
     cursor: pointer;
     padding: 5px 20px;
+    border: solid 1px #f2dede;
 }
 
 .comment-form .btn-radio:checked + label{
-    background: #FFABC2;
+    background: #FFC27B;
+    border-color: #FFC27B;
 }
 
 .comment-form .radio {
-    border: solid 1px #f2dede;
+
     display: inline-block;
     background-color: #fff;
     overflow: hidden;

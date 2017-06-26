@@ -11,7 +11,7 @@
                 <div class="row aroma-container aroma-panel">
                     <div class="col-md-3 col-sm-2"></div>
                     <div class="col-md-6 col-sm-8">
-                        <form method="post" class="base-form comment-form" id="search_form">
+                        <form method="post" class="base-form comment-form" id="search_form" onsubmit="preventDoubleClick(this)">
                             <h3 class="center-text">Мой отзыв о {{ request.GET.aroma_brand }} {{ request.GET.aroma }}</h3>
                             {% include "elements/messages.html" with messages=messages %}
                             {% crispy form %}

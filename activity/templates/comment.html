@@ -15,7 +15,7 @@
                         action="{% url 'add-vote' comment_id=comment.id %}"
                     {% endif %}>
                     {% csrf_token %}
-                    <button class="preventDouble" type="submit" name="submit">
+                    <button type="submit" name="submit">
                         <i class="glyphicon glyphicon-thumbs-up"></i>
                     </button>
                 </form>

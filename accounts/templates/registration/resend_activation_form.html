@@ -8,11 +8,11 @@
 {% block authform %}
 
     <h3 class="center-text">Повторная активация аккаунта</h3>
-    <form method="post" action="" id="transparent-form" class="base-form">
+    <form method="post" action="" id="transparent-form" class="base-form" onsubmit="preventDoubleClick(this)">
         {% include "elements/messages.html" with messages=messages %}
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" class="btn btn-base center-block">Отправить</button>
+        <button type="submit" name="submit" class="btn btn-base center-block">Отправить</button>
     </form>
 
 {% endblock %}

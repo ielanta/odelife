@@ -8,11 +8,11 @@
 {% block authform %}
 
     <h3 class="center-text">Мои данные</h3>
-    <form method="post" action="" id="transparent-form" class="base-form">
+    <form method="post" action="" id="transparent-form" class="base-form" onsubmit="preventDoubleClick(this)">
         {% include "elements/messages.html" with messages=messages %}
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" class="btn btn-base center-block">Сохранить</button>
+        <button type="submit" name="submit" class="btn btn-base center-block">Сохранить</button>
     </form>
     <h5 class="center-text"><a href="{% url 'auth_password_change' %}">Сменить пароль</a></h5>
 

@@ -27,4 +27,4 @@ class CommentCreateForm(forms.ModelForm):
                                     Field('longevity', template='radio_button.html'),
                                     Field('sillage', template='radio_button.html'),
                                     Field('season', template='radio_button.html'),)
-        self.helper.layout.append(Submit('save', 'Отправить', css_class='btn btn-base center-block'))
+        self.helper.layout.append(Submit('submit', 'Отправить', css_class='btn-base center-block'))

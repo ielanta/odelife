@@ -9,11 +9,11 @@
 {% block authform %}
 
     <h3 class="center-text">Обратная связь</h3>
-    <form method="post" class="base-form" id="transparent-form" class="base-form">
+    <form method="post" class="base-form" id="transparent-form" onsubmit="preventDoubleClick(this)">
         {% include "elements/messages.html" with messages=messages %}
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" class="btn btn-base">
+        <button type="submit" name="submit" class="btn btn-base">
             <i class="glyphicon glyphicon-send"></i> Отправить
         </button>
     </form>
