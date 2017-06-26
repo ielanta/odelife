@@ -1,9 +1,14 @@
 {% extends 'registration/base.html' %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}Вход{% endblock %}
 {% block spec %}id="auth"{% endblock spec %}
+
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap-social.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block authform %}
 
