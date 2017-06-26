@@ -7,7 +7,7 @@ from rest_framework import generics
 from rest_framework.filters import OrderingFilter
 from rest_framework.renderers import TemplateHTMLRenderer
 from aroma.serializers import AromaListSerializer, SearchFilter, AromaDetailSerializer
-from aroma.forms import AromaSearchForm, AromaCompactSearchForm
+from aroma.forms import AromaSearchForm, AromaCompactSearchForm, NoteCompactSearchForm
 from aroma.models import Aroma, Brand, Note, Group, Nose
 from main.pagination import CustomPagination
 from main.permissions import PublicEndpoint
@@ -29,8 +29,14 @@ class AromaList(generics.ListCreateAPIView):
     def list(self, request, *args, **kwargs):
         response = super(AromaList, self).list(request, format='json', *args, **kwargs)
         form = AromaSearchForm(data=request.query_params)
+
         if not form.is_valid():
-            form = AromaSearchForm()
+            try:
+                render(request, self.template_name, {'form': form})
+            except ValueError:
+                # TODO: Logger
+                form = AromaSearchForm()
+
         response.data['form'] = form
         return response
 
@@ -84,5 +90,23 @@ class AromaCompactSearch(FormView):
     def get(self, request, *args, **kwargs):
         form = self.form_class(request.GET)
         if form.data and form.is_valid():
-            return redirect(reverse('aroma-list')+'?title=%s' % form.data.get('title'))
+            return redirect(reverse('aroma-list') + '?title=%s' % form.data.get('title'))
         return render(request, self.template_name, {'form': form})
+
+
+class NoteCompactSearch(FormView):
+    form_class = NoteCompactSearchForm
+    template_name = 'search_notes.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(request.GET)
+        if form.data and form.is_valid():
+            return redirect(reverse('aroma-list') + '?' + request.GET.urlencode())
+        else:
+            try:
+                return render(request, self.template_name, {'form': form})
+            except ValueError:
+                # TODO: Logger
+                form = self.form_class()
+                return render(request, self.template_name, {'form': form})
+

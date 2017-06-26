@@ -46,8 +46,7 @@
             <div сlass="collapse navbar-collapse  navbar-main-collapse" id="navbar-main">
 				<ul class="nav navbar-nav navbar-right">
         			<li {% if request.resolver_match.url_name == 'aroma-list' %}class="active"{% endif %}><a href="{% url 'aroma-list' %}">Ароматы</a></li>
-					<li><a href="javascript:void(0);">Ноты</a></li>
-					<li><a href="javascript:void(0);">Носы</a></li>
+					<li {% if 'notes' in request.path %}class="active"{% endif %}><a href="{% url 'notes-search' %}">Ноты</a></li>
 					<li {% if 'contacts' in request.path %}class="active"{% endif %}><a href="{% url 'contacts' %}">Контакты</a></li>
         			{% if not user.is_authenticated %}
                         <li><a class="nav-auth" href="{% url 'auth_login' %}?next={{ request.path|urlencode }}"><img src="{% static 'img/icons/sign-in.svg' %}"/> Войти</a></li>

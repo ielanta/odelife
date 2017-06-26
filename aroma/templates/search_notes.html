@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Поиск ароматов по нотам{% endblock %}
+{% block description %}Компактный поиск с возможностью включения и исключения нот{% endblock %}
+
+{% block content %}
+    <div class="cover pink-bg" id="notes">
+        <div class="cover-space auth">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-sm-2"></div>
+                    <div class="col-md-6 col-sm-8">
+                        <h3 class="center-text">Поиск ароматов по нотам</h3>
+                        <form method="get" id="search_form" class="base-form">
+                            {% crispy form %}
+                        </form>
+                        <h5 class="center-text"><a href="{% url 'aroma-list' %}">Расширенный поиск</a></h5>
+                    </div>
+                    <div class="col-md-3 col-sm-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

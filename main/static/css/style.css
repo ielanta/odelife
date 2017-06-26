@@ -773,10 +773,6 @@ Parallax
 /* ===========================
 --- 404
 ============================ */
-/*.nav-space{*/
-    /*margin-top: 90px;*/
-/*}*/
-
 
 #err {
 	background: url(../img/404.jpeg) no-repeat top left fixed;
@@ -793,6 +789,41 @@ Parallax
 
 #err h1{
     font-size: 3em;
+}
+
+/* ===========================
+--- Notes Compact search
+============================ */
+
+#notes {
+    background-size: cover;
+}
+
+#notes .cover-space{
+    padding-top: 180px;
+}
+
+#notes .btn-base{
+    background-color: rgba(255, 207, 190, 0.85);
+    height: 45px;
+    font-size: 16px;
+    font-weight: 300;
+    border: none;
+    color: #453536;
+}
+
+#notes .btn-base:hover{
+    background-color: #ffcfbe;
+}
+
+#notes .select2-container--default .select2-selection--multiple {
+    min-height: 37px;
+    vertical-align: middle;
+}
+
+#notes h5{
+    padding: 20px 0;
+    font-size: 16px;
 }
 
 /* ===========================
@@ -878,8 +909,11 @@ Parallax
 /* ===========================
 --- Authorization
 ============================ */
-#auth {
+.pink-bg, #auth{
     background-color: #FFABC2;
+}
+
+#auth {
     color: #453536;
 
 }
