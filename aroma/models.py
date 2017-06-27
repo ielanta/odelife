@@ -78,8 +78,9 @@ class Aroma(models.Model):
         return mark
 
     def save(self, *args, **kwargs):
+        gender_dict = {'f': 'female', 'm': 'male','u': 'unisex'}
         if not self.slug:
-            self.slug = slugify('-'.join([self.brand.title, self.title, self.gender]))[:256]
+            self.slug = slugify('-'.join([self.brand.title, gender_dict.get(self.gender), self.title]))[:256]
         super(Aroma, self).save(*args, **kwargs)
 
     @property

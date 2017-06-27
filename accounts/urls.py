@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^me/likes/$', login_required(MyLikesView.as_view()), name='profile-like'),
     url(r'^me/comments/$', login_required(MyCommentsView.as_view()), name='profile-comment'),
     url(r'^me/settings/$', login_required(ProfileView.as_view()), name='profile-settings'),
-    url(r'^(?P<username>[\w.@+-]+)/comments/$', login_required(PublicCommentsView.as_view()), name='profile-public'),
+    url(r'^(?P<username>[\w.@+-]+)/comments/$', PublicCommentsView.as_view(), name='profile-public'),
 ]

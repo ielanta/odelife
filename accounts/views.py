@@ -9,6 +9,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import TemplateHTMLRenderer
 from main.pagination import CustomPagination
+from main.permissions import PublicEndpoint
 
 
 from accounts.forms import ProfileForm
@@ -97,6 +98,7 @@ class MyCommentsView(ListAPIView):
 
 class PublicCommentsView(MyCommentsView):
     template_name = 'profile/profile_public.html'
+    permission_classes = (PublicEndpoint,)
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs['username'])
