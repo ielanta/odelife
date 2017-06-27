@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'social_django',
+    'raven.contrib.django.raven_compat',
     'main',
     'aroma',
     'accounts',
@@ -154,6 +155,9 @@ BOOTSTRAP3 = {
         'inline': 'bootstrap3.renderers.InlineFieldRenderer',
     },
 }
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
