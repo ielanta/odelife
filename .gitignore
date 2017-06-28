@@ -7,3 +7,6 @@ core/local_settings.py
 aromas
 notes
 brands
+django.yaml
+django_init.yaml
+postgresql.yaml
