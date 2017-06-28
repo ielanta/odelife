@@ -1,0 +1,15 @@
+@import url(http://weloveiconfonts.com/api/?family=zocial);
+[class*="zocial-"]:before{font-family: 'zocial', sans-serif;}
+.btn-social{position:relative;padding-left:44px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:0}.btn-social>:first-child{position:absolute;left:0;top:0;bottom:0;width:32px;line-height:34px;font-size:1.4em;text-align:center;border-right:1px solid rgba(0,0,0,0.2)}
+.btn-facebook{color:#fff;background-color:#4267b2}.btn-facebook:focus,.btn-facebook.focus{color:#fff;background-color:#2d4373;border-color:rgba(0,0,0,0.2)}
+.btn-facebook:hover{color:#fff;background-color:#2D4373;border-color:#2D4373}
+.btn-facebook:active,.btn-facebook.active,.open>.dropdown-toggle.btn-facebook{color:#fff;background-color:#2d4373;border-color:#2d4373}.btn-facebook:active:hover,.btn-facebook.active:hover,.open>.dropdown-toggle.btn-facebook:hover,.btn-facebook:active:focus,.btn-facebook.active:focus,.open>.dropdown-toggle.btn-facebook:focus,.btn-facebook:active.focus,.btn-facebook.active.focus,.open>.dropdown-toggle.btn-facebook.focus{color:#fff;background-color:#23345a;border-color:#23345a}
+.btn-facebook:active,.btn-facebook.active,.open>.dropdown-toggle.btn-facebook{background-image:none}
+.btn-facebook.disabled:hover,.btn-facebook[disabled]:hover,fieldset[disabled] .btn-facebook:hover,.btn-facebook.disabled:focus,.btn-facebook[disabled]:focus,fieldset[disabled] .btn-facebook:focus,.btn-facebook.disabled.focus,.btn-facebook[disabled].focus,fieldset[disabled] .btn-facebook.focus{background-color:#3b5998;border-color:rgba(0,0,0,0.2)}
+.btn-facebook .badge{color:#3b5998;background-color:#fff}
+.btn-vk{color:#fff;background-color:#5e81a8}.btn-vk:focus,.btn-vk.focus{color:#fff;background-color:#466482;border-color:#466482}
+.btn-vk:hover{color:#fff;background-color:#466482;border-color:#466482}
+.btn-vk:active,.btn-vk.active,.open>.dropdown-toggle.btn-vk{color:#fff;background-color:#466482;border-color:#466482}.btn-vk:active:hover,.btn-vk.active:hover,.open>.dropdown-toggle.btn-vk:hover,.btn-vk:active:focus,.btn-vk.active:focus,.open>.dropdown-toggle.btn-vk:focus,.btn-vk:active.focus,.btn-vk.active.focus,.open>.dropdown-toggle.btn-vk.focus{color:#fff;background-color:#3a526b;border-color:rgba(0,0,0,0.2)}
+.btn-vk:active,.btn-vk.active,.open>.dropdown-toggle.btn-vk{background-image:none}
+.btn-vk.disabled:hover,.btn-vk[disabled]:hover,fieldset[disabled] .btn-vk:hover,.btn-vk.disabled:focus,.btn-vk[disabled]:focus,fieldset[disabled] .btn-vk:focus,.btn-vk.disabled.focus,.btn-vk[disabled].focus,fieldset[disabled] .btn-vk.focus{background-color:#587ea3;border-color:rgba(0,0,0,0.2)}
+.btn-vk .badge{color:#587ea3;background-color:#fff}
