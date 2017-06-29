@@ -7,7 +7,7 @@
             {{ count }} {{ count | ru_pluralize:"аромат,аромата,ароматов" }}</div>
     {% endif %}
     {% for item in results %}
-        <div class="{{ aroma_size }} col-xs-6 col-centered" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
+        <div class="{{ aroma_size }} col-xs-12 col-centered" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
             <div class="aroma-box">
                 <div class="aroma-card">
                     <a href="{{ item.url }}" class="pointed" itemprop="url">

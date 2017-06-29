@@ -20,7 +20,7 @@
                                 {% if request.GET.ordering == '-aromacounter__num_comments' %} class='selected'{% endif %}>
                             по популярности</a></li>
                     </ul>
-                    {% include "item_list.html" with results=results count=count aroma_size='col-sm-4' %}
+                    {% include "item_list.html" with results=results count=count aroma_size='col-md-4 col-sm-6' %}
                     {% include 'center_pagination.html' with previous_url=previous_url next_url=next_url page_links=page_links %}
                 </div>
                 <div class="col-sm-3">
