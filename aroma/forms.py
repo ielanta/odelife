@@ -36,8 +36,10 @@ class AromaSearchForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(AromaSearchForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.layout = Layout('title', Field('gender', template='checkbox_helper.html'))
+        self.helper = FormHelper(self)
+        self.helper.layout = Layout('title', Field('gender', template='checkbox_helper.html'), 'min_year', 'max_year',
+                                    'groups', 'brand', 'in_notes', 'ex_notes', 'noses')
+        self.helper.layout.append(Submit('submit', 'Применить', css_class='btn btn-base center-block'))
 
 
 class AromaCompactSearchForm(forms.ModelForm):
