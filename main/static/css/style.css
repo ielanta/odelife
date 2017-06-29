@@ -161,6 +161,8 @@ hr {
 #compact-search-form input, #compact-search-form .btn-default{
     height: 46px;
     box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
 }
 
 #compact-search-form .btn-default:hover{
@@ -535,6 +537,8 @@ Search form
 #search_form .select2-container--default .select2-selection--single,
 #search_form .select2-container--default .select2-selection--multiple{
     box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
     border-radius: 0;
     border-color: #f2dede;
 }
@@ -1089,13 +1093,8 @@ Parallax
 
 @media(min-width:767px){
     .navbar {
-        padding: 20px 0;
         border-bottom: 0;
         letter-spacing: 1px;
-        background: 0 0;
-        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
-        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
-        transition: background .5s ease-in-out,padding .5s ease-in-out;
     }
 
 }
@@ -1124,6 +1123,9 @@ Parallax
         font-size: 18px;
         padding: 0;
         margin: 0;
+    }
+    #navbar-main a{
+        background: #ffcfbe;
     }
 
 

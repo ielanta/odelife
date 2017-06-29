@@ -36,7 +36,8 @@
     <nav class="navbar navbar-custom navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main"
+                aria-expanded="false">
                     <span class="glyphicon glyphicon-align-justify"></span>
                 </button>
                 <a class="navbar-brand" href="{% url 'home' %}">
@@ -44,7 +45,7 @@
                 </a>
             </div>
 
-            <div сlass="collapse navbar-collapse  navbar-main-collapse" id="navbar-main">
+            <div сlass="navbar-collapse  navbar-main-collapse collapse" id="navbar-main">
 				<ul class="nav navbar-nav navbar-right">
         			<li {% if request.resolver_match.url_name == 'aroma-list' %}class="active"{% endif %}><a href="{% url 'aroma-list' %}">Ароматы</a></li>
 					<li {% if 'notes' in request.path %}class="active"{% endif %}><a href="{% url 'notes-search' %}">Ноты</a></li>
