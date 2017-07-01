@@ -557,11 +557,13 @@ Search form
     height: 37px;
     border-radius: 0;
     box-shadow: none;
+    border-color: #ffb6c1;
 }
 
 .btn-base:hover, .btn-base:active:focus, .btn:focus, .btn:active:focus, .btn.active:focus
 {
     background-color: #FFABC2;
+    border-color: #FFABC2;
     color: #555;
 }
 
