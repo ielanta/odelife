@@ -49,7 +49,7 @@
                     </div>
                     {% if noses %}
                         <div class="row-fluid">
-                            <h5 class="col-sm-4 col-xs-5 feature">Парфюмер{% if noses.count > 1 %}ы{% endif %}</h5>
+                            <h5 class="col-sm-4 col-xs-5 feature">Парфюмер{% if noses|length > 1 %}ы{% endif %}</h5>
                             <h5 class="col-sm-8 col-xs-7 feature_data">
                                 {% for nose in noses %}
                                     <a href="{% url 'aroma-list' %}?noses={{ nose.id }}">{{ nose.name }}</a><br/>

@@ -53,7 +53,7 @@ class AromaDetail(generics.RetrieveAPIView):
 
 class BrandAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        qs = Brand.objects.filter(aroma__is_public=True).all()
+        qs = Brand.objects.filter(aroma__is_public=True).distinct('title').order_by('title').all()
         if self.q:
             qs = qs.filter(title__istartswith=self.q)
         return qs
@@ -77,7 +77,7 @@ class GroupsAutocomplete(autocomplete.Select2QuerySetView):
 
 class NosesAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        qs = Nose.objects.filter(aroma__is_public=True).all().order_by('name')
+        qs = Nose.objects.filter(aroma__is_public=True).distinct('name').order_by('name').all()
         if self.q:
             qs = qs.filter(name__istartswith=self.q.capitalize())
         return qs

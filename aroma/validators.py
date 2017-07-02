@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 
-LIMIT_NOTES = 1
+LIMIT_NOTES = 10
 
 
 def validate_notes(value):
