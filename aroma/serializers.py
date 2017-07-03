@@ -1,3 +1,7 @@
+from functools import reduce
+from operator import and_
+from django.conf import settings
+from django.db.models import Q
 from django_filters.rest_framework import NumberFilter, FilterSet, MultipleChoiceFilter, CharFilter, \
     ModelMultipleChoiceFilter
 from rest_framework import serializers
@@ -5,13 +9,13 @@ from rest_framework import serializers
 from activity.models import Activity
 from activity.serializers import CommentSerializer
 from aroma.models import Aroma, Brand, Note, Group, Nose, CategoryNotes
-from django.conf import settings
 
 
 class SearchFilter(FilterSet):
     min_year = NumberFilter(name="year", lookup_expr='gte')
     max_year = NumberFilter(name="year", lookup_expr='lte')
-    title = CharFilter(name="title", lookup_expr='icontains')
+    title = CharFilter(name="title", method=lambda queryset, name, value: queryset
+                       .filter(reduce(and_, [Q(title__icontains=s) for s in value.split()])))
     gender = MultipleChoiceFilter(choices=settings.GENDER_CHOICES,
                                   method=lambda queryset, name, value: queryset.filter(gender__in=value))
     in_notes = ModelMultipleChoiceFilter(name="notes", queryset=Note.objects.all(), conjoined=True)
