@@ -55,7 +55,8 @@ class AromaCompactSearchForm(forms.ModelForm):
 class NoteCompactSearchForm(forms.Form):
     in_notes = forms.ModelMultipleChoiceField(label='Включить ноты', queryset=Note.objects.all(), required=False,
                                               validators=[validate_notes],
-                                              widget=autocomplete.ModelSelect2Multiple(url='notes-autocomplete'))
+                                              widget=autocomplete.ModelSelect2Multiple(url='notes-autocomplete',
+                                                                                       attrs={'autofocus': True}))
     ex_notes = forms.ModelMultipleChoiceField(label='Исключить ноты', queryset=Note.objects.all(), required=False,
                                               validators=[validate_notes],
                                               widget=autocomplete.ModelSelect2Multiple(url='notes-autocomplete'))
