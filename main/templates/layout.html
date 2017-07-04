@@ -36,8 +36,7 @@
     <nav class="navbar navbar-custom navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main"
-                aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="glyphicon glyphicon-align-justify"></span>
                 </button>
                 <a class="navbar-brand" href="{% url 'home' %}">
@@ -45,28 +44,31 @@
                 </a>
             </div>
 
-            <div сlass="navbar-collapse  navbar-main-collapse collapse" id="navbar-main">
-				<ul class="nav navbar-nav navbar-right">
-        			<li {% if request.resolver_match.url_name == 'aroma-list' %}class="active"{% endif %}><a href="{% url 'aroma-list' %}">Ароматы</a></li>
-					<li {% if 'notes' in request.path %}class="active"{% endif %}><a href="{% url 'notes-search' %}">Ноты</a></li>
-					<li {% if 'contacts' in request.path %}class="active"{% endif %}><a href="{% url 'contacts' %}">Контакты</a></li>
-        			{% if not user.is_authenticated %}
-                        <li><a class="nav-auth" href="{% url 'auth_login' %}?next={{ request.path|urlencode }}"><img src="{% static 'img/icons/sign-in.svg' %}"/> Войти</a></li>
+
+            <div class="collapse navbar-collapse navbar-right" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li {% if request.resolver_match.url_name == 'aroma-list' %}class="active"{% endif %}><a href="{% url 'aroma-list' %}">Ароматы</a></li>
+                    <li {% if 'notes' in request.path %}class="active"{% endif %}><a href="{% url 'notes-search' %}">Ноты</a></li>
+                    <li {% if 'contacts' in request.path %}class="active"{% endif %}><a href="{% url 'contacts' %}">Контакты</a></li>
+                    {% if not user.is_authenticated %}
+                        <li {% if 'login' in request.path %}class="active"{% endif %}>
+                            <a class="nav-auth" href="{% url 'auth_login' %}?next={{ request.path|urlencode }}">
+                                <img src="{% static 'img/icons/sign-in.svg' %}"/> Войти
+                            </a>
+                        </li>
                     {% else %}
                     <li class="dropdown">
-          				<a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown"><span class="glyphicon glyphicon-user"> </span> {{ user.account.get_short_name }}<b class="caret"></b></a>
-						<ul class="dropdown-menu no-hover">
-							<li><a href="{% url 'profile-fav' %}" >Мои ароматы</a></li>
-            				<li><a href="{% url 'profile-settings' %}">Настройки</a></li>
-            				<li><a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">Выход</a></li>
-          				</ul>
-        			</li>
+                        <a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown"><span class="glyphicon glyphicon-user"> </span> {{ user.account.get_short_name }}<b class="caret"></b></a>
+                        <ul class="dropdown-menu no-hover">
+                            <li><a href="{% url 'profile-fav' %}" >Мои ароматы</a></li>
+                            <li><a href="{% url 'profile-settings' %}">Настройки</a></li>
+                            <li><a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">Выход</a></li>
+                        </ul>
+                    </li>
                     {% endif %}
-      			</ul>
+                </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
 
 

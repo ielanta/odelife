@@ -70,6 +70,7 @@ a:focus {
     font-size: 26px;
     line-height: 40px;
     font-family: "Gill Sans", Arial, Helvetica, sans-serif;
+    margin: 7px 0;
     /*text-shadow: 2px 2px #666;*/
 }
 
@@ -77,9 +78,10 @@ a:focus {
     outline: 0;
 }
 
-.nav.navbar-nav {
+.navbar-nav {
     background-color: rgba(255,255,255,.4);
-
+    margin-top: 7px;
+    margin-bottom: 7px;
 }
 
 .navbar-custom ul.nav li a {
@@ -124,7 +126,7 @@ a:focus {
 .navbar-custom .nav li a:focus:not(.no-hover),
 .navbar-custom .nav li.active {
     outline: 0;
-    background-color: rgba(255,255,255,.2);
+    background-color: rgba(255,255,255,.4);
 }
 
 .navbar-custom .nav li .no-hover a:hover{
@@ -887,7 +889,7 @@ Parallax
 }
 
 #profile .nav-pills>li.active>a, #profile .nav-pills>li.active>a:focus, #profile .nav-pills>li.active>a:hover{
-    background-color: rgba(255,255,255,0.6);
+    background-color: rgba(255,255,255,0.7);
 }
 
 #profile .nav>li, #profile .nav, #profile .nav>li>a{
@@ -939,7 +941,7 @@ Parallax
 }
 
 .auth h3{
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 .auth h5{
@@ -1111,7 +1113,8 @@ Parallax
 @media (max-width:767px){
     .navbar{
         padding-top: 10px;
-        background-color: #ffcfbe;
+        background-color: rgba(255,255,255,0.5);
+        border: none;
     }
     .navbar-custom ul.nav li a{
         color: #555;
@@ -1132,8 +1135,9 @@ Parallax
         padding: 0;
         margin: 0;
     }
-    #navbar-main a{
-        background: #ffcfbe;
+    .navbar-nav{
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
 
@@ -1183,6 +1187,10 @@ Parallax
 
     .feature_data, .feature, .note-text{
         font-size: 13px;
+    }
+
+    .container-space{
+        margin-top: 0;
     }
 	
 }
