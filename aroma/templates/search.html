@@ -13,11 +13,11 @@
                 <div class="col-sm-9" >
                     <ul class="list-inline sort">
                         Сортировать:
-                        <li><a href="?{% url_replace request 'ordering' '-year' %}"
-                                {% if request.GET.ordering == '-year' or not request.GET.ordering %} class='selected'{% endif %}>
+                        <li><a href="?{% url_replace request 'ordering' '-year,title' %}"
+                                {% if '-year' in request.GET.ordering or not request.GET.ordering %} class='selected'{% endif %}>
                             по новизне</a></li>
-                        <li><a href="?{% url_replace request 'ordering' '-aromacounter__num_comments' %}"
-                                {% if request.GET.ordering == '-aromacounter__num_comments' %} class='selected'{% endif %}>
+                        <li><a href="?{% url_replace request 'ordering' '-aromacounter__num_comments,title' %}"
+                                {% if '-aromacounter__num_comments' in request.GET.ordering %} class='selected'{% endif %}>
                             по популярности</a></li>
                     </ul>
                     {% include "item_list.html" with results=results count=count aroma_size='col-md-4 col-sm-6' %}
