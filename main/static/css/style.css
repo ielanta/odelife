@@ -165,6 +165,7 @@ hr {
     box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
+    -webkit-appearance: none;
 }
 
 #compact-search-form .btn-default:hover{
@@ -546,6 +547,7 @@ Search form
     box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
+    -webkit-appearance: none;
     border-radius: 0;
     border-color: #f2dede;
 }
