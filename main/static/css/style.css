@@ -835,7 +835,7 @@ Pagination
 }
 
 #profile .profile-space {
-    margin-top: 10px;
+    margin-top: 40px;
 }
 
 #profile .aroma-panel{
@@ -1029,7 +1029,7 @@ Pagination
 
 .cover {
 	width: 100%;
-    margin-top: -90px;
+    margin-top: -65px;
     min-height: 100%;
     height: auto;
     padding: 0;
@@ -1170,6 +1170,10 @@ Pagination
     }
 
     .container-space{
+        margin-top: 0;
+    }
+
+    #profile .profile-space{
         margin-top: 0;
     }
 	
