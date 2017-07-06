@@ -180,6 +180,11 @@ hr {
     -webkit-appearance: none;
 }
 
+#compact-search-form .btn-default{
+    width: 100%;
+    min-width: 40px;
+}
+
 #compact-search-form .btn-default:hover{
     background-color: rgba(255, 190, 159, 0.8);
 }
@@ -213,6 +218,8 @@ hr {
 
 .container-space {
     margin-top: 40px;
+    min-height: 100%;
+    height: auto;
 }
 
 #contacts .btn-base i{
@@ -798,7 +805,7 @@ Pagination
 }
 
 #notes .cover-space{
-    padding-top: 180px;
+    padding-top: 80px;
 }
 
 #notes .btn-base{
@@ -817,11 +824,16 @@ Pagination
 #notes .select2-container--default .select2-selection--multiple {
     vertical-align: middle;
     background-color: rgba(255, 255, 255, 0.70);
+    line-height: 29px;
 }
 
 #notes h5{
     padding: 20px 0;
     font-size: 16px;
+}
+
+#notes h3{
+    padding-bottom: 20px;
 }
 
 /* ===========================
