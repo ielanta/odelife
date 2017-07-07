@@ -61,7 +61,7 @@ class BrandAutocomplete(autocomplete.Select2QuerySetView):
 
 class NotesAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        qs = Note.objects.all().order_by('title')
+        qs = Note.objects.exclude(pic='').order_by('title').all()
         if self.q:
             qs = qs.filter(title__istartswith=self.q.capitalize())
         return qs

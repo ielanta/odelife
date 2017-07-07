@@ -17,9 +17,9 @@ class AromaSearchForm(forms.Form):
     title = forms.CharField(label="Название", required=False, max_length=200)
     gender = forms.MultipleChoiceField(choices=settings.GENDER_CHOICES, label="Пол", required=False,
                                        widget=forms.CheckboxSelectMultiple)
-    min_year = forms.IntegerField(label="Год", required=False, min_value=1700, max_value=2100,
+    min_year = forms.IntegerField(label="Год", required=False, min_value=1921, max_value=2100,
                                   widget=forms.NumberInput(attrs={'placeholder': 'с'}))
-    max_year = forms.IntegerField(label=" ", required=False, min_value=1700, max_value=2100,
+    max_year = forms.IntegerField(label=" ", required=False, min_value=1921, max_value=2100,
                                   widget=forms.NumberInput(attrs={'placeholder': 'по'}))
     groups = forms.ModelMultipleChoiceField(label='Группа', queryset=Group.objects.all(), required=False,
                                             widget=autocomplete.ModelSelect2Multiple(url='groups-autocomplete'))
