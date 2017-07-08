@@ -9,6 +9,17 @@ ga('create', 'UA-101618267-1', 'auto');
 ga('require', 'displayfeatures');
 ga('send', 'pageview');
 
+<!-- Rating@Mail.ru counter -->
+var _tmr = window._tmr || (window._tmr = []);
+_tmr.push({id: "2914361", type: "pageView", start: (new Date()).getTime()});
+(function (d, w, id) {
+  if (d.getElementById(id)) return;
+  var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+  ts.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//top-fwz1.mail.ru/js/code.js";
+  var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+  if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+})(document, window, "topmailru-code");
+
 
 $(function() {
     function onNavbar() {
@@ -37,4 +48,4 @@ function preventDoubleClick(form)
 {
     form.submit.disabled = true;
     return true;
-};
+}
