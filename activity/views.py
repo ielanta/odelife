@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.edit import CreateView
 
 from rest_framework import generics
@@ -59,4 +59,6 @@ class CommentCreate(CreateView):
         if form.is_valid():
             obj = Comment(user=request.user, aroma=aroma,  **form.cleaned_data)
             obj.save()
-        return redirect(aroma.get_absolute_url())
+            return redirect(aroma.get_absolute_url())
+        return render(request, self.template_name, {'form': form})
+
