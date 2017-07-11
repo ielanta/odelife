@@ -61,7 +61,6 @@ class Aroma(models.Model):
     marks = GenericRelation(Activity)
     slug = models.SlugField(max_length=256, blank=True, null=True)
 
-
     class Meta:
         unique_together = ('title', 'brand', 'gender')
 
@@ -78,7 +77,7 @@ class Aroma(models.Model):
         return mark
 
     def save(self, *args, **kwargs):
-        gender_dict = {'f': 'female', 'm': 'male','u': 'unisex'}
+        gender_dict = {'f': 'female', 'm': 'male', 'u': 'unisex'}
         if not self.slug:
             self.slug = slugify('-'.join([self.brand.title, gender_dict.get(self.gender), self.title]))[:256]
         super(Aroma, self).save(*args, **kwargs)
@@ -107,4 +106,10 @@ class CategoryNotes(models.Model):
     )
     aroma = models.ForeignKey(Aroma, on_delete=models.CASCADE)
     note = models.ForeignKey(Note, on_delete=models.CASCADE)
-    category = models.SmallIntegerField(choices=CATEGORY_CHOICES)
+    category = models.SmallIntegerField(choices=CATEGORY_CHOICES, default=3)
+
+    class Meta:
+        auto_created = True
+
+    def __str__(self):
+        return '#%d %s %s %s' % (self.id, self.aroma.title, self.note.title, self.get_category_display())

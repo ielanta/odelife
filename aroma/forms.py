@@ -69,3 +69,16 @@ class NoteCompactSearchForm(forms.Form):
         super(NoteCompactSearchForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.layout.append(Submit('submit', 'Найти', css_class='btn btn-base center-block'))
+
+
+class AromaCreateForm(forms.ModelForm):
+    class Meta:
+        model = Aroma
+        fields = ('title', 'pic', 'gender', 'year', 'brand', 'groups', 'noses', 'notes', 'is_public', 'slug', 'guise')
+
+    groups = forms.ModelMultipleChoiceField(queryset=Group.objects.all(),
+                                            widget=autocomplete.ModelSelect2Multiple(url='groups-autocomplete'))
+    brand = forms.ModelChoiceField(queryset=Brand.objects.order_by('title').all())
+    notes = forms.ModelMultipleChoiceField(queryset=Note.objects.all(), required=False,
+                                           widget=autocomplete.ModelSelect2Multiple(url='notes-autocomplete'))
+    noses = forms.ModelMultipleChoiceField(queryset=Nose.objects.order_by('name').all(), required=False)
