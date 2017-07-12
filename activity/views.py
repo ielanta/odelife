@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from activity.models import Activity, Comment
 from aroma.models import Aroma
 from activity.forms import CommentCreateForm
+from tag.models import TaggedItem
 
 
 class ActivityCreate(CreateView):
@@ -57,8 +58,12 @@ class CommentCreate(CreateView):
         aroma = get_object_or_404(Aroma, id=kwargs.get('aroma_id'))
         form = self.form_class(data=request.POST)
         if form.is_valid():
+            tags = form.cleaned_data['tags']
+            form.cleaned_data.pop('tags')
             obj = Comment(user=request.user, aroma=aroma,  **form.cleaned_data)
             obj.save()
+            for tag in tags:
+                obj.taggeditems.get_or_create(tag=tag, aroma=obj.aroma)
             return redirect(aroma.get_absolute_url())
         return render(request, self.template_name, {'form': form})
 

@@ -57,12 +57,20 @@
                             </h5>
                         </div>
                     {% endif %}
-                    <div class="row-fluid center-text">
+                    {% if tags %}
+                        <div class="row-fluid">
+                            <h5 class="col-sm-offset-4 col-xs-offset-5 col-sm-8 col-xs-7 feature_data">
+                            {% for tag in tags %}
+                                <a href="{% url 'aroma-list' %}?tags={{ tag.tag__id }}">#{{ tag.tag__name }}</a><br/>
+                            {% endfor %}
+                            </h5>
+                        </div>
+                    {% endif %}
+                     <div class="row-fluid center-text">
                         <a href="{% url 'aroma-list' %}?brand={{ brand.id }}" title="{{ brand.title }}" aria-label="tooltip">
                             <img src="{{ brand.logo }}" alt="{{ brand.title }}" class="logo center-block"/>
                         </a>
                     </div>
-                </div>
                 <div class="col-md-1"> </div>
             </div>
             <div class="row">

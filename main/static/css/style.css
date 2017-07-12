@@ -385,6 +385,10 @@ hr {
     padding-bottom: 5px;
 }
 
+#comments .tags{
+    line-height: 40px;
+}
+
 #comments .action-box{
     font-size: 14px;
     color: #333;
@@ -672,6 +676,10 @@ Aroma List
 .card-text {
     color: #777;
     font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0 10px;
 }
 
 .card-title {

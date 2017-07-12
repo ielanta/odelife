@@ -3,7 +3,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelatio
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
-from tag.models import Tag
+from tag.models import TaggedItem
 
 
 class Activity(models.Model):
@@ -47,7 +47,7 @@ class Comment(models.Model):
     season = models.CharField(max_length=2, choices=SEASON_TYPES, blank=True, null=True)
     impression = models.CharField(max_length=1, choices=IMPRESSION_TYPES)
     rating = models.SmallIntegerField(default=0)
-    tags = GenericRelation(Tag)
+    taggeditems = GenericRelation(TaggedItem)
 
     def __str__(self):
         return self.text

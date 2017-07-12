@@ -9,6 +9,7 @@ from rest_framework import serializers
 from activity.models import Activity
 from activity.serializers import CommentSerializer
 from aroma.models import Aroma, Brand, Note, Group, Nose, CategoryNotes
+from tag.models import Tag
 
 
 class SearchFilter(FilterSet):
@@ -22,21 +23,27 @@ class SearchFilter(FilterSet):
     ex_notes = ModelMultipleChoiceFilter(name="notes", queryset=Note.objects.all(), conjoined=True, exclude=True)
     groups = ModelMultipleChoiceFilter(name="groups", queryset=Group.objects.all(), conjoined=True)
     noses = ModelMultipleChoiceFilter(name="noses", queryset=Nose.objects.all(), conjoined=True)
+    tags = ModelMultipleChoiceFilter(name="taggeditem__tag", queryset=Tag.objects.all(), conjoined=True)
 
     class Meta:
         model = Aroma
-        fields = ('gender', 'min_year', 'max_year', 'title', 'brand', 'in_notes', 'notes', 'groups', 'noses')
+        fields = ('gender', 'min_year', 'max_year', 'title', 'brand', 'in_notes', 'notes', 'groups', 'noses', 'tags')
 
 
 class AromaCommonSerializer(serializers.ModelSerializer):
     favorite = serializers.SerializerMethodField('_favorite')
     like = serializers.SerializerMethodField('_like')
+    tags = serializers.SerializerMethodField()
 
     def _favorite(self, obj):
         return obj.get_mark_by_type(Activity.FAVORITE, self.context['request'].user)
 
     def _like(self, obj):
         return obj.get_mark_by_type(Activity.LIKE, self.context['request'].user)
+
+    @staticmethod
+    def get_tags(obj):
+        return obj.get_tags()
 
 
 class AromaListSerializer(AromaCommonSerializer):
@@ -45,7 +52,7 @@ class AromaListSerializer(AromaCommonSerializer):
 
     class Meta:
         model = Aroma
-        fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'favorite', 'like', 'url', 'comments_counter')
+        fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'favorite', 'like', 'url', 'comments_counter', 'tags')
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}
         }
@@ -118,4 +125,4 @@ class AromaDetailSerializer(AromaCommonSerializer):
     class Meta:
         model = Aroma
         fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'gender', 'gender_label', 'noses', 'description',
-                  'top_notes', 'middle_notes', 'base_notes', 'general_notes', 'favorite', 'like', 'comments')
+                  'top_notes', 'middle_notes', 'base_notes', 'general_notes', 'favorite', 'like', 'comments', 'tags')

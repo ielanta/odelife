@@ -15,6 +15,9 @@
                         <div class="card-title" itemprop="name">{{ item.title }}</div>
                         <div class="melted-text" itemprop="brand">{{ item.brand }}</div>
                         <div class="card-text">{% for group in item.groups %}{{ group }}, {% endfor %}{{ item.year }}г</div>
+                        <div class="card-text">
+                            {% for tag in item.tags %}#{{ tag.tag__name }} {% endfor %}
+                        </div>
                     </a>
                 </div>
                 <div class="row summary-box">

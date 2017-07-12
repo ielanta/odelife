@@ -6,6 +6,7 @@ from django.utils.text import slugify
 from django.urls import reverse
 
 from activity.models import Activity
+from tag.models import TaggedItem
 from django.conf import settings
 
 
@@ -63,6 +64,7 @@ class Aroma(models.Model):
 
     class Meta:
         unique_together = ('title', 'brand', 'gender')
+        ordering = ('title',)
 
     def __str__(self):
         return self.title
@@ -81,6 +83,10 @@ class Aroma(models.Model):
         if not self.slug:
             self.slug = slugify('-'.join([self.brand.title, gender_dict.get(self.gender), self.title]))[:256]
         super(Aroma, self).save(*args, **kwargs)
+
+    def get_tags(self):
+        return self.taggeditem_set.values('tag__id', 'tag__name').annotate(num_tag=models.Count('tag')).\
+            order_by('-num_tag')[:5]
 
     @property
     def comments_counter(self):

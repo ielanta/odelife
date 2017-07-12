@@ -7,12 +7,14 @@ from dal import autocomplete
 from aroma.models import Aroma, Brand, Note, Group, Nose
 from aroma.validators import validate_notes
 from django.conf import settings
+from tag.models import Tag
+from tag.validators import validate_tags
 
 
 class AromaSearchForm(forms.Form):
     class Meta:
         model = Aroma
-        fields = ('title', 'gender', 'min_year', 'max_year', 'brand', 'in_notes', 'ex_notes', 'groups', 'noses')
+        fields = ('title', 'gender', 'min_year', 'max_year', 'brand', 'in_notes', 'ex_notes', 'groups', 'noses', 'tags')
 
     title = forms.CharField(label="Название", required=False, max_length=200)
     gender = forms.MultipleChoiceField(choices=settings.GENDER_CHOICES, label="Пол", required=False,
@@ -33,12 +35,15 @@ class AromaSearchForm(forms.Form):
                                               widget=autocomplete.ModelSelect2Multiple(url='notes-autocomplete'))
     noses = forms.ModelMultipleChoiceField(label='Парфюмеры', queryset=Nose.objects.all(), required=False,
                                            widget=autocomplete.ModelSelect2Multiple(url='noses-autocomplete'))
+    tags = forms.ModelMultipleChoiceField(label='Теги', queryset=Tag.objects.all(), required=False,
+                                          validators=[validate_tags],
+                                          widget=autocomplete.ModelSelect2Multiple(url='tags-autocomplete'))
 
     def __init__(self, *args, **kwargs):
         super(AromaSearchForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.layout = Layout('title', Field('gender', template='checkbox_helper.html'), 'min_year', 'max_year',
-                                    'groups', 'brand', 'in_notes', 'ex_notes', 'noses')
+                                    'groups', 'brand', 'in_notes', 'ex_notes', 'noses', 'tags')
         self.helper.layout.append(Submit('submit', 'Применить', css_class='btn btn-base center-block'))
 
 

@@ -10,6 +10,7 @@ class CommentSerializer(serializers.ModelSerializer):
     sillage = serializers.SerializerMethodField()
     season = serializers.SerializerMethodField()
     impression = serializers.SerializerMethodField()
+    tags = serializers.SerializerMethodField()
 
     @staticmethod
     def get_longevity(obj):
@@ -31,9 +32,14 @@ class CommentSerializer(serializers.ModelSerializer):
         icon_dict = {'F': 'love.png', 'L': 'like.png', 'N': 'neutral.png', 'D': 'dislike.png'}
         return {obj.get_impression_display(): icon_dict.get(obj.impression)}
 
+    @staticmethod
+    def get_tags(obj):
+        return [ti.tag for ti in obj.taggeditems.all()]
+
     class Meta:
         model = Comment
-        fields = ('id', 'user', 'impression', 'longevity', 'sillage', 'season', 'text', 'rating')
+        fields = ('id', 'user', 'impression', 'longevity', 'sillage', 'season', 'text', 'rating', 'tags')
+
 
 
 class AromaCommentSerializer(CommentSerializer):
