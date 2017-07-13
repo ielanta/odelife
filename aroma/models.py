@@ -6,7 +6,6 @@ from django.utils.text import slugify
 from django.urls import reverse
 
 from activity.models import Activity
-from tag.models import TaggedItem
 from django.conf import settings
 
 

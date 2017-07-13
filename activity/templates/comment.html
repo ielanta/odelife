@@ -9,7 +9,7 @@
             <span itemprop="description">{{ comment.text }}</span>
             <div class="tags">
                 {% for tag in comment.tags %}
-                    #{{ tag }}
+                    <a href="{% url 'aroma-list' %}?tags={{ tag.id }}">#{{ tag.name }}</a>
                 {% endfor %}
             </div>
             <div class="rating action-box"><span class="text">Полезно?</span>

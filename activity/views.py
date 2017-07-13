@@ -7,7 +7,6 @@ from rest_framework.permissions import IsAuthenticated
 from activity.models import Activity, Comment
 from aroma.models import Aroma
 from activity.forms import CommentCreateForm
-from tag.models import TaggedItem
 
 
 class ActivityCreate(CreateView):

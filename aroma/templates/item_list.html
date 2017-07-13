@@ -13,12 +13,12 @@
                     <a href="{{ item.url }}" class="pointed" itemprop="url" target="_blank">
                         <img src="{{ item.pic }}" alt="{{ item.title }}" class="aroma-list-pic pointed" />
                         <div class="card-title" itemprop="name">{{ item.title }}</div>
-                        <div class="melted-text" itemprop="brand">{{ item.brand }}</div>
-                        <div class="card-text">{% for group in item.groups %}{{ group }}, {% endfor %}{{ item.year }}г</div>
-                        <div class="card-text">
-                            {% for tag in item.tags %}#{{ tag.tag__name }} {% endfor %}
-                        </div>
                     </a>
+                    <div class="melted-text" itemprop="brand">{{ item.brand }}</div>
+                    <div class="card-text">{% for group in item.groups %}{{ group }}, {% endfor %}{{ item.year }}г</div>
+                    <div class="card-text">
+                        {% for tag in item.tags %}#{{ tag.tag__name }} {% endfor %}
+                    </div>
                 </div>
                 <div class="row summary-box">
                     <div class="col-sm-6 card-text">
