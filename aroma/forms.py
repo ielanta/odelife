@@ -79,7 +79,8 @@ class NoteCompactSearchForm(forms.Form):
 class AromaCreateForm(forms.ModelForm):
     class Meta:
         model = Aroma
-        fields = ('title', 'pic', 'gender', 'year', 'brand', 'groups', 'noses', 'notes', 'is_public', 'slug', 'guise')
+        fields = ('title', 'pic', 'description', 'gender', 'year', 'brand', 'groups', 'noses', 'notes', 'is_public',
+                  'slug', 'guise')
 
     groups = forms.ModelMultipleChoiceField(queryset=Group.objects.all(),
                                             widget=autocomplete.ModelSelect2Multiple(url='groups-autocomplete'))
