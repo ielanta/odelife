@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic import TemplateView
 # from django.views.defaults import page_not_found, server_error
 
 
@@ -12,6 +13,7 @@ urlpatterns = [
     url(r'^me/', include('activity.urls')),
     url(r'^', include('main.urls')),
     url(r'^tags/', include('tag.urls')),
+    url(r'^robots.txt$', TemplateView.as_view(template_name='robots.txt', content_type="text/plain")),
     # url(r'^404/$', page_not_found, kwargs={'exception': Exception("Page not Found")}),
     # url(r'^500/$', server_error),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

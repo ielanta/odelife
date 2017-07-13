@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin
+Disallow: /aromas/?
+Disallow: /aromas/notes/?
+Disallow: /accounts/login/?
+
+Host: odelife.ru
+Sitemap: https://odelife.ru/sitemap.xml
