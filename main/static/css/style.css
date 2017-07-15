@@ -340,6 +340,7 @@ hr {
 .note-block{
     display: inline-block;
     position: relative;
+    padding: 0 5px;
 }
 
 .notes{
