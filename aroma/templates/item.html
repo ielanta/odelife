@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load aroma_extras %}
 
-{% block title %}{{ brand.title }} {{ title }}({{ gender_label }}) описание{% if comments %}и отзывы{% endif %}{% endblock %}
+{% block title %}{{ brand.title }} {{ title }}({{ gender_label }}) описание{% if comments %} и отзывы{% endif %}{% endblock %}
 {% block description %}{{ description|truncatechars:250 }}{% endblock %}
 
 {% block content %}
@@ -61,8 +61,14 @@
                         <div class="row-fluid">
                             <h5 class="col-sm-offset-4 col-xs-offset-5 col-sm-8 col-xs-7 feature_data">
                             {% for tag in tags %}
-                                <a href="{% url 'aroma-list' %}?tags={{ tag.tag__id }}">#{{ tag.tag__name }}</a><br/>
+                                <a href="{% url 'aroma-list' %}?tags={{ tag.tag__id }}">
+                                    <span class="glyphicon glyphicon-tag"></span> {{ tag.tag__name }}
+                                </a><br/>
                             {% endfor %}
+                            {% if year >= 2017 %}
+                            <a href="{% url 'aroma-list' %}?min_year={{ year }}">
+                                <span class="glyphicon glyphicon-tag"></span> новинка</a><br/>
+                            {% endif %}
                             </h5>
                         </div>
                     {% endif %}

@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.core.urlresolvers import reverse
 from dal import autocomplete
@@ -63,7 +64,7 @@ class NotesAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Note.objects.exclude(pic='').order_by('title').all()
         if self.q:
-            qs = qs.filter(title__istartswith=self.q.capitalize())
+            qs = qs.filter(Q(title__istartswith=self.q.capitalize()) | Q(title__icontains=self.q))
         return qs
 
 
@@ -79,7 +80,7 @@ class NosesAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Nose.objects.filter(aroma__is_public=True).distinct('name').order_by('name').all()
         if self.q:
-            qs = qs.filter(name__istartswith=self.q.capitalize())
+            qs = qs.filter(Q(name__istartswith=self.q.capitalize()) | Q(name__icontains=self.q))
         return qs
 
 
