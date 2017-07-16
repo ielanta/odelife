@@ -3,6 +3,9 @@ Disallow: /admin
 Disallow: /aromas/?
 Disallow: /aromas/notes/?
 Disallow: /accounts/login/?
+Disallow: /accounts/login/facebook
+Disallow: /accounts/login/vk-oauth2
+Disallow: /accounts/me
 
 Host: odelife.ru
 Sitemap: https://odelife.ru/sitemap.xml
