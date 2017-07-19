@@ -6,6 +6,7 @@ Disallow: /accounts/login/?
 Disallow: /accounts/login/facebook
 Disallow: /accounts/login/vk-oauth2
 Disallow: /accounts/me
+Disallow: /me/
 
 Host: odelife.ru
 Sitemap: https://odelife.ru/sitemap.xml
