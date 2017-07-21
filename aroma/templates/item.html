@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load aroma_extras %}
 
-{% block title %}{{ title }} {% if comments %}|| Отзывы {% endif %}|| Описание{% endblock %}
+{% block title %}{% if brand.title|length < 11 %}{{ brand.title }} {% endif %}{{ title }} {% if comments %}|| Отзывы {% endif %}|| Описание{% endblock %}
 {% block description %}{{ description|truncatechars:250 }}{% endblock %}
 {% block keywords %}духи {{ brand.title }} {{ gender_label }} аромат {{ title }} парфюм описание {% if comments %}отзывы{% endif %} ноты фото{% endblock %}
 
