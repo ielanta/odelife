@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load aroma_extras %}
 
-{% block title %}{% if brand.title|length < 11 %}{{ brand.title }} {% endif %}{{ title }} {% if comments %}|| Отзывы {% endif %}|| Описание{% endblock %}
+{% block title %}{% if brand.title|length < 11 or title|add:brand.title|length < 48 %}{{ brand.title }} {% endif %}{{ title }} {% if comments %}|| Отзывы {% endif %}|| Описание{% endblock %}
 {% block description %}{{ description|truncatechars:250 }}{% endblock %}
 {% block keywords %}духи {{ brand.title }} {{ gender_label }} аромат {{ title }} парфюм описание {% if comments %}отзывы{% endif %} ноты фото{% endblock %}
 
@@ -20,6 +20,7 @@
                 <div class="col-md-offset-1 col-md-6 col-sm-7 center-text">
                     <img src={{ pic }} alt="{{ title }}" class="aroma-pic img-responsive center-block" />
                     {% include "action_box.html" with aroma_id=id  favorite=favorite like=like %}
+                    <h4 class="center-text">Описание</h4>
                     <p class="aroma_description" itemprop="description">{{ description }}</p>
                     <div class="row-fluid feature_data">
                         {% include "notes.html" with notes=general_notes note_title='Ноты' %}
