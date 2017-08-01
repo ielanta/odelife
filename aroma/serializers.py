@@ -125,4 +125,5 @@ class AromaDetailSerializer(AromaCommonSerializer):
     class Meta:
         model = Aroma
         fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'gender', 'gender_label', 'noses', 'description',
-                  'top_notes', 'middle_notes', 'base_notes', 'general_notes', 'favorite', 'like', 'comments', 'tags')
+                  'top_notes', 'middle_notes', 'base_notes', 'general_notes', 'favorite', 'like', 'comments', 'tags',
+                  'video')

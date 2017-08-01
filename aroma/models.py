@@ -60,6 +60,9 @@ class Aroma(models.Model):
     is_public = models.BooleanField(default=False)
     marks = GenericRelation(Activity)
     slug = models.SlugField(max_length=256, blank=True, null=True)
+    video = models.URLField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         unique_together = ('title', 'brand', 'gender')
