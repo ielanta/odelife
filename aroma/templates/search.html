@@ -20,6 +20,9 @@
                         <li><a href="?{% url_replace request 'ordering' '-aromacounter__num_comments,title' %}"
                                 {% if '-aromacounter__num_comments' in request.GET.ordering %} class='selected'{% endif %}>
                             по популярности</a></li>
+                        <li><a href="?{% url_replace request 'ordering' '-updated_at,title' %}"
+                                {% if '-updated_at' in request.GET.ordering %} class='selected'{% endif %}>
+                            по дате обновления</a></li>
                     </ul>
                     {% include "item_list.html" with results=results count=count aroma_size='col-md-4 col-sm-6' %}
                     {% include 'center_pagination.html' with previous_url=previous_url next_url=next_url page_links=page_links %}

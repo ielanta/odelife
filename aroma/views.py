@@ -24,7 +24,7 @@ class AromaList(generics.ListCreateAPIView):
     filter_class = SearchFilter
     queryset = Aroma.objects.filter(is_public=True)
     permission_classes = (PublicEndpoint,)
-    ordering_fields = ('year', 'aromacounter__num_comments', 'title')
+    ordering_fields = ('year', 'aromacounter__num_comments', 'title', 'updated_at')
     ordering = ('-year', 'title')
 
     def list(self, request, *args, **kwargs):

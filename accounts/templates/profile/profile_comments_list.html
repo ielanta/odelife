@@ -1,7 +1,8 @@
+{% load aroma_extras %}
 {% if results %}
     <div class="row profile-box aroma-container" id="comments">
         {% if request.GET.full_username %}
-            <h3 class="center-text">Комментарии пользователя {{ request.GET.full_username }}</h3>
+            <h3 class="center-text">Комментарии пользователя {{ request.GET.full_username }} ({{ results | length  }})</h3>
         {% endif %}
         {% for comment in results %}
             <div class="row comment-block">
