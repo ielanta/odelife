@@ -41,6 +41,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -155,7 +157,7 @@ BOOTSTRAP3 = {
     },
 }
 
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 SESSION_CACHE_ALIAS = "default"
 
 REST_FRAMEWORK = {
@@ -195,6 +197,10 @@ GENDER_CHOICES = (
 
 MAIL_SERVICE = 'support@odelife.ru'
 MAIL_MARKETING = 'marketing@odelife.ru'
+
+COMPRESS_ENABLED = True
+COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',  'compressor.filters.cssmin.CSSMinFilter']
+COMPRESS_REBUILD_TIMEOUT = 2592000
 
 # LOGGING = {
 #     'version': 1,
