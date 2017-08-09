@@ -272,7 +272,7 @@ hr {
 }
 
 .aroma-container h3{
-    padding: 13px 0;
+    padding: 20px 0;
     font-size: 20px;
 }
 
@@ -363,7 +363,7 @@ hr {
 }
 
 #aroma-detail h4{
-    padding: 15px 0;
+    padding: 10px 0;
 }
 
 .video-embed {
@@ -385,6 +385,10 @@ hr {
 
 #comments h5{
     padding-bottom: 8px;
+}
+
+#comments h3{
+    padding: 10px 0;
 }
 
 #comments .summary-line{
@@ -699,7 +703,7 @@ Aroma List
     white-space: nowrap;
     overflow: hidden;
     line-height: 1.8em;
-    padding-top: 10px;
+    padding: 10px 10px 0;
 }
 
 .aroma-card:hover .card-title {

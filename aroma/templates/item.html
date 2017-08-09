@@ -84,12 +84,13 @@
                             <img src="{{ brand.logo }}" alt="{{ brand.title }}" class="logo center-block"/>
                         </a>
                     </div>
-                <div class="col-md-1"> </div>
             </div>
-            <div class="row">
-                <div class="col-md-offset-1 col-md-10">
+            <div class="col-md-1"> </div>
+            <div class="row-fluid">
+                <div class="col-md-offset-1 col-md-10 col-xs-12">
                     {% include "comments_list.html" with comments=comments aroma_id=id %}
                 </div>
+                <div class="col-md-1"> </div>
             </div>
         </div>
     </div>
