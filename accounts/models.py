@@ -4,6 +4,8 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
+from aroma.models import Aroma
+from activity.models import Activity, Comment
 
 
 class Account(models.Model):
@@ -25,3 +27,15 @@ class Account(models.Model):
 
     def get_absolute_url(self):
         return reverse('profile-public', kwargs={'username': self.user.username})
+
+    @property
+    def num_comments(self):
+        return Comment.objects.filter(user_id=self.user.id).count()
+
+    @property
+    def num_favorites(self):
+        return Aroma.objects.filter(marks__user_id=self.user.id, marks__activity_type=Activity.FAVORITE).count()
+
+    @property
+    def num_likes(self):
+        return Aroma.objects.filter(marks__user_id=self.user.id, marks__activity_type=Activity.LIKE).count()

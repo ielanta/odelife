@@ -11,9 +11,8 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from main.pagination import CustomPagination
 from main.permissions import PublicEndpoint
 
-
 from accounts.forms import ProfileForm
-from activity. models import Activity, Comment
+from activity.models import Activity, Comment
 from activity.serializers import AromaCommentSerializer
 from aroma.models import Aroma
 from aroma.serializers import AromaListSerializer
@@ -107,6 +106,7 @@ class PublicCommentsView(MyCommentsView):
     def get(self, request, *args, **kwargs):
         user = get_object_or_404(User, username=self.kwargs['username'])
         request.GET.full_username = user.account.get_full_name()
+        request.GET.num_comments = Comment.objects.filter(user_id=user.id).count()
         return super(PublicCommentsView, self).get(request, *args, **kwargs)
 
 
