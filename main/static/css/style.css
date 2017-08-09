@@ -144,6 +144,51 @@ hr {
 }
 
 /* ===========================
+--- Back to top button
+============================ */
+
+#return-to-top {
+    position: fixed;
+    bottom: 70px;
+    right: 5px;
+    background: rgba(135, 206, 250, .7);
+    width: 50px;
+    height: 50px;
+    display: block;
+    z-index: 100;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#return-to-top span {
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#return-to-top:hover {
+    background: rgba(135, 206, 250, .9);
+}
+#return-to-top:hover span {
+    color: #fff;
+    top: 5px;
+}
+
+/* ===========================
 --- Intro
 ============================ */
 
