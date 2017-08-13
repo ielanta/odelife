@@ -9,3 +9,4 @@ Disallow: /accounts/me
 Disallow: /me/
 
 Sitemap: https://odelife.ru/sitemap.xml
+Host: https://odelife.ru/
