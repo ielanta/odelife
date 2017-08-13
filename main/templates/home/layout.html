@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Новости{% endblock %}
+{% block description %}Odelife - Коллекция ароматов, собранная с любовью. Отзывы и описания{% endblock %}
+
+
+{% block extra_css %}
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="">
+        <div class="container-space">
+            <div class="container">
+                <h3 class="center-text section-name">Последние Обновления</h3>
+                {% include "home/updated_aromas.html" with updated_aromas=updated_aromas %}
+                <h3 class="center-text section-name">Новые Комментарии</h3>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

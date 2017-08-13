@@ -1,0 +1,36 @@
+<div class="row aroma-carousel">
+    <div id="carousel-updated-aromas" class="carousel slide carousel-fade center-block" data-ride="carousel" data-interval="false">
+        <ol class="carousel-indicators">
+            {% for aroma in updated_aromas %}
+                <li data-target="#carousel-updated-aromas" data-slide-to="{{ forloop.counter0 }}"
+                    {% if forloop.first %}class="active"{% endif %}></li>
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            {% for aroma in updated_aromas %}
+                <div class="item {% if forloop.first %}active{% endif %}">
+                    <div class="col-sm-4 carousel-text">
+                        <a href="{{ aroma.url }}" class="pointed" itemprop="url">
+                            <h3 class="hide-text-overflow">{{ aroma.title }}</h3>
+                        </a>
+                        <p>{{ aroma.description|truncatechars:250 }}</p>
+                        <h4 class="hide-text-overflow">
+                            <i>{% for tag in aroma.tags %}#{{ tag.tag__name }} {% endfor %}</i>
+                        </h4>
+                        <button class="btn">Узнать больше</button>
+                  </div>
+                <div class="col-sm-8 carousel-right">
+                      <img class="hidden-xs carousel-pic" src={{ aroma.guise }} alt="{{ aroma.title }}">
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+{#                      <a class="left carousel-control" href="#carousel-updated-aromas" role="button" data-slide="prev">#}
+{#                        <span class="glyphicon glyphicon-chevron-left"></span>#}
+{#                      </a>#}
+{#                      <a class="right carousel-control" href="#carousel-updated-aromas" role="button" data-slide="next">#}
+{#                        <span class="glyphicon glyphicon-chevron-right"></span>#}
+{#        </a>#}
+    </div>
+</div>
