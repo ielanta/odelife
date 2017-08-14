@@ -41,7 +41,6 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ('id', 'user', 'impression', 'longevity', 'sillage', 'season', 'text', 'rating', 'tags')
 
 
-
 class AromaCommentSerializer(CommentSerializer):
     aroma_pic = serializers.ImageField(read_only=True, source='aroma.pic')
     aroma_url = serializers.SerializerMethodField()

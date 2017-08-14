@@ -2,7 +2,6 @@ from django.core.mail import send_mail
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from django.views.generic.edit import FormView
-from django.views.generic.base import TemplateView
 from rest_framework import generics
 from rest_framework.renderers import TemplateHTMLRenderer
 from django.core.urlresolvers import reverse_lazy
@@ -12,7 +11,8 @@ from main.permissions import PublicEndpoint
 
 from main.forms import ContactForm
 from aroma.models import Aroma
-from main.serializers import UpdatedAromasListSerializer
+from main.serializers import UpdatedAromasListSerializer, NewCommentsListSerializer
+from activity.models import Comment
 
 
 def tos(request):
@@ -42,9 +42,11 @@ class HomePageView(generics.GenericAPIView):
 
     def get(self, request, *args, **kwargs):
         context = {"request": request}
-        updated_aromas = Aroma.objects.filter(guise__isnull=False).order_by('-updated_at')[:2]
+        updated_aromas = Aroma.objects.filter(guise__isnull=False).order_by('-updated_at')[:3]
         aromas_serializer = UpdatedAromasListSerializer(updated_aromas, many=True, context=context)
-        r = {'updated_aromas': aromas_serializer.data}
+        new_comments = Comment.objects.all().order_by('-created_at')[:3]
+        comments_serializer = NewCommentsListSerializer(new_comments, many=True, context=context)
+        r = {'updated_aromas': aromas_serializer.data, 'new_comments': comments_serializer.data}
         return Response(r, template_name='home/layout.html')
 
 

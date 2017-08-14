@@ -1,0 +1,33 @@
+<div class="row aroma-carousel">
+    <div id="carousel-new-comments" class="carousel slide carousel-fade center-block" data-ride="carousel" data-interval="false">
+        <ol class="carousel-indicators">
+            {% for comment in new_comments %}
+                <li data-target="#carousel-new-comments" data-slide-to="{{ forloop.counter0 }}"
+                    {% if forloop.first %}class="active"{% endif %}></li>
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            {% for comment in new_comments %}
+                <div class="item {% if forloop.first %}active{% endif %}">
+                    <div class="col-sm-4 carousel-right">
+                        <a href="{{ comment.aroma_url }}#comments" class="pointed" itemprop="url">
+                            <img class="hidden-xs comment-pic center-block" src={{ comment.aroma_pic }} alt="{{ comment.aroma_title }}">
+                        </a>
+                    </div>
+                    <div class="col-sm-8 carousel-text">
+                        <a href="{{ comment.aroma_url }}#comments" class="pointed" itemprop="url">
+                            <h3 class="hide-text-overflow">{{ comment.aroma_title }}</h3>
+                        </a>
+                        <p><blockquote class="">{{ comment.text|truncatechars:300 }}</blockquote></p>
+                        <a href="{{ comment.user.profile_url }}" class="pointed" itemprop="url">
+                            <p class="commentator"><i>{{ comment.user.full_name }}</i><p>
+                        </a>
+                        <a href="{{ comment.aroma_url }}#comments" class="pointed" itemprop="url">
+                            <button class="hidden-xs btn">Узнать больше</button>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

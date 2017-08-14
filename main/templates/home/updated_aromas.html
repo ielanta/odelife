@@ -17,10 +17,14 @@
                         <h4 class="hide-text-overflow">
                             <i>{% for tag in aroma.tags %}#{{ tag.tag__name }} {% endfor %}</i>
                         </h4>
-                        <button class="btn">Узнать больше</button>
-                  </div>
-                <div class="col-sm-8 carousel-right">
-                      <img class="hidden-xs carousel-pic" src={{ aroma.guise }} alt="{{ aroma.title }}">
+                        <a href="{{ aroma.url }}" class="pointed" itemprop="url">
+                            <button class="btn">Узнать больше</button>
+                        </a>
+                    </div>
+                    <div class="col-sm-8 carousel-right">
+                        <a href="{{ aroma.url }}" class="pointed" itemprop="url">
+                            <img class="hidden-xs carousel-pic" src={{ aroma.guise }} alt="{{ aroma.title }}">
+                        </a>
                     </div>
                 </div>
 
