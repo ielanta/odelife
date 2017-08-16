@@ -1,6 +1,8 @@
 {% extends 'layout.html' %}
 
-{% block title %}Комментарии пользователя{% endblock %}
+{% block title %}Комментарии пользователя {{ request.GET.full_username }}{% endblock %}
+{% block description %}Впечатление об ароматах - стойкости, шлейфе, основных нотах{% endblock %}
+
 
 {% block content %}
     <div id="profile">
