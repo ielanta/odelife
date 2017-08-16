@@ -32,16 +32,19 @@
     }
 }
 
-.carousel-indicators li{
+.carousel-indicators li, .carousel-indicators .active{
     border: 1px solid #bbb;
     width: 15px;
     height: 15px;
+    margin: 0 2px;
+}
+
+.carousel-indicators{
+    margin-bottom: 0px;
 }
 
 .carousel-indicators .active{
     background-color: #bbb;
-    width: 16px;
-    height: 16px;
 }
 
 .carousel-pic{
@@ -105,7 +108,7 @@ blockquote:before {
 }
 
 .aroma-carousel h4{
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .carousel-text{
