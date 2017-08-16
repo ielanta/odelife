@@ -67,7 +67,7 @@ class NoteSerializer(serializers.ModelSerializer):
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
-        fields = ('id', 'title', 'logo')
+        fields = ('id', 'title', 'logo', 'ru_trans')
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -126,4 +126,4 @@ class AromaDetailSerializer(AromaCommonSerializer):
         model = Aroma
         fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'gender', 'gender_label', 'noses', 'description',
                   'top_notes', 'middle_notes', 'base_notes', 'general_notes', 'favorite', 'like', 'comments', 'tags',
-                  'video')
+                  'video', 'ru_trans')

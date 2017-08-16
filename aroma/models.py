@@ -40,6 +40,7 @@ class Brand(models.Model):
     title = models.CharField(max_length=200, unique=True)
     website = models.URLField(blank=True)
     logo = models.ImageField(upload_to='brands/', blank=True, null=True)
+    ru_trans = models.CharField(max_length=150, blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -63,6 +64,7 @@ class Aroma(models.Model):
     video = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
+    ru_trans = models.CharField(max_length=150, blank=True, null=True)
 
     class Meta:
         unique_together = ('title', 'brand', 'gender')

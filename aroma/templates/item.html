@@ -4,7 +4,7 @@
 
 {% block title %}{% if brand.title not in title and brand.title|length < 11 or brand.title not in title and title|add:brand.title|length < 48 %}{{ brand.title }} {% endif %}{{ title }} {% if comments %}| Отзывы {% endif %}| Описание{% if video %} | Видео{% endif %}{% endblock %}
 {% block description %}{{ description|truncatechars:250 }}{% endblock %}
-{% block keywords %}духи {{ brand.title }} {{ gender_label }} аромат {{ title }} парфюм описание{% if comments %} отзывы{% endif %} ноты фото{% if video %} видео{% endif %}{% if year >= 2017 %} новинка{% endif %}{% endblock %}
+{% block keywords %}духи {{ brand.title }}{% if brand.ru_trans %} {{ brand.ru_trans }}{% endif %}{% if ru_trans %} {{ ru_trans }}{% endif %} {{ gender_label }} аромат {{ title }} парфюм описание{% if comments %} отзывы{% endif %} ноты фото{% if video %} видео{% endif %}{% if year >= 2017 %} новинка{% endif %}{% endblock %}
 
 
 {% block content %}
