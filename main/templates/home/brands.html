@@ -1,0 +1,9 @@
+<div class="row last-section">
+    <div class="col-xs-12">
+        {% for brand in brands %}
+            <a href="{% url 'aroma-list' %}?brand={{ brand.id }}" title="{{ brand.title }}" aria-label="tooltip">
+                    <img src="{{ brand.logo }}" alt="{{ brand.title }}" class="logo-cell"/>
+            </a>
+        {% endfor %}
+    </div>
+</div>

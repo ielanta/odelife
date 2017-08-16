@@ -10,7 +10,8 @@ from rest_framework.response import Response
 from main.permissions import PublicEndpoint
 
 from main.forms import ContactForm
-from aroma.models import Aroma
+from aroma.models import Aroma, Brand
+from aroma.serializers import BrandSerializer
 from main.serializers import UpdatedAromasListSerializer, NewCommentsListSerializer
 from activity.models import Comment
 
@@ -40,13 +41,19 @@ class HomePageView(generics.GenericAPIView):
     renderer_classes = [TemplateHTMLRenderer]
     permission_classes = (PublicEndpoint,)
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         context = {"request": request}
-        updated_aromas = Aroma.objects.filter(guise__isnull=False).order_by('-updated_at')[:3]
+        updated_aromas = Aroma.objects.exclude(guise='').order_by('-updated_at')[:3]
         aromas_serializer = UpdatedAromasListSerializer(updated_aromas, many=True, context=context)
         new_comments = Comment.objects.all().order_by('-created_at')[:3]
         comments_serializer = NewCommentsListSerializer(new_comments, many=True, context=context)
-        r = {'updated_aromas': aromas_serializer.data, 'new_comments': comments_serializer.data}
+        brand_list = ['Kenzo', 'Chanel', 'Mugler', 'Calvin Klein', 'Tom Ford', 'Byredo', 'Giorgio Armani',
+                      'Carolina Herrera',
+                      'Montale', 'Givenchy', 'Versace', 'Yves Saint Laurent', 'Lanvin', 'Christian Dior',
+                      'Paco Rabanne', 'Moschino']
+        brands = Brand.objects.filter(title__in=brand_list)
+        brands = sorted(brands, key=lambda t: brand_list.index(t.title))
+        brands_serializer = BrandSerializer(brands, many=True, context=context)
+        r = {'updated_aromas': aromas_serializer.data, 'new_comments': comments_serializer.data,
+             'brands': brands_serializer.data}
         return Response(r, template_name='home/layout.html')
-
-

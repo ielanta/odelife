@@ -403,6 +403,7 @@ hr {
 .video-embed {
     width: 480px;
     height: 270px;
+    max-width: 100%;
 }
 
 /* ===========================
@@ -924,7 +925,7 @@ Pagination
 }
 
 #profile .profile-box{
-    padding-top: 80px;
+    padding-top: 30px;
 }
 
 #profile .nav-pills>li.active>a, #profile .nav-pills>li.active>a:focus, #profile .nav-pills>li.active>a:hover{
