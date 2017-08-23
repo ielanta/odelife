@@ -4,7 +4,7 @@ body {
     /*font-weight: 300;*/
     color: #666;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #D1E1F0;
+    background-color: #BBDDE6;
     /*box-shadow:0 0 0 500px rgba(69, 53, 54, 0.40) inset;*/
     /*background:fixed linear-gradient(40deg, #FFC27B, #FFABC2) no-repeat, fixed linear-gradient(-40deg, transparent 40%, blue) no-repeat;*/
     /*background:fixed  linear-gradient(40deg, #FFABC2 20%, #FFC27B) no-repeat, fixed linear-gradient(-20deg, white 10%, #FFABC2  90%) no-repeat;*/
@@ -91,7 +91,7 @@ a:focus {
 
 .navbar-custom ul.nav li a {
 	font-size: 12px;
-    color: #333;
+    color: #444;
 	text-transform: uppercase;
 	font-weight: 600;
     letter-spacing: 1px;
@@ -257,7 +257,7 @@ hr {
 ============================ */
 
 #contacts {
-    background-color: #D1E1F0;
+    background-color: #BBDDE6;
     color: #453536;
 }
 
@@ -1159,7 +1159,7 @@ Pagination
 @media (max-width:767px){
     .navbar{
         padding-top: 10px;
-        background-color: #DFE8F2;
+        background-color: #C0E1ED;
         border-bottom: 2px solid ghostwhite;
 
     }

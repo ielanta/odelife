@@ -10,6 +10,9 @@ class DinamicSitemap(Sitemap):
     def items(self):
         return Aroma.objects.filter(is_public=True)
 
+    def lastmod(self, item):
+        return item.updated_at
+
     def location(self, aroma):
         return aroma.get_absolute_url()
 
