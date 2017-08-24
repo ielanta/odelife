@@ -1,7 +1,7 @@
 Django==1.11.2
 django-autocomplete-light==3.2.9
 Django-bootstrap3==8.2.2
-django_compressor==2.1.1
+django_compressor==2.2
 django-crispy-forms==1.6.1
 django_filter==1.0.2
 django-htmlmin==0.10.0
