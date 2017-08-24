@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="col-sm-3 summary-line">
-            <div class="trait">Впечатление:
+            <div class="trait">Впечатление:&nbsp;
                 {% for imp, ico in comment.impression.items %}
                     <img class="icon" src="{% static 'img/icons/'|add:ico %}" alt={{ imp }} title="{{ imp }}" aria-label="tooltip">
                 {% endfor %}</div>

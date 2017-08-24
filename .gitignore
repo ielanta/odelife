@@ -11,3 +11,4 @@ django.yaml
 django_init.yaml
 postgresql.yaml
 ingress.yaml
+media
