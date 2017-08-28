@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'accounts',
     'activity',
     'tag',
+    'collaboration',
 ]
 
 MIDDLEWARE_CLASSES = [
