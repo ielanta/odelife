@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}Специальное предложение{% endblock %}
+{% block description %}Скидка для наших пользователей{% endblock %}
+
+{% block content %}
+    <div id="profile">
+        <div class="profile-space container-fluid">
+            {% include "profile/profile_menu.html" %}
+            <div class="row profile-box aroma-panel">
+                <div class="center-text">
+                    <div>Введите кодовое слово <b>START</b> и получите скидку 300 рублей</div>
+                    <div>при покупке от 1 500 рублей</div>
+                    <p></p>
+                    <!-- admitad.banner: cv44yxum29778b031be5bd98ca540e 1st-original.ru -->
+                    <a target="_blank" rel="nofollow" href="https://ad.admitad.com/g/cv44yxum29778b031be5bd98ca540e/?i=4"><img width="300" height="250" border="0" src="https://ad.admitad.com/b/cv44yxum29778b031be5bd98ca540e/" alt="1st-original.ru"/></a>
+                    <!-- /admitad.banner -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

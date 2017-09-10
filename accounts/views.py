@@ -1,4 +1,4 @@
-from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordChangeView
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordChangeView, TemplateView
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse_lazy
@@ -110,3 +110,7 @@ class PublicCommentsView(MyCommentsView):
         return super(PublicCommentsView, self).get(request, *args, **kwargs)
 
 
+class MyPromoView(TemplateView):
+    template_name = 'profile/profile_promo.html'
+    allowed_methods = ['GET']
+    permission_classes = (IsAuthenticated,)

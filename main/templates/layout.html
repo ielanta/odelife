@@ -71,7 +71,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown"><span class="glyphicon glyphicon-user"> </span> {{ user.account.get_short_name }}<b class="caret"></b></a>
                         <ul class="dropdown-menu no-hover">
-                            <li><a href="{% url 'profile-fav' %}" >Мои ароматы</a></li>
+                            <li><a href="{% url 'profile-fav' %}" >Личный кабинет</a></li>
                             <li><a href="{% url 'profile-settings' %}">Настройки</a></li>
                             <li><a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">Выход</a></li>
                         </ul>
@@ -106,10 +106,8 @@
 
 	{% block scripts %}
         <script src="{% static 'js/app.js' %}"></script>
-        {% compress js %}
-            {% block extra_javascript %}
-            {% endblock %}
-        {% endcompress %}
+        {% block extra_javascript %}
+        {% endblock %}
     {% endblock %}
 </body>
 

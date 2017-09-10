@@ -328,13 +328,23 @@ hr {
     line-height: 1.4em;
 }
 
-.feature_data a{
+.right-group a{
     color: #555;
 }
 
 .feature_data h5 {
     padding: 15px 0;
     font-size: 120%;
+}
+
+.price {
+    font-weight: 600;
+    font-size: 120%;
+}
+
+.share_buttons{
+    font-size: 15px;
+    padding-bottom: 10px;
 }
 
 .logo{

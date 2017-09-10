@@ -8,6 +8,7 @@ from rest_framework import serializers
 
 from activity.models import Activity
 from activity.serializers import CommentSerializer
+from collaboration.models import Interaction
 from aroma.models import Aroma, Brand, Note, Group, Nose, CategoryNotes
 from tag.models import Tag
 
@@ -70,6 +71,12 @@ class BrandSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'logo', 'ru_trans')
 
 
+class InteractionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Interaction
+        fields = ('link', 'price')
+
+
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
@@ -92,6 +99,7 @@ class AromaDetailSerializer(AromaCommonSerializer):
     brand = BrandSerializer(read_only=True)
     groups = GroupSerializer(read_only=True, many=True)
     comments = serializers.SerializerMethodField()
+    interaction = serializers.SerializerMethodField()
 
     @staticmethod
     def get_gender_label(obj):
@@ -122,8 +130,12 @@ class AromaDetailSerializer(AromaCommonSerializer):
         comments = obj.comment_set.filter(is_approved=True).order_by('-created_at').all()
         return CommentSerializer(comments, many=True, read_only=True).data
 
+    @staticmethod
+    def get_interaction(obj):
+        return obj.interaction_set.first()
+
     class Meta:
         model = Aroma
         fields = ('id', 'title', 'year', 'brand', 'pic', 'groups', 'gender', 'gender_label', 'noses', 'description',
                   'top_notes', 'middle_notes', 'base_notes', 'general_notes', 'favorite', 'like', 'comments', 'tags',
-                  'video', 'ru_trans')
+                  'video', 'ru_trans', 'interaction')
