@@ -2,10 +2,7 @@ User-agent: *
 Disallow: /admin
 Disallow: /aromas/?
 Disallow: /aromas/notes/?
-Disallow: /accounts/login
-Disallow: /accounts/me
-Disallow: /accounts/register
-Disallow: /accounts/password
+Disallow: /accounts
 Disallow: /me/
 
 Sitemap: https://odelife.ru/sitemap.xml
