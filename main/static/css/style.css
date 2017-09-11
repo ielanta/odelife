@@ -271,6 +271,10 @@ hr {
     height: auto;
 }
 
+h1{
+    font-size: 26px;
+}
+
 #contacts .btn-base i{
    color: #fffafa;
 }
@@ -900,7 +904,7 @@ Pagination
     font-size: 16px;
 }
 
-#notes h3{
+#notes h1{
     padding-bottom: 20px;
 }
 
