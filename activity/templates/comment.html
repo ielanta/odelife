@@ -2,11 +2,11 @@
 
 <div class="comment" itemprop="review" itemscope itemtype="http://schema.org/Review">
     {% if 'aroma' in request.path %}
-        <h6><a class="author" itemprop="author" href="{{ comment.user.profile_url }}">{{ comment.user.full_name }}</a></h6>
+        <h6 itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="author" itemprop="name" href="{{ comment.user.profile_url }}">{{ comment.user.full_name }}</a></h6>
     {% endif %}
     <div class="row">
         <div class="col-sm-9 text">
-            <span itemprop="description">{{ comment.text }}</span>
+            <span itemprop="reviewBody">{{ comment.text }}</span>
             <div class="tags">
                 {% for tag in comment.tags %}
                     <a href="{% url 'aroma-list' %}?tags={{ tag.id }}">#{{ tag.name }}</a>
@@ -24,7 +24,7 @@
                         <i class="glyphicon glyphicon-thumbs-up"></i>
                     </button>
                 </form>
-                <span itemprop="reviewRating">{{ comment.rating }}</span>
+                <span>{{ comment.rating }}</span>
             </div>
         </div>
         <div class="col-sm-3 summary-line">
