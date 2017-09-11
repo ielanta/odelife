@@ -30,7 +30,7 @@
         <div class="col-sm-3 summary-line">
             <div class="trait">Впечатление:&nbsp;
                 {% for imp, ico in comment.impression.items %}
-                    <img class="icon" src="{% static 'img/icons/'|add:ico %}" alt={{ imp }} title="{{ imp }}" aria-label="tooltip">
+                    <img class="icon" src="{% static 'img/icons/'|add:ico %}" alt="{{ imp }}" title="{{ imp }}" aria-label="tooltip">
                 {% endfor %}</div>
             {% if comment.longevity %}
                 <div class="trait">Стойкость: <span class="trait-data">{{ comment.longevity }}</span></div>
@@ -43,7 +43,7 @@
                     <span class="season">
                     {% for season, icons in comment.season.items %}
                         {% for ico in icons %}
-                            <img class="icon" src="{% static 'img/icons/'|add:ico %}" alt={{ season }} title="{{ season }}" aria-label="tooltip">
+                            <img class="icon" src="{% static 'img/icons/'|add:ico %}" alt="{{ season }}" title="{{ season }}" aria-label="tooltip">
                         {% endfor %}
                     {% endfor %}
                     </span>

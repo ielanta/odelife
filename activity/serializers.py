@@ -43,6 +43,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class AromaCommentSerializer(CommentSerializer):
     aroma_pic = serializers.ImageField(read_only=True, source='aroma.pic')
+    aroma_title = serializers.CharField(read_only=True, source='aroma.title')
     aroma_url = serializers.SerializerMethodField()
 
     @staticmethod
@@ -52,4 +53,4 @@ class AromaCommentSerializer(CommentSerializer):
     class Meta:
         model = Comment
         fields = ('id', 'impression', 'longevity', 'sillage', 'season', 'text', 'rating', 'aroma_pic',
-                  'aroma_url')
+                  'aroma_url', 'aroma_title')

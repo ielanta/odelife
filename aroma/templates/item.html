@@ -2,8 +2,8 @@
 {% load staticfiles %}
 {% load aroma_extras %}
 
-{% block title %}{% if brand.title not in title and brand.title|length < 11 or brand.title not in title and title|add:brand.title|length < 48 %}{{ brand.title }} {% endif %}{{ title }} {% if comments %}| Отзывы {% endif %}| Описание{% if video %} | Видео{% endif %}{% endblock %}
-{% block description %}{{ description|truncatechars:250 }}{% endblock %}
+{% block title %}{% if brand.title not in title and brand.title|length < 11 or brand.title not in title and title|add:brand.title|length < 48 %}{{ brand.title }} {% endif %}{{ title }} {% if comments %}| Отзывы {% else %}{% if video %}| Видео {% endif %}{% endif %}| Описание{% endblock %}
+{% block description %}{{ description|truncatechars:155 }}{% endblock %}
 {% block keywords %}духи {{ brand.title }}{% if brand.ru_trans %} {{ brand.ru_trans }}{% endif %}{% if ru_trans %} {{ ru_trans }}{% endif %} {{ gender_label }} аромат {{ title }} парфюм описание{% if comments %} отзывы{% endif %} ноты фото{% if video %} видео{% endif %}{% if year >= 2017 %} новинка{% endif %}{% endblock %}
 
 
@@ -18,7 +18,7 @@
                 </ul>
                 <h3 class="center-text" itemprop="name">{{ title }}</h3>
                 <div class="col-md-offset-1 col-md-6 col-sm-7 center-text">
-                    <img src={{ pic }} alt="{{ title }}" class="aroma-pic img-responsive center-block" itemprop="image"/>
+                    <img src="{{ pic }}" alt="{{ title }}" class="aroma-pic img-responsive center-block" itemprop="image"/>
                     {% include "action_box.html" with aroma_id=id  favorite=favorite like=like %}
                     <h4 class="center-text">Описание</h4>
                     <p class="aroma_description" itemprop="description">{{ description }}</p>
