@@ -796,7 +796,8 @@ Aroma List
 }
 
 .num-results {
-    padding-bottom: 28px;
+    padding-bottom: 25px;
+    margin-top: -20px;
     font-size: 13px;
     color: #999;
     text-transform: uppercase;

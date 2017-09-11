@@ -2,10 +2,6 @@
 
 <div class="row row-centered" itemscope itemtype="http://schema.org/ItemList">
 {% if results %}
-    {% if request.GET %}
-        <div class="num-results" itemprop="numberOfItems">{{ count | ru_pluralize:"Найден,Найдено,Найдено" }}
-            {{ count }} {{ count | ru_pluralize:"аромат,аромата,ароматов" }}</div>
-    {% endif %}
     {% for item in results %}
         <div class="{{ aroma_size }} col-xs-12 col-centered" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
             <div class="aroma-box">
