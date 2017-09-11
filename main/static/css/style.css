@@ -70,13 +70,13 @@ a:focus {
     padding: 8px 15px;
 }
 
-.navbar-brand h1{
+.navbar-brand div{
     color: #fff;
     font-size: 26px;
     line-height: 40px;
     font-family: "Gill Sans", Arial, Helvetica, sans-serif;
     margin: 7px 0;
-    /*text-shadow: 2px 2px #666;*/
+    font-weight: 300;
 }
 
 .navbar-brand:focus {
@@ -160,7 +160,6 @@ hr {
     -webkit-border-radius: 35px;
     -moz-border-radius: 35px;
     border-radius: 35px;
-    display: none;
     -webkit-transition: all 0.3s linear;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
@@ -259,8 +258,13 @@ hr {
 #contacts {
     background-color: #BBDDE6;
     color: #453536;
+    font-weight: 300;
 }
 
+#contacts {
+    background-color: #BBDDE6;
+    color: #453536;
+}
 .container-space {
     margin-top: 40px;
     min-height: 100%;
@@ -305,9 +309,9 @@ hr {
     color: #666;
 }
 
-.aroma-container h3{
+.aroma-container h1{
     padding: 20px 0;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .aroma-pic {
@@ -428,14 +432,19 @@ hr {
     padding: 15px 0;
 }
 
-#comments h5{
+#comments div{
     padding-bottom: 8px;
 }
 
-#comments h3{
-    padding: 10px 0;
+#comments p{
+    padding: 10px 0 0 0;
+    font-size: 20px;
+    letter-spacing: 1px;
 }
 
+.emoji{
+    font-size: 11px;
+}
 #comments .summary-line{
     text-align: left;
 }
@@ -495,7 +504,7 @@ hr {
     text-align: left;
 	padding: 10px 0;
     font-weight: 300;
-
+    border-radius: 0px;
 }
 
 #footer a{
@@ -670,7 +679,7 @@ Search form
 
 .aroma-container .sort{
     color: #555;
-    padding: 15px;
+    padding: 0 15px;
 }
 
 .aroma-container .sort a{
@@ -1186,7 +1195,7 @@ Pagination
         padding: 0;
         margin: 0;
     }
-    .navbar-brand h1{
+    .navbar-brand div{
         color: #666;
         /*font-weight: 400;*/
         font-size: 18px;
@@ -1253,6 +1262,14 @@ Pagination
 
     #profile .profile-space{
         margin-top: 0;
+    }
+
+    .to-form{
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    .to-form a{
+        color: #666;
     }
 	
 }
