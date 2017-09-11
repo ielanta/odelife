@@ -6,12 +6,12 @@
             {% for comment in comments %}
                 {% include "comment.html" with comment=comment %}
             {% endfor %}
-            <h6 class="text-right">Emoji artwork provided by <a rel="nofollow" href="http://www.emojione.com" target="_blank">EmojiOne</a></h6>
+            <div class="emoji text-right">Emoji artwork provided by <a rel="nofollow" href="http://www.emojione.com" target="_blank">EmojiOne</a></div>
         {% else %}
             <div class="col-sm-9">
-                <h3>Ваш отзыв может стать первым</h3>
-                <h6>Поделитесь своим впечатлением о парфюме</h6>
-                <h6>Это поможет другим при выборе аромата</h6>
+                <p>Ваш отзыв может стать первым</p>
+                <div>Поделитесь своим впечатлением о парфюме</div>
+                <div>Это поможет другим при выборе аромата</div>
             </div>
         {% endif %}
     </div>

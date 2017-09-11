@@ -12,7 +12,9 @@
     <div class="container-space">
         <div class="container-fluid" >
             <div class="row aroma-container aroma-panel">
-                <div class="col-sm-9" >
+                <div class="col-sm-9">
+                    <h1 class="center-text">Поиск ароматов</h1>
+                    <button class="visible-xs to-form center-block btn btn-base"><a href="#search">Фильтры поиска</a></button>
                     <ul class="list-inline sort">
                         Сортировать:
                         <li><a href="?{% url_replace request 'ordering' '-year,title' %}"
@@ -28,11 +30,11 @@
                     {% include "item_list.html" with results=results count=count aroma_size='col-md-4 col-sm-6' %}
                     {% include 'center_pagination.html' with previous_url=previous_url next_url=next_url page_links=page_links %}
                 </div>
-                <div class="col-sm-3">
+                <section id="search" class="col-sm-3">
                     <form name="search_form" id="search_form" class="base-form" method="GET">
                         {% crispy form %}
                     </form>
-                </div>
+                </section>
             </div>
         </div>
     </div>

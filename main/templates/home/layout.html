@@ -1,8 +1,8 @@
 {% extends 'layout.html' %}
 {% load static %}
 
-{% block title %}Новости{% endblock %}
-{% block description %}Odelife - Коллекция ароматов, собранная с любовью. Отзывы и описания{% endblock %}
+{% block title %}Odelife | Парфюмерная коллекция‎{% endblock %}
+{% block description %}Отзывы и описания парфюмов люксовых и нишевых брендов. Детальная информация и выгодные цены{% endblock %}
 
 
 {% block extra_css %}
@@ -12,9 +12,9 @@
 {% block content %}
 
     <div class="container">
-        <h3 class="center-text section-name">Последние Обновления</h3>
+        <h1 class="center-text section-name">Последние Обновления</h1>
         {% include "home/updated_aromas.html" with updated_aromas=updated_aromas %}
-        <h3 class="center-text section-name">Новые Комментарии</h3>
+        <h2 class="center-text section-name">Новые Комментарии</h2>
         {% include "home/new_comments.html" with new_comments=new_comments %}
         <h3 class="center-text section-name">Бренды</h3>
         {% include "home/brands.html" with brands=brands %}

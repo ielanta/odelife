@@ -2,13 +2,14 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %}Контакты{% endblock %}
-{% block description %}Как с нами связаться. Форма обратной связи{% endblock %}
+{% block title %}Odelife | Контакты{% endblock %}
+{% block description %}Как с нами связаться. Мы ценим Ваше внимание. Свои вопросы, пожелания и комментарии отправляйте нам, заполнив эту форму.{% endblock %}
 {% block spec %}id="contacts"{% endblock spec %}
 
 {% block authform %}
 
-    <h3 class="center-text">Обратная связь</h3>
+    <h1 class="center-text">Обратная связь</h1>
+    <div>Спасибо за ваше внимание. Отправляйте свои вопросы и предложения и мы постараемся стать еще лучше :)</div>
     <form method="post" class="base-form" id="transparent-form" onsubmit="preventDoubleClick(this)">
         {% include "elements/messages.html" with messages=messages %}
         {% csrf_token %}
